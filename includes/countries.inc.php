@@ -1,0 +1,5 @@
+<?
+$countries = array("", 
+"United Kingdom"
+);
+?>

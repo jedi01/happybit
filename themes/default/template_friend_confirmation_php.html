@@ -1,0 +1,27 @@
+<SCRIPT Language=Javascript>
+function SubmitFriendForm(){
+	document.friend.submit();
+}
+function ResetFriendForm(){
+	document.friend.reset();
+}
+</SCRIPT>
+<div class="titTable2">
+      <B><?=$MSG_139;?></FONT></B>
+</DIV>
+<div class="titTable3">
+<A HREF="item.php?id=<? print $TPL_auction_id; ?>"><? print $MSG_138; ?></A> | 
+<A HREF="friend.php?id=<? print $TPL_auction_id; ?>"><? print $MSG_147; ?></A></FONT>
+</DIV>
+<TABLE WIDTH="100%"  BORDER=0 CELLPADDING="0" CELLSPACING="0">
+  <TR>
+    <TD align=center>
+      <p>
+        <p>
+        <B><? print $MSG_017." : ".$item_title; ?></FONT></B>
+        <p>
+        <B><? print $MSG_146." ".$friend_email; ?></FONT></B> 
+      <p>
+    </TD>
+  </TR>
+</TABLE>

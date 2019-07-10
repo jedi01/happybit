@@ -1,0 +1,48 @@
+<?
+?>
+<div class="content">
+    <div class="tableContent2">
+        <div class="titTable2">
+            <?=$MSG_5055?>
+        </div>
+        <div class="table2">
+            <table width="100%" border="0" cellspacing="1" cellpadding="4" align="center">
+                <tr>
+                    <th width="50%" valign="top">
+                        <?=$MSG_5034?>
+                        </th>
+                    <th width="25%" valign="top">
+                        <?=$MSG_5043?>
+                        </th>
+                    <th width="25%" valign="top">
+                        <?=$MSG_5053?>
+                        </th>
+                </tr>
+                <?
+                while($board = mysql_fetch_array($ress_))
+                {
+		   		?>
+                <tr bgcolor="#EEEEEE">
+                    <td width="50%" valign="top"><a href="msgboard.php?board_id=<?=$board['id']?>">
+                        <?=$board['name']?>
+                        </a></td>
+                    <td width="25%" valign="top" align=CENTER>
+                        <?=$board['messages']?>
+                    </td>
+                    <td width="25%" valign="top" align=CENTER>
+                        <?
+                        if(!empty($board['lastmessage'])) {
+                        	print FormatDate($board['lastmessage']);
+                        } else {
+                        	print "--";
+                        }
+			   			?>
+                    </td>
+                </tr>
+                <?
+                }
+		   		?>
+            </table>
+        </div>
+    </div>
+</div>

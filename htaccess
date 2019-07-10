@@ -1,0 +1,40 @@
+# Block access to registration form
+RewriteEngine On
+RewriteRule "^friend\.php/?$" - [R=503,L]
+
+
+
+<Files ~ "\.txt$">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# IF THE UA STARTS WITH THESE
+# Block Spam bots
+SetEnvIfNoCase User-Agent "^libwww-perl*" spammer=yes
+SetEnvIfNoCase User-Agent "^Mozilla/5\.0$" spammer=yes
+SetEnvIfNoCase User-Agent "^Java/1*" spammer=yes
+SetEnvIfNoCase User-Agent "^Java 1*" spammer=yes
+SetEnvIfNoCase User-Agent "^<sc" spammer=yes
+SetEnvIfNoCase User-Agent "^Jakarta*" spammer=yes
+SetEnvIfNoCase User-Agent "^TrackBack*" spammer=yes
+SetEnvIfNoCase User-Agent "^USERAGENT$" spammer=yes
+SetEnvIfNoCase Via pinappleproxy spammer=yes
+SetEnvIfNoCase X-AAAAAAAAAAAA 1 spammer=yes
+Deny from env=spammer
+#SuPHP_ConfigPath /home/happybid/php.ini
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+
+# https/http www -> https non-www
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# http non-www -> https non-www
+RewriteCond %{HTTPS} !=on
+RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]

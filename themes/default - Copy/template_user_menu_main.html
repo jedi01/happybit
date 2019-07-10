@@ -1,0 +1,160 @@
+<?
+    $element_id = 0;
+    $total_elements = 0;
+
+
+?>
+
+<style>
+.gray_tab{
+    border: 1px solid #FF9900;
+    background-color:#cccccc;
+    font-size:15px;
+    font-weight:bold;
+    padding:3px;
+    text-align:center;
+}
+
+</style>
+
+<script src='js/tinybox2/tinybox.js' type='text/javascript'></script>
+<link rel='stylesheet' type='text/css' href='js/tinybox2/style.css' />
+<!-- DC Pricing Tables CSS -->
+<link type="text/css" rel="stylesheet" href="themes/default/css/dc_pricingtables.css" />
+<!-- DC Pricing Tables JS -->
+<script type="text/javascript" src="themes/default/scripts/dc_pricingtables.js"></script>
+<script type="text/javascript">
+			Cufon.replace('h1', { fontFamily: 'Myriad Pro Semibold' });
+		</script>
+<?php if(!$_SESSION["HAPPYBID_LOGGED_IN"]) { ?>
+<div id="pinkalert">Oops - It seems you are not logged in.</div>
+<div id="pinkalert" style="margin:10px;"><a href="user_login.php" class="buttonbid">Login</a> or <a href="register.php" class="buttonbid">Register</a></div>
+<? } else { ?>
+<div style="width: 904px;">
+<div class="headerBar" style="margin-bottom:10px;clear:both;">Get Coins!</div>
+<!--<div style="margin-bottom:10px;"><img src="http://happybid.co.uk/images/bonus-banner.png" width="904" height="59" /></div>-->
+<!-- DC Pricing Tables:3 Start -->
+  <div class="dc_pricingtable03 dc_pt3_style1">
+  <div class="column_1">
+      <ul>
+        <li class="header_row_1 align_center" style="background-color: #111111;border-bottom: 1px solid #444444;">
+          <h2 class="col1"><img src="images/coins-25.png"/></h2>
+        </li>
+        <li class="header_row_2 align_center" style="background-color: #222222;border-top: 1px solid #444444;">
+          <h1 class="col1">25<br />
+          COINS<span></span></h1>
+        </li>
+        <li class="row_style_3 align_center"><span>Limited Offer Pack!</span></li>
+        <li class="row_style_1 align_center"><span>&pound;3.99</span></li>
+        <li class="footer_row"><div style="float: left;margin-left: 15px; margin-top: 8px;"><a onClick="return makeClaimed_twentyfive('123')" href='#' class="buttoncoins">Buy Coins >></a></div></li>
+      </ul>
+    </div>
+    <div class="column_1">
+      <ul>
+        <li class="header_row_1 align_center">
+          <h2 class="col1"><img src="images/coins-50.png"/></h2>
+        </li>
+        <li class="header_row_2 align_center">
+          <h1 class="col1">50<br />
+          COINS<span></span></h1>
+        </li>
+        <li class="row_style_3 align_center">Standard Pack</li>
+        <li class="row_style_1 align_center"><span>&pound;9.99</span></li>
+        <li class="footer_row"><div style="float: left;margin-left: 15px; margin-top: 8px;"><a onClick="return makeClaimed_fifty('123')" href='#' class="buttoncoins">Buy Coins >></a></div></li>
+      </ul>
+    </div>
+    <div class="column_2">
+      <ul>
+        <li class="header_row_1 align_center">
+          <h2 class="col2"><span class="col1"><img src="images/coins-100.png"/></span></h2>
+        </li>
+        <li class="header_row_2 align_center">
+          <h1 class="col2">110<br />
+            COINS
+          </h1>
+</li>
+        <li class="row_style_4 align_center">100 + 10% More!</li>
+        <li class="row_style_2 align_center">&pound;19.99</li>
+        <li class="footer_row"><div style="float: left;margin-left: 15px; margin-top: 8px;"><a onClick="return makeClaimed_hunred('123')" href='#' class="buttoncoins">Buy Coins >></a></div></li>
+      </ul>
+    </div>
+    <div class="column_3">
+      <ul>
+        <li class="header_row_1 align_center">
+          <h2 class="col3"><span class="col1"><img src="images/coins-200.png"/></span></h2>
+        </li>
+        <li class="header_row_2 align_center">
+          <h1 class="col3">230<br />
+COINS</h1>
+</li>
+        <li class="row_style_3 align_center">200 + 15% More!</li>
+        <li class="row_style_1 align_center">&pound;39.99</li>
+        <li class="footer_row"><div style="float: left;margin-left: 15px; margin-top: 8px;"><a onClick="return makeClaimed_twohunred('123')" href='#' class="buttoncoins">Buy Coins >></a></div></li>
+      </ul>
+    </div>
+    <div class="column_4">
+      <ul>
+        <li class="header_row_1 align_center radius5_topright">
+          <h2 class="col4"><span class="col1"><img src="images/coins-500.png"/></span></h2>
+        </li>
+        <li class="header_row_2 align_center">
+          <h1 class="col4">600<br />
+COINS</h1>
+</li>
+        <li class="row_style_4 align_center"><span class="row_style_3 align_center">500 + 20% More!</span></li>
+        <li class="row_style_2 align_center">&pound;99.99</li>
+        <li class="footer_row"><div style="float: left;margin-left: 15px; margin-top: 8px;"><a onClick="return makeClaimed_fivehunred('123')" href='#' class="buttoncoins">Buy Coins >></a></div></li>
+      </ul>
+    </div>
+  </div>
+<!-- DC Pricing Tables:3 End -->
+<div class="dc_clear"></div> <!-- line break/clear line -->
+
+
+
+</div>
+
+<div>
+<div class="headerBar" style="margin-bottom:10px;clear:both;">My Auctions</div>
+<div>
+<?php
+                          if (count($TPL_auctions_classic) > 0){
+                             foreach($TPL_auctions_classic as $val){
+                                echo "
+                                <div id='roundbox'>
+                                  <div><a href='".$val["link_href_1"]."'><img width='196px' height='165px' src='".$SETTINGS['siteurl']."uploaded/".$val["pict_url"]."' alt ='".$val["name"]."' style='filter:alpha(opacity=100);-moz-opacity:1.0; cursor:pointer; border:1px solid #DFDFDF; margin-left:2px; margin-top:7px;' onmouseover='makevisible(this,1)' onmouseout='makevisible(this,0)' /></a></div>
+                                          <div style='border-bottom: 1px solid #DDDDDD;font-size: 22px;padding-bottom: 6px;padding-top: 6px;text-align: center;'><a href='".$val["link_href_1"]."' title='".$val["name"]."'>".$val["name"]."</a><br /></div>
+                                          <div style='border-bottom: 1px solid #DDDDDD;font-size: 12px;padding: 5px;'><b>Bids Left:&nbsp;&nbsp;".$val["remained_bids"]."</b> - <a href='".$val["link_href_2"]."'><b style='font-size:10px;'>Bid History</b></a></div>
+                                          <div style='font-size:16px'><b>".$val["is_winner"]."</b></div>
+                                            <input type='hidden' id='el_sec_".$element_id."' value='".$val["remained_seconds"]."' />
+											<input type='hidden' id='el_time_".$element_id."' value='".$val["date_created"]."' />
+                                            <input type='hidden' id='el_type_".$element_id."' value='1' />
+                                            </div>";
+                                  $element_id++;
+                                  $total_elements++;                      
+                               }
+                          }else{
+                                 echo "<div id='pinkalert'>You are currently not bidding on any auctions :(</div><div style='margin-top:16px;'>
+<a href='index.php' class='buttonbid'>View Auctions</a>
+</div>";
+                          }
+                    ?>
+</div>
+<?php } ?>
+
+</div>
+               
+
+
+
+
+<script language="JavaScript">
+
+function calcage(secs, num1, num2) {
+  s = ((Math.floor(secs/num1))%num2).toString();
+  if (LeadingZero && s.length < 2)
+    s = "0" + s;
+  return "<b>" + s + "</b>";
+}
+
+</script>

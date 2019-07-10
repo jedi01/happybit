@@ -1,0 +1,123 @@
+<?
+$TMP_usmenutitle=$MSG_31_0028;
+include phpa_include("template_user_menu_header.html");
+
+if(!$_GET[limit]) {
+  $limit = 5;
+} else {
+  $limit = $_GET[limit];
+}
+
+if(!$_GET[offset]) {
+  $offset = 0;
+} else {
+  $offset = $_GET[offset];
+}
+
+$step = $limit-$offset;
+?>
+	  <TABLE WIDTH="90%" BORDER="0" CELLSPACING="1" CELLPADDING="4" BGCOLOR="#CACACA" ALIGN="CENTER">
+        <TR>
+          <TD align="center" class=title><? // print $MSG_31_0019; ?></TD>
+        </TR>
+           <TR style="font-family:Verdana, Arial,sans-serif;font-weight:bold;font-size:12px;" >
+                <TD ALIGN=CENTER> <B> Payment information </B>  </TD>
+                <TD ALIGN=CENTER> <B> Amount </B>  </TD>
+                <TD ALIGN=CENTER> <B> Type of payment </B>  </TD>
+                <TD ALIGN=CENTER> <B> Description </B>  </TD>
+            </TR>
+            <?
+                $query = "SELECT
+                                a.id,
+                                a.user_id,
+                                a.amount,
+                                a.payment_date,
+                                a.payment_type,
+                                a.description,
+                                b.nick
+                          FROM HB_payments a
+                            INNER JOIN HB_users b ON a.user_id = b.id                            
+                          WHERE 1=1
+                        ".(($TPL_nick != "") ? " AND b.nick LIKE '".$TPL_nick."%' " : "").
+                        " AND b.id = ".intval($secid)."                         
+						ORDER BY b.nick ";
+						//LIMIT $offset, $limit";
+                        //echo $query."<br>";
+                $result = mysql_query($query);
+                $total_records = mysql_num_rows($result);
+                $limit_query = "SELECT
+                                a.id,
+                                a.user_id,
+                                a.amount,
+                                a.payment_date,
+                                a.payment_type,
+                                a.description,
+                                b.nick
+                          FROM HB_payments a
+                            INNER JOIN HB_users b ON a.user_id = b.id                            
+                          WHERE 1=1
+                        ".(($TPL_nick != "") ? " AND b.nick LIKE '".$TPL_nick."%' " : "").
+                        " AND b.id = ".intval($secid)."                         
+						ORDER BY b.nick 
+						LIMIT $offset, $step";
+                
+                $result = mysql_query($limit_query);
+                $num_payments = mysql_num_rows($result);
+
+                $i = 0;
+                $bgcolor = "#FFFFFF";
+                while($i < $num_payments){
+                	
+                	if($bgcolor == "#FFFFFF"){
+                		$bgcolor = "#EEEEEE";
+                	}else{
+                		$bgcolor = "#FFFFFF";
+                	}
+                	$id = mysql_result($result,$i,"id");
+                    $user_id = mysql_result($result,$i,"user_id");
+                	$amount = mysql_result($result,$i,"amount");
+                    $payment_date = mysql_result($result,$i,"payment_date");
+                	$payment_type = mysql_result($result,$i,"payment_type");
+                	$description = strip_tags(stripslashes(mysql_result($result,$i,"description")));
+                	$user_name = mysql_result($result,$i,"nick");
+                    
+			   ?>
+ 
+                <tr BGCOLOR="#ffffff" style="font-family:Verdana, Arial,sans-serif;font-size:11px;">
+                 <TD align="center" ><?=$payment_date ;?></TD>
+                 <TD align="right" ><?=$amount ;?></TD>
+                 <TD><?=$payment_type ;?></TD>
+                 <TD><?=$description ;?></TD>                 
+                </tr>
+           <?$i++;
+            }?>
+	 </TABLE>
+     <TABLE WIDTH="90%" BORDER=0 CELLPADDING=4 CELLSPACING=0 ALIGN=CENTER>
+        <TR ALIGN=CENTER BGCOLOR=#CACACA>
+          <TD COLSPAN=2>
+            <SPAN CLASS="navigation">
+            <?
+            $num_pages = ceil($total_records / ($limit-$offset));
+            
+            $i = 0;
+            while($i < $num_pages ){
+            	
+            	$of = ($i * $step);
+
+            	if($of != $offset){
+            		print "<A HREF=\"payment_history.php?offset=$of&limit=".($of+$step)."\" CLASS=\"navigation\">".($i + 1)."</A>";
+            		if($i != $num_pages) print " | ";
+            	}else{
+            		print $i + 1;
+            		if($i != $num_pages) print " | ";
+            	}
+            	$i++;
+            }
+            ?>
+            </SPAN>
+          </TD>
+        </TR>
+     </TABLE>
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

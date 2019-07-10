@@ -1,0 +1,34 @@
+<?
+$TMP_usmenutitle="";
+include phpa_include("template_user_menu_header.html");
+?>
+
+<?
+    $menu_tab = isset($_GET['cptab']) ? $_GET['cptab'] : "";
+    
+    switch($menu_tab) {
+
+	case "account":
+        include phpa_include("template_user_menu_main.html");
+        break;
+        
+	case "buying":
+        include phpa_include("template_user_menu_buying.html");
+        break;
+	case "stores":
+        require('./modules/stores/includes/messagesst.inc.php');
+        if($HAPPYBID_HAS_STORE) {
+        	include "./modules/stores/templates/template_storepanel_php.html";
+        } else {
+        	include "./modules/stores/templates/template_openstore_php.html";
+        }
+        break;
+	default:
+        include phpa_include("template_user_menu_main.html");
+	break;
+    }
+    
+?>
+
+
+<? include phpa_include("template_user_menu_footer.html"); ?>

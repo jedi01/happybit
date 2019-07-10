@@ -1,0 +1,9 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	font-family: Arial, Tahoma;
+}
+#bidhistblock {
+	height:20px;
+}

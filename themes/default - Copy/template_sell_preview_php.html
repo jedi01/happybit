@@ -1,0 +1,244 @@
+<script language=Javascript>
+function window_open(pagina,titulo,ancho,largo,x,y){
+    var Ventana= 'toolbar=0,location=0,directories=0,scrollbars=0,screenX='+x+',screenY='+y+',status=0,menubar=0,resizable=0,width='+ancho+',height='+largo;
+    open(pagina,titulo,Ventana);
+
+}
+</script>
+
+<div class="content">
+<div class="tableContent2">
+    <div class="titTable2">
+        <?=$TPL_title_value;?>
+        <?
+        if(    $feesfree=='y') {
+            print "<P class=errfont>".$SETTINGS['freecatstext']."</P>";
+        }
+        ?>
+    </div>
+    <?if(!empty($TPL_error)) {?>
+    <div class=errfont>
+        <?=$TPL_error?>
+    </div>
+    <?}?>
+    <div class="table2">
+        <form name=preview action="sell.php" method="post">
+            <table width=100% border="0" cellpadding="4" align=CENTER cellspacing=0>
+                <tr>
+                    <td colspan="2" align="center"><? print $MSG_046; ?> </td>
+                </tr>
+                <tr>
+                    <td width="40%" align="right"  valign="top"><b> <? print $MSG_017; ?> </b> </td>
+                    <td width="60%" ><? print stripslashes($TPL_title_value); ?> </td>
+                </tr>
+                <tr>
+                    <td  valign="top" align="right"><b> <? print $MSG_018; ?> </b> </td>
+                    <td ><? print stripslashes($TPL_description_shown_value); ?> </td>
+                </tr>
+
+                <?
+                if ($TPL_auction_variant!="") {
+                ?>
+                <tr>
+                    <td  valign="middle" align="right"><b> <?print $MSG_25_0071;?> </b> </td>
+                    <td ><? print $TPL_auction_variant; ?> </td>
+                </tr>
+                <?
+                }
+                ?>
+                <tr>
+                    <td  valign="top" align="right"> <b> <? print $MSG_019; ?> </b> </td>
+                    <td ><? print $TPL_pict_URL_value; ?> </td>
+                </tr>
+                <!-- @@@@@@@@@@@@@@@@@@22 PICTURE GALLERY @@@@@@@@@@@@@@@-->
+                <?
+                if($SETTINGS['picturesgallery'] == 1 && @count($UPLOADED_PICTURES)> 0) {
+                ?>
+                <tr>
+                    <td width="260" valign="middle" align="right">&nbsp;</td>
+                    <td >
+                        <?
+                        print $MSG_663."<br />";
+                        while(list($k,$v) = each($UPLOADED_PICTURES)) {
+                            $TMP = GetImageSize($uploaded_path.session_id()."/".$v);
+                            $WIDTH = $TMP[0];
+                            $HEIGHT = $TMP[1];
+                          ?>
+                        <a href="javascript:window_open('preview_gallery.php?img=<?=$k?>','perview',<?=$WIDTH?>,<?=$HEIGHT?>,0,0)"><img src="<?=$uploaded_path.session_id().'/'.$v?>" width=40 hspace=5 border=0 /></a>
+                        <?
+                        }
+                          ?>
+                        <? print $TPL_gallery_fee; ?> </td>
+                </tr>
+                <?
+                }
+                ?>
+                <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+                <tr>
+                    <td valign="top" align="right"><b> <? print $MSG_020; ?> </b> </td>
+                    <td ><? print $TPL_minimum_bid_value; ?> <? print $TPL_setup_fee; ?> </td>
+                </tr>
+                <tr>
+                    <td valign="top" align="right"><b> <? print $MSG_021; ?> </b> </td>
+                    <td ><? print $TPL_reserve_price_displayed; ?> <? print $TPL_reserve_fee; ?> </td>
+                </tr>
+                <?
+                if ($SETTINGS['buy_now'] == 2) {
+                echo "
+                <tr>
+                    <td valign=\"top\" align=\"right\"><b>$MSG_496</b></td>
+                    <td>$TPL_buy_now_price_displayed</td>
+                </tr>";
+                }
+                ?>
+                <tr>
+                    <td   valign="top" align="right"><b><?print $MGS_2__0016;?></b></td>
+                    <td ><? print $TPL_start_date ?></td>
+                </tr>
+                <tr>
+                    <td valign="top" align="right"><b> <? print $MSG_022; ?> </b> </td>
+                    <td ><? print $TPL_durations_list; ?> </td>
+                </tr>
+                <tr>
+                    <td   valign="top" align="right"><b> <?print $MSG_613;?> </b> </td>
+                    <td ><? print $TPL_increments; ?> </td>
+                </tr>
+                <tr>
+                    <td   valign="top" align="right"><b> <? print $MSG_261; ?> </b> </td>
+                    <td ><? print $TPL_auction_type; ?> </td>
+                </tr>
+                <?
+                    if($SETTINGS['adultonly']=='y'){
+                ?>
+                <tr>
+                    <td   valign="top" align="right"><b> <? print $MSG_30_0075; ?> </b> </td>
+                    <td ><? print $TPL_adultonly; ?> </td>
+                </tr>
+                <?}?>
+                <tr>
+                    <td   valign="top" align="right"><b> <? print $MSG_023; ?> </b> </td>
+                    <td ><? print $TPL_countries_list; ?> </td>
+                </tr>
+                <tr>
+                    <td  valign="top" align="right"><b> <? print $MSG_024; ?> </b> </td>
+                    <td ><? print $TPL_location_zip; ?> </td>
+                </tr>
+                <tr>
+                    <td  valign="top" align="right"><b> <? print $MSG_025; ?> </b> </td>
+                    <td ><? print $TPL_shipping_value; ?> <? print $TPL_international_value; ?> </td>
+                </tr>
+                <tr>
+                    <td  align="right" valign="top"><b> <? print $MSG_25_0215 ?> </b></td>
+                    <td ><? print $TPL_shipping_terms; ?> </td>
+                </tr>
+                <tr>
+                    <td  valign="top" align="right"><b> <? print $MSG_026; ?> </b> </td>
+                    <td ><? print $TPL_payment_methods; ?> </td>
+                </tr>
+                <tr>
+                    <td  valign="top" align="right"><b> <? print $MSG_027; ?> </b> </td>
+                    <td ><? print stripslashes($TPL_categories_list); ?> </td>
+                </tr>
+                <tr>
+                    <td  valign="top" align="right"><b> <? print $MSG_262; ?> </b> </td>
+                    <td > <? print nl2br($suggested_category); ?> </td>
+                </tr>
+                <!--
+            ################################################################
+            Invited and black lists selection
+            ################################################################
+            -->
+                <?
+                if(is_array($sessionVars['SELL_invitedlists']) || is_array($sessionVars['SELL_blacklists'])) {
+                ?>
+                <tr>
+                    <td colspan=2>&nbsp;</td>
+                </tr>
+                <tr bgcolor=#eeeeee>
+                    <td colspan=2>
+                        <?=$MSG_5191?>
+                    </td>
+                </tr>
+                <?
+                if(is_array($sessionVars['SELL_invitedlists'])) {
+                    reset($sessionVars['SELL_invitedlists']);
+                  ?>
+                <tr valign="top">
+                    <td width="40%"  align="right" ><b>
+                        <?=$MSG_5171?>
+                        </b> </td>
+                    <td width="60%">
+                        <?=$TPL_invitedlists?>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                            <tr>
+                                <td>
+                                    <?=$TPL_private?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <?=$TPL_sendemail?>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <?
+                }
+                if(is_array($sessionVars['SELL_blacklists'])) {
+                    reset($sessionVars['SELL_blacklists']);
+                  ?>
+                <tr valign="top">
+                    <td  align="right" ><b>
+                        <?=$MSG_5172?>
+                        </b> &nbsp; </td>
+                    <td  >
+                        <?=$TPL_blacklists?>
+                    </td>
+                </tr>
+                <?
+                }
+                  ?>
+                <?
+                }
+                ?>
+                <tr>
+                    <td  valign="top" align="right"></td>
+                    <td ><? print $MSG_044; ?> <br>
+                        <? print $MSG_049; ?> <a target="_blank" href="register.php?"> <? print $MSG_263; ?> </a><br>
+                        <? print $MSG_264; ?> <a href='sell.php?mode=recall'> <? print $MSG_265; ?> </a> <? print $MSG_266; ?> <br>
+                    </td>
+                </tr>
+                <input type=HIDDEN name="action" value="second" />
+                <input type=HIDDEN name="suggested_category" value="<?=$_POST['suggested_category']?>" />
+                <tr>
+                    <td >&nbsp;</td>
+                    <td >
+                        <table cellpadding=4>
+                            <tr>
+                                <td align=right><? print $MSG_047; ?> </td>
+                                <td><? print '&nbsp;<b>' . $_SESSION["HAPPYBID_LOGGED_IN_USERNAME"] . '</b>' ; ?>
+                                    <input type=hidden name="nick" value="<? print $_SESSION["HAPPYBID_LOGGED_IN_USERNAME"]; ?>" />
+                            </tr>
+                            <?
+                            if($SETTINGS['usersauth'] == 'y') {
+                            ?>
+                            <tr>
+                                <td align=right><? print $MSG_048; ?> </td>
+                                <td>
+                                    <input type=password name="password" size="20" maxlength="20" value="" />
+                                </td>
+                            </tr>
+                            <?
+                            }
+                            ?>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align:center">
+                <input type=submit name="" value="<?=$MGS_2__0037?>" class=button />
+            </div>
+        </form>
+    </div>
+</div>

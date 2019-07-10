@@ -1,0 +1,114 @@
+<?
+$TMP_usmenutitle=$MSG_509;
+include phpa_include("template_user_menu_header.html");
+
+$OPTIONAL_TEXT = " (".$MSG_30_0090.")";
+?>
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($USER_phoneadd)){?>
+<div class="alertbox">
+<img src="<?=$SETTINGS['siteurl']?>themes/default/img/alert_32.png" style="vertical-align:middle;">&nbsp;Please <a href="edit_data.php"><span style="text-decoration:underline;">add your phone number</span></a> to complete registration
+</div>
+<?php } ?>
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($USER_addressadd)){?>
+<div class="alertbox">
+<img src="<?=$SETTINGS['siteurl']?>themes/default/img/alert_32.png" style="vertical-align:middle;">&nbsp;Please <a href="edit_data.php"><span style="text-decoration:underline;">add your address</span></a> to complete registration
+</div>
+<?php } ?>
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($USER_zipadd)){?>
+<div class="alertbox">
+<img src="<?=$SETTINGS['siteurl']?>themes/default/img/alert_32.png" style="vertical-align:middle;">&nbsp;Please <a href="edit_data.php"><span style="text-decoration:underline;">add your postcode</span></a> to complete registration
+</div>
+<?php } ?>
+
+<form name=details action="<?=basename($_SERVER[PHP_SELF])?>" method="POST" style="padding:0px; margin:0px;">
+
+<?
+if($TMP_MSG){
+?>
+<div class='alertbox'><? print $TMP_MSG ?></div>
+<?
+}
+?>
+<div id="accounteditbox">
+<div class="headerBar" style="margin-bottom:10px;">
+Account Info
+</div>
+
+<div class="reglabel"><b><? print $MSG_002; ?></b></div>
+<div class="regfield" style="background-color:#EEEEEE;border: none;"><strong><? print $TPL_name ?></strong></div>
+<input type=HIDDEN name=TPL_name value=<?=$TPL_name?> />
+
+<div class="reglabel"><b><? print $MSG_003; ?></b></div>
+<div class="regfield" style="background-color:#EEEEEE;border: none;"><b><? print $TPL_nick; ?></b></div>
+<input type=HIDDEN name=TPL_nick value=<?=$TPL_nick?> />
+
+<div class="reglabel" style="font-size:15px;"><?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($USER_verified)){?>
+<img src="<?=$SETTINGS['siteurl']?>images/verified-no.png" style="float:left;margin:-2px 3px 8px;" class="veritip" title="You are not yet verified." /> You are not yet verified
+<? } else { ?>
+<img src="<?=$SETTINGS['siteurl']?>images/verified.png" style="float:left;margin:-2px 3px 8px;" class="veritip" title="You are verified.">You are verified!
+<?php } ?></div>
+
+<div style="margin:12px;">
+<?php if (empty($FB_pic)){?>
+<img src="<?=$SETTINGS['siteurl']?>themes/default/img/avatar.png" width="60" height="60" />
+<? } else { ?>
+<img src="http://graph.facebook.com/<?php echo $_SESSION['oauth_uid']; ?>/picture?width=60&height=60" title="Looking good!">
+<?php } ?>
+</div>
+
+</div>
+
+<div id="accounteditbox">
+<div class="headerBar" style="margin-bottom:10px;">
+Password
+</div>
+
+<div class="reglabel"><b><? print $MSG_268 ?> (Min 5 Characters)</b></div>
+<div><input class="regfield" type=password name=TPL_password size=20 maxlength=20 /></div>
+<div class="reglabel"><b><? print $MSG_005 ?></b></div>
+<div><input class="regfield" type=password name=TPL_repeat_password size=20 maxlength=20 /></div>
+<div class="reglabel" style="margin-bottom:6px;margin-right:4px;padding:4px;">Change your password by using the fields above. Otherwise leave them blank.<br /><br />If you registered your account via Facebook, you can set a password here to enable you to login manually as well as with Facebook.</div>
+</div>
+
+<div id="accounteditbox">
+<div class="headerBar" style="margin-bottom:10px;">
+Contact Info
+</div>
+
+<div class="reglabel"><b><? print $MSG_006; ?></b></div>
+<div><input class="regfield" type=text name=TPL_email size=50 maxlength=50 value="<? echo $TPL_email; ?>" /></div>
+
+<div class="reglabel">Mobile Phone</div>
+<div><input type="text" name="TPL_phone" size="11" maxlength="11" value="<? echo $TPL_phone; ?>" class="regfield"></div>
+
+</div>
+
+<div id="accounteditbox">
+<div class="headerBar" style="margin-bottom:10px;">
+Address Info
+</div>
+
+<div class="reglabel"><b><? print $MSG_009; ?></b></div>
+<input class="regfield" type=text name=TPL_address size=40 maxlength=255 value="<? echo $TPL_address; ?>" />
+
+<div class="reglabel"><b><? print $MSG_010; ?></b></div>
+<input class="regfield" type=text name=TPL_city size=25 maxlength=25 value="<? echo $TPL_city; ?>" />
+
+<div class="reglabel"><b><? print $MSG_014; ?></b></div>
+<select class="regfield" name="TPL_country" style="width:192px;">
+<option value="United Kingdom" selected="selected">United Kingdom</option></select>
+										
+<div class="reglabel"><b><? print $MSG_012; ?></b></div>
+<input class="regfield" type="text" name="TPL_zip" size=10 maxlength=20 value="<? echo $TPL_zip; ?>" />
+
+</div>
+
+<div id="editsavechanges">
+<input style='width:120px;' type="submit" name="Input" value="Save Changes" class='happybuttonblue' />
+</div>			
+<input type="hidden" name="action" value="update" />
+
+</form>
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

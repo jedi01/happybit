@@ -1,0 +1,308 @@
+
+<div id="contentarea">
+<!--- left column --->
+<div id="colleft"> 
+  <!-- top left boxes --->
+  <?php if(!$_SESSION["HAPPYBID_LOGGED_IN"]) { ?>
+  <!--- top banner table ---> 
+  <a href="/register.php">
+  <div id="mainbanner"> <img src="/images/home-2017.png" border="0" alt=""> </div>
+  </a>
+  <? } else { ?>
+  <div id="loggedin"> 
+    <!--- earn box table --->
+    <div width="771" class="headerBar">
+      <div id="fontsemi">Information Bar</div>
+    </div>
+    <div class="hpEarnBox">
+      <div id="leftearnbox">
+        <div class="cleantitle">Welcome <? print $TPL_nick; ?></div>
+        Please ensure your <a href="edit_data.php" target="_self" style="font-size:12px;">account details</a> are upto date, this enables us to process your prizes faster!<br />
+        <?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($USER_phoneadd)){?>
+        <div class="alertboxhome"> <img src="<?=$SETTINGS['siteurl']?>themes/default/img/alert_32.png" style="vertical-align:middle;width: 20px;margin-top: -4px;">&nbsp;Please <a href="edit_data.php" target="_self"><span style="text-decoration:underline; font-weight:700;">add your mobile number</span></a> to complete registration </div>
+        <?php } ?>
+        <?php 
+if ($SETTINGS['enable_cpalead']=="1" && $USER['nick']=="mjadamou")
+{
+?>
+        <div style="margin-top:2px;"> <a class='happybutton' style='color:#ffffff;' onClick="startGateway('<?=$SETTINGS['cpalead_gateway']?>');">EARN COINS</a> </div>
+        <?php }else{ ?>
+        <div style="margin-top:2px;"> &nbsp; </div>
+        <?php } ?>
+      </div>
+      <div id="rightearnbox">
+        <div class="cleantitle">Tell A Friend</div>
+        Get
+        <?php if ($SETTINGS['refer_bids'] > 1){echo "<strong>".$SETTINGS['refer_bids'];?>
+        free coins</strong>
+        <?php } if ($SETTINGS['refer_bids'] <= 1){echo "<strong>".$SETTINGS['refer_bids'];?>
+        free coin</strong>
+        <?php } ?>
+        when your friends buy some!
+        <div id="reflinker"><?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?></div>
+        <br>
+        <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=596e58991328d800122d517b&product=inline-share-buttons"></script>
+        
+        <div class="sharethis-inline-share-buttons"></div>
+        
+        <!--<span class='st_twitter_button' st_url='<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>' displayText='Tweet'></span><span class='st_facebook_button' st_url='<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>' displayText='Facebook' ></span><span class='st_digg_button' st_url='<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>' displayText='Digg'></span><span class='st_email_button' st_url='<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>' displayText='Email'></span>-->
+        
+        <br>
+        <br>
+        <em>You currently have <strong><?php echo $total_referrals ?> referrals</strong>.</em> </div>
+    </div>
+    <!--- earn box table end ---> 
+  </div>
+  <? } ?>
+  <!-- top left boxes end ---> 
+  
+</div>
+
+<!-- Right Column -->
+<div id="colright"> 
+  
+  <!-- LOGIN BOX -->
+  <?
+      if($SETTINGS['loginbox'] == 1) {
+        if(!$_SESSION["HAPPYBID_LOGGED_IN"]) {
+        ?>
+  <a href="howitworks.php">
+  <div id="howitworks"><img src="//happybid.co.uk/images/home-how.png" border="0" /></div>
+  </a>
+  <? } else { ?>
+  <div class="headerBar">
+    <div id="fontsemi">Buy Coins</div>
+  </div>
+  <div id="buyboxhome"> <a href="http://happybid.co.uk/user_menu.php"><img src="//happybid.co.uk/images/get-coins.png" width="196" height="157" border="0" /></a></div>
+  <?
+        }
+      }
+      ?>
+</div>
+<script type="text/javascript">
+$(function(){
+    $('.timer-quick').startTimer();
+})
+</script>
+<!--- ENDING AUCTIONS --->
+<div id="liveauctions">
+  <div class="headerBarTip"> <span class="headerBar2">Timed Auctions | The More Bids = Greater Prizes</span> </div>
+  <div class="qlabs_tooltip_top qlabs_tooltip_style_42p"><span>These auctions end at the timer, the more bids the bigger the prize!</span><img src="/images/qmark.png" /></div>
+  <div id="titledivider" style="margin-bottom: -6px;"></div>
+  <br />
+<!--/////// TIMED AUCTIONS ////////////-->
+  <?php
+					
+              if (count($TPL_auctions_timed) > 0)
+				{
+					echo "<div id='liveauctionsbox'>";
+					$a_count = 0;
+					foreach($TPL_auctions_timed as $val)
+					{
+						if($a_count > 0 &&  $a_count % 3 == 0) echo "";
+						echo "
+
+<div class='productTIMEDhomepage'>
+    
+  <a href='".$val["link_href"]."&history=view?$TPL_nick'>
+	<div id='auctionimg' style='background:url(".$SETTINGS['siteurl']."uploaded/".$val["pict_url"].")'>
+	</div></a>
+    
+    	<div id='auctiontitle'>
+	<a href='".$val["link_href"]."&history=view?$TPL_nick' title='".$val["name"]."'><b>".$val["name"]."</b></a>
+	</div>
+    
+	<div class='price' id='auctionprice'>
+							  ".(($val["item_value"] != "") ? "Value&nbsp;".print_money($val["item_value"])." / " : "")."
+							  ".(($val["bid_value"] != "") ? "".$val["bid_value"]." Coin Auction" : "")."
+</div>
+
+<div id='auctionremainingbids'>
+".(($val["remained_bids"] != "") ?"<span class='remainbidsbox'><div class='timer-quick timerhome' data-seconds-left='$timeleft'></div></span>
+<span style='
+    margin-top: 11px;
+'>time remaining</span>" : "")."
+	</div>					
+	<div id='homebidbutton'>
+	<a class='buttonbid' style='color:#ffffff;' href='".$val["link_href"]."&history=view?$TPL_nick' ><span>BID NOW </span></a>
+	</div>
+</div>
+					";
+                     $element_id++;
+                     $total_elements++;
+						$a_count++;
+					}
+					echo "</div>";
+              }
+				else
+				{
+					echo "
+					<div>
+						<div align=center>
+							<table border='0' cellspacing='0' cellpadding='0'>
+							<tr>
+								<td width='500px' height='87px' align='center' valign='top' style='padding:1px; color:#cd0505; font-size:24px; font-weight:bold;'>No timed auctions at the moment..</td>
+							</tr>
+							</table>
+						</div>
+					</div>";
+              }
+            ?>
+
+<!--- ENDING AUCTIONS --->
+<div id="liveauctions">
+  <div class="headerBarTip"> <span class="headerBar2">Ending Soon!</span> </div>
+  <div class="qlabs_tooltip_top qlabs_tooltip_style_42p"><span>Not long left... can you win one?</span><img src="/images/qmark.png" /></div>
+  <div id="titledivider" style="margin-bottom: -6px;"></div>
+  
+<!-- Auctions Boxes --> 
+<br/>
+
+<!--/////// AUCTIONS TABLE ////////////-->
+  <?php
+					
+              if (count($TPL_auctions_ending) > 0)
+				{
+					echo "<div id='liveauctionsbox'>";
+					$a_count = 0;
+					foreach($TPL_auctions_ending as $val)
+					{
+						if($a_count > 0 &&  $a_count % 3 == 0) echo "";
+						echo "
+
+<div class='productBGhomepage'>
+    
+  <a href='".$val["link_href"]."&history=view?$TPL_nick'>
+	<div id='auctionimg' style='background:url(".$SETTINGS['siteurl']."uploaded/".$val["pict_url"].")'>
+	</div></a>
+    
+    	<div id='auctiontitle'>
+	<a href='".$val["link_href"]."&history=view?$TPL_nick' title='".$val["name"]."'><b>".$val["name"]."</b></a>
+	</div>
+    
+	<div class='price' id='auctionprice'>
+							  ".(($val["item_value"] != "") ? "R.R.P.&nbsp;".print_money($val["item_value"])." / " : "")."
+							  ".(($val["bid_value"] != "") ? "".$val["bid_value"]." Coin Auction" : "")."
+</div>
+
+<div id='auctionremainingbids'>
+".(($val["remained_bids"] != "") ?"<span class='remainbidsbox'>".$val["remained_bids"]."</span>
+<span style='
+    margin-top: 11px;
+'>bids left</span>" : "")."
+	</div>					
+	<div id='homebidbutton'>
+	<a class='buttonbid' style='color:#ffffff;' href='".$val["link_href"]."&history=view?$TPL_nick' ><span>BID NOW </span></a>
+	</div>
+</div>
+					";
+                     $element_id++;
+                     $total_elements++;
+						$a_count++;
+					}
+					echo "</div>";
+              }
+				else
+				{
+					echo "
+					<div>
+						<div align=center>
+							<table border='0' cellspacing='0' cellpadding='0'>
+							<tr>
+								<td width='255px' height='87px' align='center' valign='top' style='padding:1px;'>".$MSG_31_0010."</td>
+							</tr>
+							</table>
+						</div>
+					</div>";
+              }
+            ?>
+  
+  <!--///////////         EOF: ENDING AUCTIONS TABLE         ///////////--> 
+  
+  <!--- 1 COIN AUCTIONS ---> 
+  
+  <!--///////////         EOF: QUICK AUCTIONS TABLE         ///////////--> 
+  
+  <!-- EOF: Auctions --> 
+</div>
+<? if (count($TPL_more_auctions) > 0) { ?>
+<div id="moreliveauctions">
+  <div class="headerBarTip"> <span class="headerBar2">More Live Auctions</span> </div>
+  <div class="qlabs_tooltip_top qlabs_tooltip_style_42p"><span>Bid now!</span><img src="/images/qmark.png" /></div>
+  <div id="titledivider" style="margin-bottom: -6px;"></div>
+  <div border="0" id="auctions_box" class="table1" style="margin-top: 18px;"> 
+    
+    <!--///////             AUCTIONS TABLE             ////////////-->
+    
+    <?php
+								
+						  if (count($TPL_more_auctions) > 0)
+							{
+								echo "";
+								$a_count = 0;
+								foreach($TPL_more_auctions as $val)
+								{
+									if($a_count > 0 &&  $a_count % 2 == 0) echo "";
+									echo "
+<div class='productBGhomepagemore'>
+    
+  <a href='".$val["link_href"]."&history=view?$TPL_nick'>
+	<div id='auctionimg' style='background:url(".$SETTINGS['siteurl']."uploaded/".$val["pict_url"].")'>
+	</div></a>
+    
+    	<div id='auctiontitle'>
+	<a href='".$val["link_href"]."&history=view?$TPL_nick' title='".$val["name"]."'><b>".$val["name"]."</b></a>
+	</div>
+    
+	<div class='price' id='auctionprice'>
+							  ".(($val["item_value"] != "") ? "R.R.P.&nbsp;".print_money($val["item_value"])." / " : "")."
+							  ".(($val["bid_value"] != "") ? "".$val["bid_value"]." Coin Auction" : "")."
+</div>
+
+<div id='auctionremainingbids'>
+".(($val["remained_bids"] != "") ?"<span class='remainbidsbox'>".$val["remained_bids"]."</span>
+<span style='
+    margin-top: 11px;
+'>bids left</span>" : "")."
+	</div>						
+	<div id='homebidbutton'>
+	<a class='buttonbid' style='color:#ffffff;' href='".$val["link_href"]."&history=view?$TPL_nick' ><span>BID NOW </span></a>
+	</div>
+</div>
+									";
+								 $element_id++;
+								 $total_elements++;
+									$a_count++;
+								}
+								echo "</div></div>";
+						  }
+							else
+							{
+								echo "
+<div width='255px' height='87px' align='center' valign='top' style='padding:1px;'>".$MSG_31_0010."</div>
+";
+						  }
+						?>
+    
+    <!--///////////         EOF: AUCTIONS TABLE         ///////////-->
+    <div id="endedauctions">
+      <!--
+	    CLOSED AUCTIONS
+        -->
+      
+      <div id="endedauctions">
+        <div class="headerBarTip"> <span class="headerBar2">Completed Auctions!</span> </div>
+        <div class="qlabs_tooltip_top qlabs_tooltip_style_42p"><span>Congratulations to the winners!</span><img src="/images/qmark.png" /></div>
+        <div id="titledivider" style="margin-bottom: -6px;"></div>
+      </div>
+      <div class="endedauctions"> <?php print $TPL_closed_auctions_list; ?> </div>
+    </div>
+    <? } ?>
+  </div>
+</div>
+<!--
+      Footer
+      -->
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

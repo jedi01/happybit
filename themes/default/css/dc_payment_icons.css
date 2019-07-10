@@ -1,0 +1,434 @@
+.dc_payment_icons_glossy_75 {
+	display:inline-block;
+	height:59px;
+	margin:2px;
+	text-indent:20px;
+	vertical-align:middle;
+	width:75px
+}
+.dc_payment_icons_glossy_75:hover {
+	opacity:0.9
+}
+.dc_payment_icons_glossy_50 {
+	display:inline-block;
+	height:39px;
+	margin:2px;
+	text-indent:20px;
+	vertical-align:middle;
+	width:50px
+}
+.dc_payment_icons_glossy_50:hover {
+	opacity:0.9
+}
+.dc_visa_glossy {
+	background:url(visa_glossy.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_mastercard_glossy {
+	background:url(mastercard_glossy.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_americanexpress_glossy {
+	background:url(americanexpress_glossy.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_discover_glossy {
+	background:url(discover_glossy.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_paypal_glossy {
+	background:url(paypal_glossy.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_maestro_glossy {
+	background:url(maestro_glossy.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_cirrus_glossy {
+	background:url(cirrus_glossy.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_visaelectron_glossy {
+	background:url(visaelectron_glossy.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_payment_icons_bevel_64 {
+	display:inline-block;
+	height:64px;
+	margin:2px;
+	text-indent:20px;
+	vertical-align:middle;
+	width:64px
+}
+.dc_payment_icons_bevel_64:hover {
+	opacity:0.9
+}
+.dc_payment_icons_bevel_48 {
+	display:inline-block;
+	height:48px;
+	margin:2px;
+	text-indent:20px;
+	vertical-align:middle;
+	width:48px
+}
+.dc_payment_icons_bevel_48:hover {
+	opacity:0.9
+}
+.dc_payment_icons_bevel_32 {
+	display:inline-block;
+	height:32px;
+	margin:2px;
+	text-indent:20px;
+	vertical-align:middle;
+	width:32px
+}
+.dc_payment_icons_bevel_32:hover {
+	opacity:0.9
+}
+.dc_visa_bevel {
+	background:url(visa_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_visa02_bevel {
+	background:url(visa02_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_mastercard_bevel {
+	background:url(mastercard_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_americanexpress_bevel {
+	background:url(americanexpress_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_americanexpress02_bevel {
+	background:url(americanexpress02_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_discover_bevel {
+	background:url(discover_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_dinersclub_bevel {
+	background:url(dinersclub_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_visaelectron_bevel {
+	background:url(visaelectron_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_maestro_bevel {
+	background:url(maestro_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_cirrus_bevel {
+	background:url(cirrus_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_westernunion02_bevel {
+	background:url(westernunion02_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_switch_bevel {
+	background:url(switch_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_delta_bevel {
+	background:url(delta_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_solo_bevel {
+	background:url(solo_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_westernunion_bevel {
+	background:url(westernunion_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_paypal_bevel {
+	background:url(paypal_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_worldpay_bevel {
+	background:url(worldpay_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_westernunion03_bevel {
+	background:url(westernunion03_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_egold_bevel {
+	background:url(egold_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_wirecard_bevel {
+	background:url(wirecard_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_directdebit_bevel {
+	background:url(directdebit_bevel.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_payment_icons_smini_32 {
+	display:inline-block;
+	height:32px;
+	margin:2px;
+	text-indent:20px;
+	vertical-align:middle;
+	width:32px
+}
+.dc_payment_icons_smini_32:hover {
+	opacity:0.9
+}
+.dc_visa_alt_smini {
+	background:url(visa_alt_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_visa_smini {
+	background:url(visa_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_mastercard_alt_smini {
+	background:url(mastercard_alt_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_mastercard_smini {
+	background:url(mastercard_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_amex_alt_smini {
+	background:url(amex_alt_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_amex_smini {
+	background:url(amex_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_discover_alt_smini {
+	background:url(discover_alt_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_discover_smini {
+	background:url(discover_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_generic_2_smini {
+	background:url(generic_2_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_gold_smini {
+	background:url(gold_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_generic_1_smini {
+	background:url(generic_1_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_ccv_smini {
+	background:url(ccv_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_debit_smini {
+	background:url(debit_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_credit_smini {
+	background:url(credit_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_echeck_smini {
+	background:url(echeck_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_paypal_smini {
+	background:url(paypal_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_skrill_smini {
+	background:url(skrill_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_amazon_smini {
+	background:url(amazon_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_googleckout_smini {
+	background:url(googleckout_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_solo_smini {
+	background:url(solo_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_gift_alt_smini {
+	background:url(gift_alt_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_gift_smini {
+	background:url(gift_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_coupon_smini {
+	background:url(coupon_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_bank_smini {
+	background:url(bank_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_cash_smini {
+	background:url(cash_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_payment_icons_mini_43 {
+	display:inline-block;
+	height:29px;
+	text-indent:20px;
+	vertical-align:middle;
+	width:43px
+}
+.dc_payment_icons_mini_43:hover {
+	opacity:0.9
+}
+.dc_visa2_mini {
+	background:url(visa2_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_mastercard2_mini {
+	background:url(mastercard2_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_amex2_mini {
+	background:url(amex2_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_discover2_mini {
+	background:url(discover2_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_electron2_mini {
+	background:url(electron2_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_cirrus2_mini {
+	background:url(cirrus2_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_ccv2_mini {
+	background:url(ccv2_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_paypal2_mini {
+	background:url(paypal2_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_amazon2_mini {
+	background:url(amazon2_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_googleckout2_mini {
+	background:url(googleckout2_mini.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_payment_icons_flat_32 {
+	display:inline-block;
+	height:32px;
+	margin:2px;
+	text-indent:20px;
+	vertical-align:middle;
+	width:51px
+}
+.dc_payment_icons_flat_32:hover {
+	opacity:0.9
+}
+.dc_payment_icons_flat_54 {
+	display:inline-block;
+	height:54px;
+	margin:2px;
+	text-indent:20px;
+	vertical-align:middle;
+	width:92px
+}
+.dc_payment_icons_flat_54:hover {
+	opacity:0.9
+}
+.dc_american_express_flat {
+	background:url(american_express_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_cirrus_flat {
+	background:url(cirrus_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_delta_flat {
+	background:url(delta_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_direct_debit_flat {
+	background:url(direct_debit_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_discover_flat {
+	background:url(discover_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_maestro_flat {
+	background:url(maestro_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_mastercard_flat {
+	background:url(mastercard_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_paypal_flat {
+	background:url(paypal_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_skrill_flat {
+	background:url(skrill_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_solo_flat {
+	background:url(solo_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_switch_flat {
+	background:url(switch_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_visa_flat {
+	background:url(visa_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_visa_electron_flat {
+	background:url(visa_electron_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_western_union_flat {
+	background:url(western_union_flat.png) no-repeat;
+	background-size:100% 100%
+}
+.dc_payment_icons_card_back {
+	background:url(card_back.png) no-repeat;
+	display:inline-block;
+	height:66px;
+	margin:4px;
+	text-indent:20px;
+	vertical-align:middle;
+	width:96px
+}
+.dc_payment_icons_card_back:hover {
+	opacity:0.9
+}
+.dc_payment_icons_check_back {
+	background:url(check_back.png) no-repeat;
+	display:inline-block;
+	height:66px;
+	margin:4px;
+	text-indent:20px;
+	vertical-align:middle;
+	width:166px
+}
+.dc_payment_icons_check_back:hover {
+	opacity:0.9
+}

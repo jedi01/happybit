@@ -1,0 +1,129 @@
+<?
+?>
+
+<div class="tableContent2">
+    <div class="table2">
+    </div>
+    <div class="table2">
+        <!-- TABLE WITH CATEGORIES -->
+        <table width="98%" border="0" cellspacing="0" cellpadding="4">
+            <? print $TPL_main_value; ?>
+        </table>
+        <br />
+        <?
+        if(count($TPL_auctions_list_value) > 0) {
+          ?>
+        <table width="98%" border="0" cellspacing="0" cellpadding="4" class=catsearch>
+        <FORM NAME="catsearch" ACTION="<?=basename($_SERVER['PHP_SELF'])?>?id=<?=$id?>" METHOD=POST>
+        <TR>
+            <TD><?=$MSG_30_0070?>&nbsp;<INPUT TYPE="text" NAME="catkeyword" SIZE="20" />&nbsp;<INPUT TYPE="submit" NAME="" VALUE="<?=$MSG_103?>" class="button" />
+            &nbsp;&nbsp;<a href="<?=$SETTINGS['siteurl']?>adsearch.php"> <?=$MSG_464 ?></a></TD>
+        </TR>
+        </FORM>
+        </TABLE>
+        <table width="98%" border="0" cellspacing="1" cellpadding="4">
+            <tr>
+                <th width="9%" align="center" height="5">
+                    <?=$MSG_167; ?>
+                </th>
+                <th width="49%" height="5" align="center">
+                    <?=$MSG_168; ?>
+                </th>
+                <th width="14%" height="5" align="center">
+                    <?=$MSG_169; ?>
+                </th>
+                <th width="14%" height="5" align="center">
+                    <?=$MSG_170; ?>
+                </th>
+                <th width="14%" align="center" height="5">
+                    <?=$MSG_171; ?>
+                </th>
+            </tr>
+            <?
+            foreach($TPL_auctions_list_value as $k=>$tplv) {
+                if($k % 2) {
+            ?>
+            <tr align="center" class="alt-row">
+                <?
+                } else {
+                ?>
+            <tr align="center">
+                <?
+                }
+                ?>
+                <td align="center">
+                    <?=$tplv['img']?>
+                </td>
+                <td align="left">
+                    <?=$tplv['idformat'].$tplv['buy_now']?>
+                </td>
+                <td align="right">
+                    <a href="javascript:window_open('converter.php?AMOUNT=<?=$bid?>','incre',650,200,30,30)">
+                                <?=print_money($tplv['bid'])?>
+                                </a>                    
+                </td>
+                <td align="center">
+                    <?=$tplv['rpr']?>
+                </td>
+                <td align="center">
+                    <?=$tplv['diff']?>
+                </td>
+            </tr>
+            <?
+            }
+            ?>
+            <tr align="center">
+                <td colspan=5><? print $TPL_auctions_total_value; ?></td>
+            </tr>
+        </table>
+        <?
+        }
+          ?>
+
+    <table width=100% cellpadding=0 cellspacing=0 border=0>
+        <tr>
+            <td align=CENTER>
+                <?=$MSG_5117?>&nbsp;&nbsp;<?=$PAGE?>
+                <?=$MSG_5118?>&nbsp;&nbsp;<?=$PAGES?>
+                <br>
+                <?
+                $PREV = intval($PAGE - 1);
+                $NEXT = intval($PAGE  + 1);
+                if($PAGES > 1) {
+                    if($PAGE > 1) {
+                    ?>
+                <a href="<?=basename($_SERVER[PHP_SELF])?>?PAGE=<?=$PREV?>&id=<?=$id?>"><u>
+                <?=$MSG_5119?>
+                </u></a> &nbsp;&nbsp;
+                <?
+                    }
+                    $LOW = $PAGE - 5;
+                    if($LOW <= 0) $LOW = 1;
+                    $COUNTER = $LOW;
+                    while($COUNTER <= $PAGES && $COUNTER < ($PAGE+6)) {
+                        if($PAGE == $COUNTER) {
+                            print "<B>$COUNTER</B>&nbsp;&nbsp;";
+                        } else {
+                            print "<A HREF=\"".basename($_SERVER[PHP_SELF])."?PAGE=$COUNTER&id=$id\"><U>$COUNTER</U></A>&nbsp;&nbsp;";
+                        }
+                        $COUNTER++;
+                    }
+                ?>
+                &nbsp;&nbsp;
+                <?
+                if($PAGE < $PAGES) {
+                        ?>
+                <a href="<?=basename($_SERVER[PHP_SELF])?>?PAGE=<?=$NEXT?>&id=<?=$id?>"><u>
+                <?=$MSG_5120?>
+                </u></a>
+                <?
+                }
+                }
+                ?>
+            </td>
+        </tr>
+    </table>        
+        
+    </div>
+</div>
+</div>

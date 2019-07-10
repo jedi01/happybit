@@ -1,0 +1,417 @@
+<?
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+
+$NOW = date("YmdHis",mktime(date("H")+$SETTINGS['timecorrection'],date("i"),date("s"),date("m"), date("d"),date("Y")));
+
+$timeleft = (strtotime($my_end) - strtotime($NOW));
+
+// change the value for pyramid type auctions
+
+$bidscount = ($number_of_bids - $remained_bids);
+
+if ($timed_auction == 'y' && $valuestep == 'y') {
+if ($bidscount >= 1000) {
+$item_value = '500';
+}  elseif ($bidscount >= 900) {
+$item_value = '450';
+}  elseif ($bidscount >= 800) {
+$item_value = '400';
+} elseif ($bidscount >= 700) {
+$item_value = '350';
+} elseif ($bidscount >= 600) {
+$item_value = '300';
+} elseif ($bidscount >= 500) {
+$item_value = '250';
+} elseif ($bidscount >= 400) {
+$item_value = '200';
+} elseif ($bidscount >= 300) {
+$item_value = '150';
+} elseif ($bidscount >= 200) {
+$item_value = '100';
+} elseif ($bidscount >= 100) {
+$item_value = '75';
+} elseif ($bidscount <= 99) {
+$item_value = '50';
+}
+}
+
+// end pyramid
+
+//echo "Bids: $bidscount<br>";
+//echo "Timed?: $timed_auction <br>";
+//echo "NOW: $NOW <br>";
+//echo "END: $my_end <br><br>";
+//echo "TIME LEFT: $timeleft <br><br>";
+
+//echo "REAL TIME:&nbsp;";
+//$format = 'YmdHis';
+//$datenow = DateTime::createFromFormat($format, $NOW);
+//echo $datenow->format('d-m-Y H:i:s');
+//echo "<br /><br />";
+
+//echo "END TIME:&nbsp;";
+$format = 'YmdHis';
+$dateend = DateTime::createFromFormat($format, $my_end);
+?>
+
+    
+<script type="text/javascript">
+$(function(){
+    $('.timer-quick').startTimer({
+      onComplete: function(){
+        if (window.location.href.indexOf('reload')==-1) {
+     window.location.replace(window.location.href+'?reload');
+};
+      }
+    });
+})
+</script>
+
+<div id="contentarea">
+    <div id="appage">
+        <div id="aptitle">
+            <div id="fontbold"><? echo $TPL_title_value ?></div>
+        </div>
+        <div id="apid">
+            <div id="fontreg"><? echo $MSG_113 ?>: <? echo $TPL_id_value ?></div>
+        </div>
+
+<div id="aptopbox">
+
+<div id="apboxespic" style="background:url('<?=$pict_url?>');"></div>
+
+<div id="apboxes">
+
+<?
+	if($auction_type == "1") {
+    
+    
+	if ($timed_auction == 'y' && $timeleft <= 0) {
+        echo "<div id='timedauctionend'><strong id='aptitle'>Times Up!</strong><br />This auction has ended! The winner will be announced shortly.</div>";
+        }
+    
+	elseif($AuctionIsClosed == false) { 
+		drawFormRevolution("play", $BIDFILE);
+    	} else {
+		echo "<div id='endedmessage'>This auction has ended! <?=$winner_msg?></div><div id='endedmessage'><a href='#ahistory'>View Information</a></div>"; // was already closed
+		}
+?>
+	<div style="float:left; width:100%; margin-top:-5px;"><hr class="hr1" /></div>
+    <div id="apinfos">
+    
+        <div id="apinfobox">
+        <div id="apinfotitle">VALUE</div>
+        <div id="apinfoblock">&pound;<?= ($item_value) ?></div>
+        </div>
+        
+        <div id="apinfobox">
+        <div id="apinfotitle">COINS PER BID</div>
+        <div id="apinfoblock"><div style="float:left; margin-left:34px;"><?=$bid_value ?> x</div><div style="float:left;"><img src="/images/coin.png" width="26" height="26" /></div></div>
+        </div>
+        
+        <div id="apinfobox">
+        <?php if ($remained_bids<0){ $remained_bids = 0; } ?>
+        <?
+        if ($timed_auction == 'y') {
+        echo '<div id="apinfotitle">TIME REMAINING</div>';
+        echo '<div id="apinfoblock"><div class="timer-quick timerbid" data-seconds-left="'.$timeleft.'"></div></div>';
+        } else {
+        echo '<div id="apinfotitle">BIDS REMAINING</div>';
+        echo '<div id="apinfoblock">'.$remained_bids.' of '.$number_of_bids.'</div>';
+        }
+        ?>
+        </div>
+        
+        <?php if(!$_SESSION["HAPPYBID_LOGGED_IN"]) { ?>
+        <div id="apinfobox">
+        <div id="apinfotitle">BUY COINS</div>
+        <div id="apinfoblock"><a href="register.php"><img src="/images/coins-buy.png" border="0" /></a></div>
+        </div>
+         <? } else { ?>
+        <div id="apinfobox">
+        <div id="apinfotitle">BUY COINS</div>
+        <div id="apinfoblock"><a href="user_menu.php"><img src="/images/coins-buy.png" border="0" /></a></div>
+        </div>
+        <?php } ?>
+    
+    </div>
+	<div style="float:left; width:100%; margin-top:5px;"><hr class="hr1" /></div>
+
+    <div id="apmore">
+    <div id="aphistory">
+    <?          
+    #// If user is not logged dont show view history
+                                if(isset($_SESSION["HAPPYBID_LOGGED_IN"])) {
+                                    if($auction_type == "1"){
+                                        if($TPL_BIDS_value) echo  $TPL_BIDS_value."";                
+                                    }
+                                }
+    ?>
+    </div>
+    <div id="apfriend">
+    <div style="float:left;">
+    <a href="<?=$SETTINGS['siteurl']?>friend.php?id=<?=$_GET['id'];?>"><img src="themes/default/img/send-message.png" border="0"></a>
+    </div>
+    <div style="float:left; margin-left:2px; margin-top:1px;">
+    <a href="<?=$SETTINGS['siteurl']?>friend.php?id=<?=$_GET['id'];?>">
+    <?=$MSG_106 ?>
+    </a></div>
+    </div>
+    </div>
+
+</div>
+</div>
+
+<?
+if($auction_type == "1" && $my_closed=="1")
+{
+?>
+<a name="ahistory"></a>
+<iframe src="<?=$SETTINGS['siteurl']?>view_bid_history.php?id=<?=$TPL_id_value?>" width="871" height="500" frameborder="0" scrolling="yes" class="iframehistory"></iframe>
+<?
+}elseif(intval($auction_type)>1 && $is_auction_finished)
+{
+?>
+<!--<div style="margin-bottom:10px;"><a style="color:#ffffff;" class="buttonbid" href="<?=$SETTINGS['siteurl']?>view_bid_history.php?id=<?=$TPL_id_value?>">Bid history</a></div>-->
+<?
+}
+?>
+<?
+}
+?>
+
+<div id="apitemdetails">
+
+<?
+if ($timed_auction == 'y') {
+
+echo '<div id="timedauctiondesc">';
+echo '<strong>This is a timed auction, bidding ends when the timer hits zero no matter how many bids have been placed!</strong><br><br>';
+echo '<div>This auction will end on <strong>';
+echo $dateend->format('l jS M - H:i:s');
+echo '</strong>, this is Coordinated Universal Time (UTC).</div>';
+echo '<div class="timer-quick timerdesc" data-seconds-left="'.$timeleft.'"></div>';
+echo '<div class="bidsplaced"><strong>Bids Placed: '.$bidscount.'</strong></div>';
+echo '</div>';
+}
+?>
+<?
+if ($valuestep == 'y') {
+
+echo '<div id="timedauctiondesc">';
+echo '<div>The more bids placed, the greater the prize!</div>';
+echo '<div>1 - 99 bids = &pound;50</div>';
+echo '<div>100 - 199 bids = &pound;75</div>';
+echo '<div>200 - 299 bids = &pound;100</div>';
+echo '<div>300 - 399 bids = &pound;150</div>';
+echo '<div>400 - 499 bids = &pound;200</div>';
+echo '<div>500 - 599 bids = &pound;250</div>';
+echo '<div>600 - 699 bids = &pound;300</div>';
+echo '<div>700 - 799 bids = &pound;350</div>';
+echo '<div>800 - 899 bids = &pound;400</div>';
+echo '<div>900 - 999 bids = &pound;450</div>';
+echo '<div>1000+ = &pound;500</div>';
+echo '</div>';
+}
+?>
+
+<!--============Bid History============-->
+<? if($TPL_auctions_list_value != ""){ ?>   
+<div id="aph"><div id="fontsemi">Your Bid History</div></div>
+ <div>
+     <?
+                    if($auction_type == "1" && $my_closed=="0"){
+                        echo $MSG_WINNER;
+                    }elseif(intval($auction_type)>1 && $is_auction_finished===false)
+                    {
+                        echo $MSG_WINNER;
+                    }
+                ?>
+	</div>
+<div style="display:inline-block;">
+<div class="bidHistory lowUnique">Lowest Unique Bid</div>
+<div class="bidHistory unique">Unique But Not Lowest</div>
+<div class="bidHistory notUnique">Not Unique</div>
+</div>
+<div id="bidhistorybox">
+<? print $TPL_auctions_list_value; ?>
+</div>
+ <? } ?>                         
+<!-- ==================================-->
+<?
+                        
+if($auction_type == "1" && $my_closed=="0")
+                            {
+                    ?>
+<div id="apdescription">
+<div id="aph"><div id="fontsemi">Auction Description</div></div>
+<? echo $description ?>
+</div>
+<? } ?>
+
+<div id="ga">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- HappyBid -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8697254714519020"
+     data-ad-slot="5721730597"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+
+<!---- TIMED AUCTION CODE TEST
+<?
+echo "Timed?: $timed_auction <br>";
+echo "NOW: $NOW <br>";
+echo "END: $my_end <br><br>";
+
+if ($timed_auction == 'y') {
+
+if ($NOW < $my_end) 
+{ $auction_run = "running"; }
+else 
+{ $auction_run = "ended"; }
+
+}
+
+echo $auction_run;
+
+$timeleft = ($my_end - $NOW);
+echo "<br><br>Seconds Left: ";
+echo $timeleft;
+echo '<div class="timer-quick" data-seconds-left="'.$timeleft.'"></div>';
+?>
+
+TIMED AUCTION CODE TEST END ---->
+
+
+<div id="apgallery">
+            <?
+            if($TPL_show_gallery != "") {
+            ?>
+            <!-- ================================================================================================-->
+            <!-- Pictures Gallery -->
+            <!-- ================================================================================================-->
+<div id="aph" style="margin-top:24px;">
+<a name="gallery"></a>Image Gallery
+</div>
+<div style="display:inline-block;">
+<? echo $TPL_show_gallery ?>
+</div>
+</div> 
+<?
+}
+?>
+</div>
+</div>
+</div>
+
+    <script type="text/javascript">
+        $(function() {
+            $('input#limit2dp').blur(function() {
+
+                var amt = parseFloat(this.value);
+                if (!isNaN(amt))
+                   {
+                        $(this).val(amt.toFixed(2));
+                   } else $(this).val('');
+
+            });
+
+        });
+    </script>
+    
+    <!-- ONLY NUMBERS ALLOWED IN BID BOX -->
+    <script>
+	function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode != 46 &&(charCode < 48 || charCode > 57)))
+        return false;
+    return true;
+}
+	</script>
+    <!-- ONLY NUMBERS ALLOWED IN BID BOX -->
+    
+<?
+function drawFormRevolution($type, $action)
+{
+
+    global $MSG_31_0027, $TPL_id_value, $auction_type, $MSG_31_0021;
+    global $MSG_121, $MSG_30_0208, $TPL_next_bid_value, $TPL_title_value, $TPL_id_value, $TPL_category_value;
+    global $MSG_31_0031, $MSG_31_0030, $f5_num; 
+
+    if($type == "play")
+    {	
+        // Form action URL
+        $action = $SETTINGS['siteurl'];
+        $stringTwo = $SETTINGS['adminmail'];
+        if($auction_type == 1)$action .= "bid_classic.php";
+        elseif($auction_type == 2)$action .= "bid_revolution.php";
+
+        echo "		
+<form name='bid' action='".$action."' method='post'>
+<div id='apsinglebid'>
+<div id='apbidtitle'>Single bid<div id='qmark' class='tooltip' title='Place a single bid<br><u>Example</u><br/>Enter the amount you wish to bid<br>such as &pound;0.01'><img src='/images/qmark.png' /></div></div>
+<div id='apbidbox'>
+<input id='limit2dp' class='integer singlebidfield'  type='text' name='bid' size='5' value='' onkeypress='return isNumberKey(event)' placeholder='&pound;' /></div>
+<input type='hidden' name='bid_next' value='".$TPL_next_bid_value."'>
+<input type='hidden' name='seller_id' value='0'>
+<input type='hidden' name='bid_type' value='simple'>
+<input type='hidden' name='title' value='".$TPL_title_value."' >
+<input type='hidden' name='category' value='".$TPL_category_value."' >
+<input type='hidden' name='id' value='".$TPL_id_value."'>
+<input type='hidden' name='auction_type' value='".$auction_type."'>
+<input type='hidden' name='form_type' value='".$type."'>
+<input type='hidden' name='f5_num' value='".$f5_num."'>
+<div id='apbidbutton'><input type=submit id='subbutton' name='subbutton' value='PLACE BID' class='buttonbid' style='height:63px;'></div>
+</div>
+</form>
+
+<form name='bid_range' action='".$action."' method='post'>
+<div id='apmultibid'>
+<div id='apbidtitlem'>Multi bids<div id='qmark' class='tooltip' title='Allows you to bid a whole range at once<br><u>Example</u><br/>Entering &pound;0.15 to &pound;0.18 will bid<br>&pound;0.15, &pound;0.16, &pound;0.17 &amp; &pound;0.18'><img src='/images/qmark.png' /></div></div>
+<div id='apbidbox'><div id='apbidlabel'>From</div>
+<input id='limit2dp' class='integer bidfield' type='text' name='bid_from' size='2' value='' onkeypress='return isNumberKey(event)' placeholder='&pound;' style='margin-right:9px;' /></div>
+<div id='apbidbox'><div id='apbidlabel' style='width:19px; left:40px;'>To</div>
+<input id='limit2dp' class='integer bidfield' type='text' name='bid_to' size=''2 value='' onkeypress='return isNumberKey(event)' placeholder='&pound;' /></div>
+<input type='hidden' name='bid_next' value='".$TPL_next_bid_value."'>
+<input type='hidden' name='seller_id' value='0'>
+<input type='hidden' name='bid_type' value='range'>
+<input type='hidden' name='title' value='".$TPL_title_value."' >
+<input type='hidden' name='category' value='".$TPL_category_value."' >
+<input type='hidden' name='id' value='".$TPL_id_value."'>
+<input type='hidden' name='auction_type' value='".$auction_type."'>
+<input type='hidden' name='form_type' value='".$type."'>
+<input type='hidden' name='f5_num' value='".$f5_num."'>
+<div id='apbidbutton' style='margin-top: 15px;'><input type=submit id='subbutton' name='subbutton' value='PLACE BID' class='buttonbid'></div>
+</form>
+</div>
+";    
+    }
+}
+
+?>
+<script type="text/javascript">
+	$(".numeric").numeric();
+	$(".integer").numeric(false, function() { alert("Integers only"); this.value = ""; this.focus(); });
+	$(".positive").numeric({ negative: false }, function() { alert("No negative values"); this.value = ""; this.focus(); });
+	$(".positive-integer").numeric({ decimal: false, negative: false }, function() { alert("Positive integers only"); this.value = ""; this.focus(); });
+	$("#remove").click(
+		function(e)
+		{
+			e.preventDefault();
+			$(".numeric,.integer,.positive").removeNumeric();
+		}
+	);
+	</script>
+
+</div>
+
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

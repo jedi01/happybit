@@ -1,0 +1,147 @@
+<?
+$TMP_usmenutitle=$MSG__0121;
+include phpa_include("template_user_menu_header.html");
+?>
+
+<form name=newlist action=<?=basename($_SERVER['PHP_SELF'])?> method=post  enctype="multipart/form-data">
+    <table width="100%" border="0" cellspacing="1" cellpadding="4">
+        <tr >
+            <td colspan="3">
+                <?=$MSG__0147?>
+            </td>
+        </tr>
+        <tr bgcolor="<?=$SETTINGS[bordercolor]?>" >
+            <td colspan="3"><b>
+                <?=$MSG__0128?>
+                <?=$MSG__0143?>
+                </b></td>
+        </tr>
+        <?
+        if(is_array($TEMPLATE)) {
+        	foreach($TEMPLATE as $k=>$v) {
+							?>
+        <tr valign=top bgcolor="#eeeeee">
+            <td bgcolor="#eeeeee" width="6%">
+                <input type="radio" name="template" value="<?=$k?>" <?if($ABOUTME['template'] == $k) print " CHECKED";?> />
+            </td>
+            <td width="56%">
+                <b>
+                <?=$v['name']?>
+                </b></td>
+            <td width="38%">
+                <?
+                if(!empty($v['sample'])) {
+								  ?>
+                <img src="<?=$uploaded_path?>aboutmesamples/<?=$v['sample']?>" width=250 alt="sample" />
+                <?
+                } else {
+                	print $MSG__0130;
+                }
+				?>
+            </td>
+        </tr>
+        <?
+        	}
+        }
+		?>
+        <tr >
+            <td width="6%">&nbsp;</td>
+            <td colspan="2">&nbsp;</td>
+        </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="1" cellpadding="4" >
+        <tr bgcolor="<?=$SETTINGS[bordercolor]?>">
+            <td colspan="3"><b>
+                <?=$MSG__0129?>
+                </b></td>
+        </tr>
+        <tr bgcolor="#eeeeee" valign="top">
+            <td colspan="2">
+                <?=$MSG__0131?>
+                <b>
+                <?=$MSG__0143?>
+                </b> </td>
+            <td width="81%">
+                <input type="text" name="pagetitle" size="45" maxlength="255" value="<?=stripslashes($ABOUTME['pagetitle'])?>" />
+            </td>
+        </tr>
+        <tr bgcolor="#eeeeee" valign="top">
+            <td colspan="2">
+                <?=$MSG__0132?>
+            </td>
+            <td width="81%">
+                <?=$MSG__0133?>
+                <b>
+                <?=$MSG__0143?>
+                </b><br />
+                <input type="text" name="welcome" size="45" maxlength="255" value="<?=stripslashes($ABOUTME['welcome'])?>" />
+                <br />
+                <?=$MSG__0134?>
+                <b>
+                <?=$MSG__0143?>
+                </b><br />
+                <textarea name="welcomemsg" cols="45" rows="10"><?=stripslashes($ABOUTME['welcomemsg'])?></textarea>
+            </td>
+        </tr>
+        <tr bgcolor="#eeeeee" valign="top">
+            <td colspan="2">
+                <?=$MSG__0138?>
+            </td>
+            <td width="81%" valign="top">
+                <?
+                if(!empty($ABOUTME['picture']) && !isset($_SESSION['picture'])) {
+			  	?>
+                <img src="<?=$uploaded_path?>aboutmepictures/<?=$_SESSION['HAPPYBID_LOGGED_IN']?>/<?=$ABOUTME['picture']?>" alt="picture" />
+                <?
+                } elseif(!empty($ABOUTME['picture']) && isset($_SESSION['picture'])) {
+				?>
+                <img src="<?=$uploaded_path?>aboutmepictures/<?=$_SESSION['HAPPYBID_LOGGED_IN']?>/<?=$ABOUTME['picture']?>" alt="picture" />
+                <?
+                } elseif(isset($_SESSION['picture'])) {
+				?>
+                <img src="<?=$uploaded_path?>aboutmepictures/<?=$_SESSION['HAPPYBID_LOGGED_IN']?>/_<?=$ABOUTME['picture']?>" alt="picture" />
+                <?
+                }
+				?>
+                <br />
+                <br />
+                <input type="file" name="picture" size="25" maxlength="0" />
+            </td>
+        </tr>
+        <tr bgcolor="#eeeeee" valign="top">
+            <td colspan="2">
+                <?=$MSG__0136?>
+                </td>
+            <td width="81%" valign="top">
+                <?=$MSG__0133?>
+                <br />
+                <input type="text" name="paragraph" size="45" maxlength="255" value="<?=stripslashes($ABOUTME['paragraph'])?>">
+                <br />
+                <?=$MSG__0134?>
+                <br />
+                <textarea name="paragraphmsg" cols="45" rows="10"><?=stripslashes($ABOUTME['paragraphmsg'])?>
+		</textarea>
+            </td>
+        </tr>
+        <tr bgcolor="#eeeeee" valign="top">
+            <td colspan="2">
+                <?=$MSG__0137?>
+            </td>
+            <td width="81%">
+                    <?=$MSG__0139?>
+                    <br />
+                    <input type="text" name="auctions" size="5" value="<?=intval($ABOUTME['auctions'])?>" />
+            </td>
+        </tr>
+    </table>
+    <div style="text-align:center">
+        <input type="submit" name="Preview" value="<?=$MSG__0140?>" class=button />
+&nbsp;&nbsp;&nbsp;
+        <input type="submit" name="Publish" value="<?=$MSG__0141?>" class=button />
+&nbsp;&nbsp;&nbsp;
+        <input type="submit" name="Delete" value="<?=$MSG__0116?>" class=button />
+    </div>
+</form>
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

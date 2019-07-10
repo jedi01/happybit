@@ -1,0 +1,509 @@
+<script language=Javascript>
+function window_open(pagina,titulo,ancho,largo,x,y){
+    var Ventana= 'toolbar=0,location=0,directories=0,scrollbars=1,screenX='+x+',screenY='+y+',status=0,menubar=0,resizable=0,width='+ancho+',height='+largo;
+    open(pagina,titulo,Ventana);
+
+}
+
+function SubmitSellForm(){
+    document.sell.submit();
+}
+function ResetSellForm(){
+    document.sell.reset();
+}
+function SubmitPrevForm(){
+    document.preview.submit();
+}
+function ResetPrevForm(){
+    document.preview.reset();
+}
+</script>
+
+<div class="content">
+    <div class="tableContent2">
+        <div class="titTable2">
+            <?=$MSG_028;?>
+            <?
+            if( $feesfree=='y') {
+                print "<P class=errfont>".$SETTINGS['freecatstext']."</P>";
+            }
+        ?>
+        </div>
+        <div class="table2">
+            <form name="sell" action="sell.php" method="post" enctype="multipart/form-data">
+                <input type=HIDDEN name="action" value="first" />
+                <table width="100%" border="0" cellpadding="4" cellspacing="0">
+                    <?if (!empty($TPL_error_value)) {?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan">&nbsp;</td>
+                        <td class=errfont>
+                            <?="$TPL_error_value"?>
+                        </td>
+                    </tr>
+                    <?}?>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_287;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <?(!empty($TPL_categories_list))? print stripslashes($TPL_categories_list) : print $sessionVars[categoriesList]?>
+                            <br>
+                            [<a href=select_category.php?change=yes><?=$MSG_5113?></a>]</td>
+                    </tr>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_017;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=text name=title size=40 maxlength=255 value="<?=stripslashes($titleH); ?>" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_018;?>
+                            </b> </td>
+                        <td class="rightpan">
+                        <?
+                        $oFCKeditor = new FCKeditor('description') ;
+                        $oFCKeditor->BasePath = 'fck/';
+                        $oFCKeditor->Value = stripslashes($description);
+                        $oFCKeditor->Width  = '90%' ;
+                        $oFCKeditor->Height = '400' ;
+                        $oFCKeditor->Create() ;
+                        ?>
+                        </td>
+                    </tr>
+
+                    <?
+                    if ($TPL_auction_variant!="") {
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="middle" class="leftpan"><b>
+                            <?=$MSG_25_0071;?>
+                            </b> </td>
+                        <td class="rightpan"><? print $TPL_auction_variant; ?> </td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+
+                    <?
+                    if(!empty($TPL_pict_URL_value)) {
+                      ?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_019; ?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=HIDDEN name=upd_pict_url value="<?=$sessionVars["SELL_pict_url"]; ?>" />
+                            <?=$TPL_pict_URL_value; ?>
+                        </td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_019;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=RADIO name="imgtype" value="0" <?=$TPL_imgtype1_SELECTED; ?> />
+                            <input type=text size=40 name=pict_url value="<?=$pict_urlH; ?>" onFocus="document.sell.imgtype[0].checked='true';"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_256; ?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=RADIO name="imgtype" value="1" <?=$TPL_imgtype2_SELECTED; ?> />
+                            <input type=file size=20 name=userfile onFocus="document.sell.imgtype[1].checked='true';"/>
+&nbsp;
+                            <?=$MSG_5408.$SETTINGS['maxuploadsize']." bytes";?>
+                            <input type=HIDDEN name="MAX_FILE_SIZE" value="<? print $SETTINGS['maxuploadsize']; ?>" />
+                        </td>
+                    </tr>
+
+                    <?
+                    if($SETTINGS['picturesgallery'] == 1)
+                    {
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="middle" class="leftpan">&nbsp;</td>
+                        <td valign="top" class="rightpan">
+                            <h3><?
+                            print $MSG_663."</h3>";
+                            print $MSG_673."&nbsp;".$SETTINGS['maxpictures']."&nbsp;".$MSG_674;
+                            if($SETTINGS['picturesgalleryfee'] == 1 )
+                            {
+                                print $MSG_675."&nbsp;".print_money($SETTINGS['picturesgalleryvalue'])."&nbsp;".$MSG_676;
+                            }
+                            ?>
+                            <br />
+                            <br />
+                            [<a href="javascript:window_open('upldgallery.php','gallery',400,500,20,20)">
+                            <?=$MSG_677?>
+                            </a>] </td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+
+                    <tr>
+                        <th colspan="2" align="center" valign="middle" class="leftpan">
+                            <?=$MSG_640;?>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td align="right" width="25%" valign="middle" class="leftpan"><b>
+                            <?=$MSG_257;?>
+                            </b> </td>
+                        <td class="rightpan"><? print $TPL_auction_type; ?> </td>
+                    </tr>
+
+                    <?
+                        if($SETTINGS['adultonly']=='y'){
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" class="leftpan" valign="top"><b>
+                            <?=$MSG_30_0075;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <? print $MSG_30_0076 ?><br />
+                            <input type=radio name="adultonly" value="n" <?=$TPL_no_adultonly; ?> />
+                            <?=$MSG_029; ?>
+                            <input type=radio name="adultonly" value="y" <?=$TPL_adultonly; ?> />
+                            <?=$MSG_030; ?>
+                        </td>
+                    </tr>
+                    <?}?>
+
+                    <tr>
+                        <td align="right" width="25%" valign="middle" class="leftpan"><b>
+                            <?=$MSG_258;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=TEXT name="iquantity" size="5" value="<?=$iquantity; ?>" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_020;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=text size = 10 name=minimum_bid value="<? if($minimum_bid>0) print print_money_nosymbol($minimum_bid); ?>" 
+                             <?
+                            if($buy_now_only == 'y') print " DISABLED";
+                            ?>
+                            />
+                            <?=$SETTINGS['currency']; ?>&nbsp;&nbsp;(<a href=javascript:window_open('converter.php','incre',650,200,30,30)>
+                            <?=$MSG_5010?>
+                            </a>)
+                            <? // include "lib/auctionsetup_note.php";?>
+                        </td>
+                    </tr>
+
+                    <?              
+                      if($SETTINGS['reservefee'] == 1 ) {
+                    ?>
+                    <tr>
+                        <th colspan="2" align="center" valign="middle" class="leftpan">
+        
+                            <?
+                                print "$MSG_9005";
+
+                                if($SETTINGS['reservetype'] == 1) {
+                                    $RESERVE = print_money_nosymbol(doubleval($SETTINGS['reservevalue'])) .$MSG_9006;
+                                    print "($RESERVE)";
+                                } else {
+                                    print "".print_money($SETTINGS['reservevalue'])."";
+                                }
+                            ?>
+                        </th>
+                    </tr>
+                    <?}?>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_021;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=radio name="with_reserve" value="no" <?=$TPL_without_reserve_selected; ?> />
+                            <?=$MSG_029; ?>
+                            <input type=radio name="with_reserve" value="yes" <?=$TPL_with_reserve_selected; ?> />
+                            <?=$MSG_030; ?>
+                            <input type=text name="reserve_price" size=10 value="<? if($reserve_price) print print_money_nosymbol($reserve_price); ?>" onFocus="document.sell.with_reserve[1].checked='true';" 
+                            <?if($buy_now_only == 'y') print " DISABLED";?>/>
+                            <?=$SETTINGS['currency']; ?>&nbsp;&nbsp;(<a href=javascript:window_open('converter.php','incre',650,200,30,30)>
+                            <?=$MSG_5010?>
+                            </a>) </td>
+                    </tr>
+                    
+                    <?
+                    if ($SETTINGS['buy_now'] == 2 && $SETTINGS['bn_only'] == 'y') {
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                        <B><?=$MSG_30_0063?></B></div>
+                      </td>
+                        <td class="rightpan">
+                        <?=$CUSTOM_0002?>
+                        <input type=radio name="buy_now_only" value="n" <?=$TPL_without_buy_now_only?> onClick="document.sell.minimum_bid.disabled=false;document.sell.reserve_price.disabled=false;document.sell.buy_now[0].checked=true" />
+                        <?=$MSG_029?>
+                        <input type=radio name="buy_now_only" value="y" <?=$TPL_with_buy_now_only?> onClick="document.sell.buy_now[1].checked='true';document.sell.minimum_bid.disabled=true;document.sell.reserve_price.disabled=true" />
+                        <?=$MSG_030?>
+                        </td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+
+                    <?
+                    if ($SETTINGS['buy_now'] == 2) {
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_496?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=radio name="buy_now" value="no" <?=$TPL_without_buy_now_selected?> />
+                            <?=$MSG_029?>
+                            <input type=radio name="buy_now" value="yes" <?=$TPL_with_buy_now_selected?> />
+                            <?=$MSG_030?>
+                            <input type=text name="buy_now_price" size=10 value="<? if($buy_now_price) print print_money_nosymbol($buy_now_price); ?>" onFocus="document.sell.buy_now[1].checked='true';"/>
+                            <?=$SETTINGS['currency']?>&nbsp;&nbsp;(<a href=javascript:window_open('converter.php','incre',650,200,30,30)>
+                            <?=$MSG_5010?>
+                            </a>) </td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_613;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=radio name="increments" value="1" <? if($increments == 1 || empty($increments)) print " checked=true"; ?>/>
+                            <?=$MSG_614; ?>
+                            <br>
+                            <input type=radio name="increments" value="2" <? if($increments == 2) print " checked=true"; ?> />
+                            <?=$MSG_615; ?>
+                            <input type=text name="customincrement" size=10 value="<?
+							if($customincrement>0) print_money_nosymbol($customincrement); ?>" onFocus="document.sell.increments[1].checked='false';document.sell.increments[2].checked='true';" />
+                            <?=$SETTINGS['currency']; ?>&nbsp;&nbsp;(<a href=javascript:window_open('converter.php','incre',650,200,30,30)>
+                            <?=$MSG_5010?>
+                            </a>) </td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MGS_2__0016;?>
+                            </b> </td>
+                        <td class="rightpan">
+                          <?
+                            if(!$sessionVars['editstartdate'] && $sessionVars['SELL_action']=='edit'){
+                                print $std_font.$TPL_start_date;
+                                print "<input type=\"hidden\" name=\"a_starts\" value=\"$TPL_start_date\" />";
+                            }else{
+                          ?>
+                            <input type="text" name="a_starts" id="pubdate_input" value="<?=$TPL_start_date?>" size="20" maxlength="19" />
+                            <a href="javascript:pubdate_cal.popup()"><img src="includes/img/calendar.gif" width="16" height="16" border="0" alt="Click Here to Pick up the date" /></a>
+                            <script language="JavaScript">
+                            var pubdate_cal = new xar_base_calendar(document.getElementById("pubdate_input"), "."); pubdate_cal.year_scroll = true; pubdate_cal.time_comp = true;
+                            </script>
+                        <?
+                            }
+                        ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_022;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <?=$TPL_durations_list ?>
+                        </td>
+                    </tr>
+                    <?
+                    #// Modified for XL 2.0 to enable autorelist only if invoicing is enabled
+                    if($SETTINGS['relisting'] != 0 && $SETTINGS['invoicing'] == 'y') {
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG__0148;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <?=$MSG__0162;?>
+                            <b>
+                            <?=$SETTINGS['relisting']?>
+                            </b> <br />
+                            <input type="text" name="relist" size="4" value="<?=$relist?>" />
+                        </td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_023;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <?=$TPL_countries_list; ?>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_024;?>
+                            </b>
+                        </td>
+                        <td class="rightpan">
+                            <input type="text" size="8" name="location_zip" value="<?=$location_zip; ?>">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_025;?>
+                            </b> </td>
+                        <td valign="top" class="rightpan">
+                            <input type="radio" name="shipping" onclick = "javascript:document.sell.shipment_fee.disabled=false" value="1" <?=$TPL_shipping1_value; ?> / >    
+                            <?=$MSG_031; ?>
+                            <br />
+                            <input type="radio" name="shipping" onclick = "javascript:document.sell.shipment_fee.disabled=true" value="2" <?=$TPL_shipping2_value; ?> />
+                            <?=$MSG_032; ?>
+                            <br />
+                            <input type="checkbox" name="international" value="1" <?=$TPL_international_value; ?> />
+                            <?=$MSG_033; ?>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_25_0215;?>
+                            </b></td>
+                        <td>
+                            <textarea name="shipping_terms" rows="3" cols="34"><?=$TPL_shipping_terms; ?></textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_026;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <?=$TPL_payments_list; ?>
+                        </td>
+                    </tr>
+
+                    <tr>
+                      <td align="right" width="25%" valign="top" class="leftpan"><b>
+                        <?=$MSG_027;?>
+                        </b> </td>
+                      <td valign="top" class="rightpan">
+                        <?=$TPL_categories_list ?>
+                      </td>
+                    </tr>
+
+                    <tr>
+                        <td height="60" align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_513;?>
+                            </b> </td>
+                        <td height="60" valign="top" class="rightpan">
+                            <textarea name=suggested_category rows=3 cols=34><? print $suggested_category; ?></textarea>
+                        </td>
+                    </tr>
+
+					<!--
+                    ################################################################
+                    Invited and black lists selection
+                    ################################################################
+                    -->
+                    <?
+                    if((is_array($INVITEDLISTS) && @count($INVITEDLISTS)>0)|| (is_array($BLACKLISTS) && @count($BLACKLISTS)>0)) {
+                    ?>
+                    <tr>
+                        <th colspan=2 align="right" valign="top" class="leftpan">
+                            <?=$MSG_5191?>
+                        </th>
+                    </tr>
+                    <?
+                    if(is_array($INVITEDLISTS) && @count($INVITEDLISTS)>0) {
+                        reset($INVITEDLISTS);
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_5171?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <select name="invitedlists[]" size="5" multiple>
+                                <?
+                                while(list($k,$v) = each($INVITEDLISTS)) {
+                                    print "
+				    <option value='$k' ";
+                                    if(@in_array($k,$sessionVars['SELL_invitedlists'])) {
+                                        print " selected=true";
+                                    }
+                                    print ">$v</option>\n";
+                                }
+                                ?>
+                            </select>
+                            <br>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                                <tr>
+                                    <td width="1" valign="top">
+                                        <input type="checkbox" name="private" value="y" <?if($sessionVars['SELL_private'] == 'y') print " CHECKED"?> />
+                                    </td>
+                                    <td>
+                                        <?=$MSG_5192?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="1" valign="top">
+                                        <input type="checkbox" name="sendemail" value="y" <?if($sessionVars['SELL_sendemail'] == 'y') print " CHECKED"?> />
+                                    </td>
+                                    <td>
+                                        <?=$MSG_5193?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <?
+                    }
+                    if(is_array($BLACKLISTS) && @count($BLACKLISTS)>0) {
+                        reset($BLACKLISTS);
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_5172?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <?list($k,$v) = each($BLACKLISTS)?>
+                            <input type=checkbox name="blacklists[]" value=<?=$k?> /\>
+                            <?=$MSG_25_0120?>
+                        </td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+                    <?
+                    }
+                    ?>
+                </table>
+                
+                <div style="text-align:center">
+                    <input type=submit name="" value="<?=$MSG_5189?>"  class=button />&nbsp;&nbsp;&nbsp;<input type=reset name="" value="<?=$MSG_5190?>" class=button \>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

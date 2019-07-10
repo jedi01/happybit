@@ -1,0 +1,48 @@
+
+<TABLE WIDTH="100%"  BORDER=0 CELLPADDING="0" CELLSPACING="0">
+  <TR>
+    <TD align="center"><br><b><?=$tlt_font?>
+            <?=$MSG_278?></b><p><!-- TABLE WITH CATEGORIES -->
+      <TABLE WIDTH="90%" BORDER=0 CELLPADDING=4 CELLSPACING=1 >
+        <TR ALIGN=CENTER BGCOLOR="<?=$SETTINGS[tableheadercolor]?>">
+          <TD WIDTH="10%"><FONT FACE="Verdana,Helvetica,Arial" SIZE="2" COLOR="#FFFFFF">
+            <?print $MSG_167;?>
+            </FONT></TD>
+          <TD WIDTH="45%"><FONT FACE="Verdana,Helvetica,Arial" SIZE="2" COLOR="#FFFFFF">
+            <?print $MSG_168;?>
+            </FONT></TD>
+          <TD WIDTH="15%"><FONT FACE="Verdana,Helvetica,Arial" SIZE="2" COLOR="#FFFFFF">
+            <?print $MSG_169;?>
+            </FONT></TD>
+          <TD WIDTH="15%"><FONT FACE="Verdana,Helvetica,Arial" SIZE="2" COLOR="#FFFFFF">
+            <?print $MSG_170;?>
+            </FONT></TD>
+          <TD WIDTH="15%"><FONT FACE="Verdana,Helvetica,Arial" SIZE="2" COLOR="#FFFFFF">
+            <?print $MSG_171;?>
+            </FONT></TD>
+        </TR>
+        <? print $TPL_auctions_list_value; ?>
+      </TABLE>
+      </CENTER>
+      <?
+	//-- Build navigation line
+
+		print "<b><SPAN CLASS=\"navigation\">";
+		$num_pages = ceil($num_auctions / $limit);
+		$i = 0;
+		while($i < $num_pages ) {
+			$of = ($i * $limit);
+			if($of != $offset) {
+				print "<A HREF=\"view_more_ending.php?offset=$of\" CLASS=\"navigation\">".($i + 1)."</A>";
+				if($i != $num_pages) print " | ";
+			} else {
+				print  $i + 1;
+				if($i != $num_pages) print " | ";
+			}
+			$i++;
+		}
+		print "</SPAN></b>";
+	?>
+<p></TD>
+  </TR>
+</TABLE>

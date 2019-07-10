@@ -1,0 +1,54 @@
+
+<div class="content">
+<div class="tableContent2">
+    <div class="titTable2">
+        <? print $MSG_206 ?>
+    </div>
+    <div>
+        <div class="titTable3">
+            <a href="<?=$SETTINGS["siteurl"]?>item.php?id=<? echo $_GET['auction_id']; ?>"> <? print $MSG_138; ?></a> | 
+            <?// href="active_auctions.php?user_id=print$TPL_user_id print $MSG_213  ?>
+            <?// href="closed_auctions.php?user_id=print $TPL_user_id print $MSG_214 ?> 
+            <?
+              if($SETTINGS['contactseller'] == 'always' || ($SETTINGS['contactseller'] == 'logged' && isset($_SESSION['HAPPYBID_LOGGED_IN']))) {
+            ?>
+            <a href="email_request.php?user_id=<? print $TPL_user_id ?>&username=<? print $TPL_user_value; ?>"><?=$MSG_210 ?><? print $TPL_user_value ?> </a> | 
+            <?
+            }
+            ?>
+            <a href="<?=$SETTINGS["siteurl"]?>feedback.php?id=<? print $TPL_user_id ?>&auction_id=<? print $_GET['auction_id'] ?>"> <? print $MSG_207 ?> <? print $MSG_25_0198 ?> "<b><? print $TPL_auction_title ?></b>"</a> | 
+            <a href="<?=$SETTINGS["siteurl"]?>feedback.php?id=<? print $TPL_user_id ?>&faction=show"><? print $MSG_208 ?> </a>
+        </div>
+    </div>
+    <div class="table2">
+        <table width="100%" border="0" cellspacing="0" cellpadding="1">
+            <tr>
+                <td>
+                    <table width="100%" border="0" cellspacing="1" cellpadding="4">
+                        <tr>
+                            <td colspan="2"> <b><?=$TPL_user_value." (".$TPL_feedback_rate.")" ?></b><? print $TPL_rate_ratio_value.$TPL_user_trusted?> <br/>
+                                <?=$MSG_502; ?> <? print $TPL_num_feedbacks ?><br/>
+                                <?
+                                if(is_array($TPL_rate_ratesum)) {
+                                  foreach($TPL_rate_ratesum as $k=>$v) {
+                                    if($k>0) {
+                                      print $MSG_502.$MSG_25_0210.$v." (".ceil($v*100/$TPL_feedback_rate)."%)</FONT><BR/>";
+                                    } elseif($k==0) {
+                                      print $MSG_502.$MSG_25_0211.$v." (".ceil($v*100/$TPL_feedback_rate)."%)</FONT><BR/>";
+                                    } else {
+                                      print setsspan($MSG_502.$MSG_25_0212.$v." (".ceil($v*100/$TPL_feedback_rate)."%)","color:red")."<BR/>";
+                                    }
+                                  }
+                                }
+                                ?>
+                        </tr>
+                        <tr>
+                            <td width="15%" align="left" valign="top"><? print $MSG_209 ?> </td>
+                            <td valign="top"><?=$TPL_ADC_value ?> </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+
+<TABLE WIDTH="100%"  BORDER=0 CELLPADDING="0" CELLSPACING="0">
+  <TR>
+    <TD><!--   -- users profile  ---    -->
+      <BR>
+      <CENTER>
+        <B><? print $tlt_font ?>My Auctions</B><p>
+        <table width="90%" border="0" cellpadding="4" cellspacing="0">
+          <tr>
+            <td width="30%"><?
+
+			$nick = $HTTP_COOKIE_VARS[$LOGGED_IN_NICK];
+
+			$user = "select id from users where nick=\"$nick\"";
+			$result_user = mysql_query($user);
+			$TPL_user_id = mysql_result($result_user,0,"id");
+
+			             ?>
+             </td>
+            <td width="70%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="30%"><div align="right"><img src="images/quad.gif" border=0 hspace=6></div></td>
+            <td width="70%"><a href="active_bids.php?SESSION-ID=<? print urlencode($sessionIDU); ?>&user_id=<? print $TPL_user_id?>">Active Bids You Have Placed</a> </td>
+          </tr>
+          <tr>
+            <td width="30%"><div align="right"><img src="images/quad.gif" border=0 hspace=6></div></td>
+            <td width="70%"><a href="user_login.php?SESSION_ID=<? print urlencode($sessionID); ?>"> <? print $MSG_244 ?> </a></td>
+          </tr>
+          <tr>
+            <td width="30%"><div align="right"><img src="images/quad.gif" border=0 hspace=6></div></td>
+            <td width="70%"><a href="active_auctions.php?SESSION_ID=<? print urlencode($sessionIDU); ?>&user_id=<? print $TPL_user_id?>"> <? print $MSG_213 ?> </a></td>
+          </tr>
+          <tr>
+            <td width="30%"><div align="right"><img src="images/quad.gif" border=0 hspace=6></div></td>
+            <td width="70%"><A HREF="active_auctions.php?SESSION_ID=<? print urlencode($sessionIDU); ?>&user_id=<? print $TPL_user_id?>"> </A> <A HREF="closed_auctions.php?SESSION-ID=<? print urlencode($sessionIDU); ?>&user_id=<? print $TPL_user_id?>"> <? print $MSG_214 ?> </A></td>
+          </tr>
+          <tr>
+            <td width="30%"><div align="right"><img src="images/quad.gif" border=0 hspace=6></div></td>
+            <td width="70%"><a href="./feedback.php?SESSION_ID=<? print urlencode($sessionIDU); ?>&id=<? print $TPL_user_id ?>&faction=show"> <? print $MSG_208 ?> </a> </td>
+          </tr>
+        </table>
+        <A href="user_login.php?SESSION_ID=<? print urlencode($sessionID); ?>"> </A><br>
+        <A HREF="./feedback.php?SESSION_ID=<? print urlencode($sessionIDU); ?>&id=<? print $TPL_user_id ?>&faction=show"> </A> <BR>
+        <p>
+      </CENTER></TD>
+  </TR>
+</TABLE>

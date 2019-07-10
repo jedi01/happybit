@@ -1,0 +1,18 @@
+
+<div class="content">
+    <div class="tableContent2">
+        <div class="titTable2">
+            <? print $MSG_248 ?>
+        </div>
+        <div class="table2">
+            <form name=registration action="<? print basename($_SERVER['PHP_SELF']); ?>" method="POST">
+                <div style="text-align:center">
+                    <? print $MSG_267; ?><br />
+                    <input type="hidden" name="id" value="<? echo $_GET['id']; ?>" />
+                    <input type=submit name="action" value="<? print $MSG_249; ?>" class=button />
+                    <input type=submit name="action" value="<? print $MSG_250; ?>" class=button />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

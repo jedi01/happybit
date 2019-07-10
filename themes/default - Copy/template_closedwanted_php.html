@@ -1,0 +1,198 @@
+<?
+$TMP_usmenutitle=$MSG_30_0159;
+include phpa_include("template_user_menu_header.html");
+?>
+<SCRIPT Language=Javascript>
+function ConfirmDel(){
+	if(confirm('<?=$MSG_30_0127?>')){
+		document.open.submit();
+	}else{
+		document.open.reset();
+	}
+}
+function selectAllDelete(formObj, isInverse) 
+{
+   for (var i=0;i < formObj.length;i++) 
+   {
+      fldObj = formObj.elements[i];
+      if (fldObj.type == 'checkbox' && fldObj.name.substring(0,8)=='O_delete')
+      { 
+         if(isInverse)
+            fldObj.checked = (fldObj.checked) ? false : true;
+         else fldObj.checked = true; 
+       }
+   }
+}
+function selectAllRelist(formObj, isInverse) 
+{
+   for (var i=0;i < formObj.length;i++) 
+   {
+      fldObj = formObj.elements[i];
+      if (fldObj.type == 'checkbox' && fldObj.name.substring(0,6)=='relist')
+      { 
+         if(isInverse)
+            fldObj.checked = (fldObj.checked) ? false : true;
+         else fldObj.checked = true; 
+       }
+   }
+}
+</SCRIPT>
+<form name="open" method="post" action="<?=basename($_SERVER[PHP_SELF])?>">
+	<table width="100%" border="0" cellspacing="1" cellpadding="4" align="CENTER" >
+	<tr>
+		<td COLSPAN=5>
+		<A HREF=wanteditem.php><?=$MSG_30_0128?></A> |
+		<A HREF=wanted.php><?=$MSG_30_0158?></A>
+		</td>
+	</tr>
+	<tr bgcolor="<?=$SETTINGS['tableheadercolor']?>">
+            <td class=titTable1 width="32%"> <a href=<?=basename($_SERVER['PHP_SELF'])?>?wa_ord=title&wa_type=<?=$_SESSION['wa_nexttype']?>>
+                <?=$MSG_30_0125?>
+                </a>
+                <?
+                if($_SESSION['wa_ord'] == 'title') {
+					  ?>
+                <a href=<?=basename($_SERVER['PHP_SELF'])?>?wa_ord=title&wa_type=<?=$_SESSION['wa_nexttype']?>>
+                <?=$_SESSION['wa_type_img']?>
+                </a>
+                <?
+                }
+				?>
+            </td>
+            <td class=titTable1 width="11%"> <a href=<?=basename($_SERVER['PHP_SELF'])?>?wa_ord=starts&wa_type=<?=$_SESSION['wa_nexttype']?>>
+                <?=$MSG_625?>
+                </a>
+                <?
+                if($_SESSION['wa_ord'] == 'starts') {
+				?>
+                <a href=<?=basename($_SERVER['PHP_SELF'])?>?wa_ord=starts&wa_type=<?=$_SESSION['wa_nexttype']?>>
+                <?=$_SESSION['wa_type_img']?>
+                </a>
+                <?
+                }
+				?>
+            </td>
+            <td class=titTable1 width="11%"> <a href=<?=basename($_SERVER['PHP_SELF'])?>?wa_ord=ends&wa_type=<?=$_SESSION['wa_nexttype']?>>
+                <?=$MSG_626?>
+                </a>
+                <?
+                if($_SESSION['wa_ord'] == 'ends') {
+					  ?>
+                <a href=<?=basename($_SERVER['PHP_SELF'])?>?wa_ord=ends&wa_type=<?=$_SESSION['wa_nexttype']?>>
+                <?=$_SESSION['wa_type_img']?>
+                </a>
+                <?
+                }
+				?>
+            </td>
+            <td class=titTable1 width="6%" align=center>
+                <?=$MSG_30_0156?>
+            </td>
+            <td class=titTable1 width="6%" align=center>
+                <?=$MSG_298?>
+            </td>
+            <td class=titTable1 width="8%" align=center>
+                <?=$MSG_008?>
+            </td>
+            <td class=titTable1 width="8%" align=center>
+                <?=$MGS_2__0049?>
+            </td>
+        </tr>
+        <?
+        if(is_array($IDS)) {
+        	while(list($k,$v) = each($IDS)) {
+				  ?>
+        <tr bgcolor="#EEEEEE">
+            <td width="32%"><a href="wantedad.php?id=<?=$IDS[$k]?>">
+                <?=$TITLE[$k]?>
+                </a>
+            <td width="11%">
+                <?=FormatDate($STARTS[$k])?>
+            </td>
+            <td width="11%">
+                <?=FormatDate($ENDS[$k])?>
+            </td>
+            <td width="11%" align=center>
+                <?=$ANSWERS[$k]?>
+            </td>
+            <td width="6%"  align=CENTER>
+                <?
+                if($BID[$k] == 0) {
+					?>
+                <a href="edit_wanteditem.php/id=<?=$IDS[$k]?>/"><img src="images/edititem.gif" width="13" height="17" alt="<?=$MSG_632?>" border="0"></a>
+                <?
+                } else {
+                	print "&nbsp;";
+                }
+		?>
+            </td>
+            <td width="8%"  align=CENTER>
+                <input type="checkbox" name="O_delete[]" value="<?=$IDS[$k]?>" />
+            </td>
+            <td width="8%"  align=CENTER>
+                <input type="checkbox" name="relist[]" value="<?=$IDS[$k]?>" />
+            </td>
+        </tr>
+        <?
+        	}
+        }
+	?>
+  		<TR BGCOLOR=#FFFFFF>
+		<TD colspan=5>&nbsp;</TD>
+		<TD align=center><a href="javascript: void(0)" onclick="selectAllDelete(document.open,1)"><?=$MSG_30_0102?></A></TD>
+		<TD align=center><a href="javascript: void(0)" onclick="selectAllRelist(document.open,1)"><?=$MSG_30_0102?></A></TD>
+		</TR>
+      <tr>
+            <td colspan="9" align="center">
+                <input type="hidden" name="action" value="delopenauctions" />
+                <input type="submit" name="Submit" value="<?=$MSG_30_0126?>" class=button onClick=ConfirmDel() />
+            </td>
+        </tr>
+    </table>
+</form>
+<table width=100% cellpadding=0 cellspacing=0 border=0>
+    <tr>
+        <td align=CENTER>
+            <?=$MSG_5117?>&nbsp;&nbsp;<?=$PAGE?>
+            <?=$MSG_5118?>&nbsp;&nbsp;<?=$PAGES?>
+            <br>
+            <?
+            $PREV = intval($PAGE - 1);
+            $NEXT = intval($PAGE  + 1);
+            if($PAGES > 1) {
+            	if($PAGE > 1) {
+				?>
+            <a href="<?=basename($_SERVER[PHP_SELF])?>?PAGE=<?=$PREV?>"><u>
+            <?=$MSG_5119?>
+            </u></a> &nbsp;&nbsp;
+            <?
+            	}
+            	$LOW = $PAGE - 5;
+            	if($LOW <= 0) $LOW = 1;
+            	$COUNTER = $LOW;
+            	while($COUNTER <= $PAGES && $COUNTER < ($PAGE+6)) {
+            		if($PAGE == $COUNTER) {
+            			print "<B>$COUNTER</B>&nbsp;&nbsp;";
+            		} else {
+            			print "<A HREF=\"".basename($_SERVER[PHP_SELF])."?PAGE=$COUNTER\"><U>$COUNTER</U></A>&nbsp;&nbsp;";
+            		}
+            		$COUNTER++;
+            	}
+			?>
+			&nbsp;&nbsp;
+            <?
+            if($PAGE < $PAGES) {
+					?>
+            <a href="<?=basename($_SERVER[PHP_SELF])?>?PAGE=<?=$NEXT?>"><u>
+            <?=$MSG_5120?>
+            </u></a>
+            <?
+            }
+            }
+			?>
+        </td>
+    </tr>
+</table>
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

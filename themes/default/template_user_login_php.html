@@ -1,0 +1,59 @@
+
+<script language="JavaScript">
+<!--
+function submitlogin ()
+{
+	document.user_login.submit ();
+}
+//-->
+</script>
+<div id="contentarea">
+		<? if ($TPL_errmsg != ""){ ?> 
+    <div>
+        <div class='errfont' style='margin-bottom:10px;'><?echo $TPL_errmsg?></div>
+	</div>
+		<? } ?>
+<div id="login-container">
+    <div id="registrationbox">
+    <div class="regtitlebar">Login</div>
+        <form name="user_login" action="<?=$Https['httpsurl']?>user_login.php?" method=POST>
+            <div class="reglabel" style="padding:8px 8px 8px 0;"><b>Username</b>:</div>
+                    <div style="padding:8px;margin-top: -12px; height:40px;">
+                        <input id="loginfield" type="TEXT" name="username" size="20" maxlength="20" value="<? echo $TPL_nick; ?>" />
+                    </div>
+                    <div class="reglabel" style="padding:8px 8px 8px 0;margin-top: -4px;"><b>Password</b>:</div>
+                    <div style="padding:8px;margin-top: -12px; height:40px;">
+                        <input id="loginfield" type="password" name="password" size="20" maxlength="20" value="" />
+                    </div>
+                    <div style="padding:8px; float:left;">
+                        <input type="submit" name="" value="<?=$MSG_052?>"  class="buttonbid" style="-webkit-appearance: none;" />
+                        <input type="hidden" name="action" value="login" />
+                    </div>
+                    <div style="font-size: 12px;
+    margin-top: 0;
+    padding: 8px;">
+                        <input type="checkbox" name="rememberme" value="1" />&nbsp;<?=$MSG_25_0085 ?>
+                    </div>
+                    <div style="font-size: 11px;margin-top: -10px;padding: 8px;"><a href="forgotpasswd.php"><? print $MSG_215; ?></a> </div>
+        </form>
+</div>
+<div id="registrationbox" style="float:left;border:none;width: 234px;">
+<!---- START SOCIALS ---->
+<div class="regtitlebar">Facebook Connect</div>
+<div style="margin-top:14px; margin-bottom:8px;">
+<a href="fb-login.php" class="fConnect" title="Connect with Facebook"><span class="displace">Connect</span></a>
+<div id="facebookregtext"><span style="font-size:10px;">By signing in you declare you are over 16 and accept our <a href="termsandconditions.php" target="_blank">Terms & Conditions</a>.</span></div>
+</div>
+<!------ END SOCIALS -------->
+
+</div>
+<div id="registrationbox" style="float:left; width:234px; border-right:none; border-left:1px solid #E0E0E0;">
+<div class="regtitlebar">Need An Account?</div>
+<div style="margin-top:20px;"><a class='buttonbid' style='color:#ffffff;' href="register.php" >Register</a></div>
+
+</div>
+</div>
+</div>
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

@@ -1,0 +1,510 @@
+<?
+
+$NOW = date("YmdHis",mktime(date("H")+$SETTINGS['timecorrection'],date("i"),date("s"),date("m"), date("d"),date("Y")));
+
+?>
+
+<div id="contentarea">
+    <div id="appage">
+    <div id="aptitle">
+    <div id="fontbold"><? echo $TPL_title_value ?></div>
+    </div>
+    <div id="apid">
+    <div id="fontreg"><? echo $MSG_113 ?>: <? echo $TPL_id_value ?></div>
+    </div>
+    
+    
+    <div id="aptopbox">
+<?
+if($pict_url) {
+?>
+<div id="apboxespic" style="background:url('<?=$pict_url?>');">
+</div>
+<div id="apboxes">
+
+<?
+if ($timed_auction == 'y' && $NOW > $my_end) {
+?>
+<div id="timedauctionend"><strong id="aptitle">Times Up!</strong><br />This auction has ended! The winner will be announced shortly.</div>
+
+<? } else { ?>
+
+<div style="margin-left:3px;">
+<?
+						//if($_SESSION["HAPPYBID_LOGGED_IN"]) {
+							echo "";
+		
+							if(($auction_type == "2") || ($auction_type == "3")){                    
+								
+								//echo '$auction_type='.$auction_type;
+								//echo $is_auction_started?"1":"0";
+								//echo $is_auction_finished?"1":"0";
+								if(($auction_type == "2") && $is_auction_started == false && $is_auction_finished == false){                        
+									if($is_user_signed == true){
+										echo "&nbsp;".$MSG_31_0026;
+									}else{                                
+										drawFormRevolution("signup", "revolution_signup.php");
+									}
+								} else if(($auction_type == "2") && $is_auction_started == true && $is_auction_finished == false){                        
+									if($is_user_signed == false){
+										echo "&nbsp;".$MSG_31_0029; // was already started
+									}else{
+										drawFormRevolution("play", $BIDFILE);
+									}                              
+								} else if(($auction_type == "2") && $is_auction_started == false && $is_auction_finished == true){
+								
+									echo "&nbsp;".$MSG_31_0033; // was already finished
+								}else if(($auction_type == "3") && $is_auction_started == false && $is_auction_finished == false){
+								
+									if($is_user_signed == true){
+										echo "&nbsp;".$MSG_31_0026;
+									}else{                            
+										drawFormRevolution("signup", "revolution_signup.php");
+									}
+								}else if(($auction_type == "3") && $is_auction_started == true && $is_auction_finished == false){
+								
+									if($is_user_signed == false){
+										echo "&nbsp;".$MSG_31_0029; // was already started
+									}else{
+										drawFormRevolution("play_rebuy", $BIDFILE);
+									}                                                            
+								} else if(($auction_type == "3") && $is_auction_started == false && $is_auction_finished == true){
+								
+									echo "&nbsp;".$MSG_31_0033; // was already finished
+								}
+								
+							}else if($auction_type == "1") {
+								if($AuctionIsClosed == false){
+									drawFormRevolution("play", $BIDFILE);                        
+								}else{
+									echo "<div id='endedmessage'>This auction has ended! <?=$winner_msg?></div><div id='endedmessage'><a href='#ahistory'>View Information</a></div>"; // was already closed
+								}
+							}
+						//}
+						echo "</td></tr>";
+						?>     
+					<? //if($TPL_auctions_list_value != ""){ ?>
+					
+					<? //} ?>
+</div>
+
+<? 
+}
+?>
+
+<div style="float:left; width:100%; margin-top:-5px;"><hr class="hr1" /></div>
+<div id="apinfos">
+<div>
+<div id="apinfobox">
+<div id="apinfotitle">VALUE</div>
+<div id="apinfoblock">&pound;<?= ($item_value) ?></div>
+</div>
+<div id="apinfobox">
+<div id="apinfotitle">COINS PER BID</div>
+<div id="apinfoblock"><div style="float:left; margin-left:34px;"><?=$bid_value ?> x</div><div style="float:left;"><img src="/images/coin.png" width="26" height="26" /></div></div>
+</div>
+<?php if ($remained_bids<0){
+$remained_bids = 0;
+}
+?>
+<?
+$timeleft = ($my_end - $NOW);
+if ($timed_auction == 'y') {
+echo '<div id="apinfobox">';
+echo '<div id="apinfotitle">TIME REMAINING</div>';
+echo '<div id="apinfoblock"><div class="timer-quick timerbid" data-seconds-left="'.$timeleft.'"></div></div>';
+echo '</div>';
+} else {
+echo '<div id="apinfobox">';
+echo '<div id="apinfotitle">BIDS REMAINING</div>';
+echo '<div id="apinfoblock">'.$remained_bids.' of '.$number_of_bids.'</div>
+</div>';
+}
+?>
+
+<?php if(!$_SESSION["HAPPYBID_LOGGED_IN"]) { ?>
+<div id="apinfobox">
+<div id="apinfotitle">BUY COINS</div>
+<div id="apinfoblock"><a href="register.php"><img src="/images/coins-buy.png" border="0" /></a></div>
+</div>
+ <? } else { ?>
+ <div id="apinfobox">
+<div id="apinfotitle">BUY COINS</div>
+<div id="apinfoblock"><a href="user_menu.php"><img src="/images/coins-buy.png" border="0" /></a></div>
+</div>
+<?php } ?>
+</div>
+</div>
+<div style="float:left; width:100%; margin-top:5px;"><hr class="hr1" /></div>
+<div id="apmore">
+<div id="aphistory"><?          
+#// If user is not logged dont show view history
+                            if(isset($_SESSION["HAPPYBID_LOGGED_IN"])) {
+                                if($auction_type == "1"){
+                                    if($TPL_BIDS_value) echo  $TPL_BIDS_value."&nbsp;&nbsp;|&nbsp;&nbsp;";                
+                                }else if($auction_type == "2"){
+                                    if($TPL_BIDS_value) echo $TPL_BIDS_value."&nbsp;&nbsp;|&nbsp;&nbsp;";                
+                                }else if($auction_type == "3"){
+                                    if($TPL_BIDS_value) echo $TPL_BIDS_value."&nbsp;&nbsp;|&nbsp;&nbsp;";
+                                }
+                            }
+                        ?></div>
+<div id="apfriend">
+<div style="float:left;">
+<a href="<?=$SETTINGS['siteurl']?>friend.php?id=<?=$_GET['id'];?>"><img src="themes/default/img/send-message.png" border="0"></a>
+</div>
+<div style="float:left; margin-left:2px; margin-top:1px;">
+<a href="<?=$SETTINGS['siteurl']?>friend.php?id=<?=$_GET['id'];?>">
+<?=$MSG_106 ?>
+</a></div>
+</div>
+
+</div>
+	</div>
+    
+
+                    
+                    
+    </div>
+    <?
+                        
+                            if($auction_type == "1" && $my_closed=="1")
+                            {
+                    ?>
+<a name="ahistory"></a>
+<iframe src="<?=$SETTINGS['siteurl']?>view_bid_history.php?id=<?=$TPL_id_value?>" width="871" height="500" frameborder="0" scrolling="yes" class="iframehistory"></iframe>
+
+<!--<div style="margin-bottom:10px;"><a style="color:#ffffff;" class="buttonbid" href="<?=$SETTINGS['siteurl']?>view_bid_history.php?id=<?=$TPL_id_value?>">Bid history</a></div>-->
+                    <?
+                            }elseif(intval($auction_type)>1 && $is_auction_finished)
+                            {
+                    ?>
+<!--<div style="margin-bottom:10px;"><a style="color:#ffffff;" class="buttonbid" href="<?=$SETTINGS['siteurl']?>view_bid_history.php?id=<?=$TPL_id_value?>">Bid history</a></div>-->
+                    <?
+                            }
+                    ?>
+							  <?
+							  }
+							  ?>
+							  <?
+							  if($pict_url) {
+							  ?>
+							  <?
+							  }else{
+							  ?>
+							  <?
+							  }
+							  ?>
+
+<div id="apitemdetails">
+
+<!--============Bid History============-->
+<? if($TPL_auctions_list_value != ""){ ?>   
+<div id="aph"><div id="fontsemi">Your Bid History</div></div>
+ <div>
+     <?
+                    if($auction_type == "1" && $my_closed=="0"){
+                        echo $MSG_WINNER;
+                    }elseif(intval($auction_type)>1 && $is_auction_finished===false)
+                    {
+                        echo $MSG_WINNER;
+                    }
+                ?>
+	</div>
+<div style="display:inline-block;">
+<div class="bidHistory lowUnique" style="font-size: 12px;height: 15px;width: 128px; float:left; margin-right:4px;">Lowest Unique Bid</div>
+<div class="bidHistory unique" style="font-size: 12px;height: 15px;width: 128px; float:left; margin-right:4px;">Unique But Not Lowest</div>
+<div class="bidHistory notUnique" style="font-size: 12px;height: 15px;width: 128px; float:left; margin-right:4px;">Not Unique</div>
+</div>
+<div id="bidhistorybox">
+<? print $TPL_auctions_list_value; ?>
+</div>
+ <? } ?>                         
+<!-- ==================================-->
+<?
+                        
+if($auction_type == "1" && $my_closed=="0")
+                            {
+                    ?>
+<div id="apdescription">
+<div id="aph"><div id="fontsemi">Auction Description</div></div>
+<?
+if ($timed_auction == 'y') {
+echo '<div id="timedauctiondesc">';
+$timeleft = ($my_end - $NOW);
+echo 'This is a timed auction, bidding ends when the timer hits 0.00 no matter how many bids have been placed!<br>Time Left: ';
+echo '<div class="timer-quick timerdesc" data-seconds-left="'.$timeleft.'"></div>';
+echo '</div>';
+}
+?>
+
+<? echo $description ?>
+</div>
+<? } ?>
+
+<div id="ga">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- HappyBid -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8697254714519020"
+     data-ad-slot="5721730597"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+
+<!---- TIMED AUCTION CODE TEST
+<?
+echo "Timed?: $timed_auction <br>";
+echo "NOW: $NOW <br>";
+echo "END: $my_end <br><br>";
+
+if ($timed_auction == 'y') {
+
+if ($NOW < $my_end) 
+{ $auction_run = "running"; }
+else 
+{ $auction_run = "ended"; }
+
+}
+
+echo $auction_run;
+
+$timeleft = ($my_end - $NOW);
+echo "<br><br>Seconds Left: ";
+echo $timeleft;
+echo '<div class="timer-quick" data-seconds-left="'.$timeleft.'"></div>';
+?>
+
+TIMED AUCTION CODE TEST END ---->
+
+
+<div id="apgallery">
+            <?
+            if($TPL_show_gallery != "") {
+            ?>
+            <!-- ================================================================================================-->
+            <!-- Pictures Gallery -->
+            <!-- ================================================================================================-->
+<div id="aph" style="margin-top:24px;">
+<a name="gallery"></a>Image Gallery
+</div>
+<div style="display:inline-block;">
+<? echo $TPL_show_gallery ?>
+</div>
+</div> 
+<?
+            }
+            ?>
+</div>
+</div>
+</div>
+            
+
+
+<script language="JavaScript">
+
+function calcage(secs, num1, num2) {
+  s = ((Math.floor(secs/num1))%num2).toString();
+  if (LeadingZero && s.length < 2)
+    s = "0" + s;
+  return "<b>" + s + "</b>";
+}
+
+</script>
+    <script type="text/javascript">
+        $(function() {
+            $('input#limit2dp').blur(function() {
+
+                var amt = parseFloat(this.value);
+                if (!isNaN(amt))
+                   {
+                        $(this).val(amt.toFixed(2));
+                   } else $(this).val('');
+
+            });
+
+        });
+    </script>
+    
+    <!-- ONLY NUMBERS ALLOWED IN BID BOX -->
+    <script>
+	function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode != 46 &&(charCode < 48 || charCode > 57)))
+        return false;
+    return true;
+}
+	</script>
+    <!-- ONLY NUMBERS ALLOWED IN BID BOX -->
+    
+<?
+function drawFormRevolution($type, $action)
+{
+
+    global $MSG_31_0027, $TPL_id_value, $auction_type, $MSG_31_0021;
+    global $MSG_121, $MSG_30_0208, $TPL_next_bid_value, $TPL_title_value, $TPL_id_value, $TPL_category_value;
+    global $MSG_31_0031, $MSG_31_0030, $f5_num;
+    
+//    elseif($auction_type == 3)$action .= "bid_revolution_rebuy.php";    
+
+    if($type == "signup")
+    {
+        echo "<form name='bid' action='".$action."' method='post'>
+        <table width=100% border=0 cellpadding=2 cellspacing=0 border=1>
+        <tr>
+            <td width=65%>
+                <table width=100% border=0 cellpadding=2 cellspacing=0>
+                <tr><td align=left>".$MSG_31_0027."</td></tr>
+                </table>
+            </td>
+            <td valign='center' align='center' class='tema' width='50%'>
+                <input type='hidden' name='id' value='".$TPL_id_value."'>
+                <input type='hidden' name='auction_type' value='".$auction_type."'>
+                <input type='hidden' name='form_type' value='".$type."'>
+                <input type='hidden' name='f5_num' value='".$f5_num."'>
+                <input type='submit' wsrc='themes/default/img/iscriviti.png' id='subbutton' name='subbutton' value='".$MSG_31_0021."' class='button'>
+            </td>
+        </tr>
+        </table>
+        </form>";
+    }else if($type == "play")
+    {	
+        // Form action URL
+        $action = $SETTINGS['siteurl'];
+        $stringTwo = $SETTINGS['adminmail'];
+        if($auction_type == 1)$action .= "bid_classic.php";
+        elseif($auction_type == 2)$action .= "bid_revolution.php";
+
+        echo "		
+<form name='bid' action='".$action."' method='post'>
+<div id='apsinglebid'>
+<div id='apbidtitle'>Single bid<div id='qmark' class='tooltip' title='Place a single bid<br><u>Example</u><br/>Enter the amount you wish to bid<br>such as &pound;0.01'><img src='/images/qmark.png' /></div></div>
+<div id='apbidbox'>
+<input id='limit2dp' class='integer singlebidfield'  type='text' name='bid' size='5' value='' onkeypress='return isNumberKey(event)' placeholder='&pound;' /></div>
+<input type='hidden' name='bid_next' value='".$TPL_next_bid_value."'>
+<input type='hidden' name='seller_id' value='0'>
+<input type='hidden' name='bid_type' value='simple'>
+<input type='hidden' name='title' value='".$TPL_title_value."' >
+<input type='hidden' name='category' value='".$TPL_category_value."' >
+<input type='hidden' name='id' value='".$TPL_id_value."'>
+<input type='hidden' name='auction_type' value='".$auction_type."'>
+<input type='hidden' name='form_type' value='".$type."'>
+<input type='hidden' name='f5_num' value='".$f5_num."'>
+<div id='apbidbutton'><input type=submit id='subbutton' name='subbutton' value='PLACE BID' class='buttonbid' style='height:63px;'></div>
+</div>
+</form>
+
+<form name='bid_range' action='".$action."' method='post'>
+<div id='apmultibid'>
+<div id='apbidtitlem'>Multi bids<div id='qmark' class='tooltip' title='Allows you to bid a whole range at once<br><u>Example</u><br/>Entering &pound;0.15 to &pound;0.18 will bid<br>&pound;0.15, &pound;0.16, &pound;0.17 &amp; &pound;0.18'><img src='/images/qmark.png' /></div></div>
+<div id='apbidbox'><div id='apbidlabel'>From</div>
+<input id='limit2dp' class='integer bidfield' type='text' name='bid_from' size='2' value='' onkeypress='return isNumberKey(event)' placeholder='&pound;' style='margin-right:9px;' /></div>
+<div id='apbidbox'><div id='apbidlabel' style='width:19px; left:40px;'>To</div>
+<input id='limit2dp' class='integer bidfield' type='text' name='bid_to' size=''2 value='' onkeypress='return isNumberKey(event)' placeholder='&pound;' /></div>
+<input type='hidden' name='bid_next' value='".$TPL_next_bid_value."'>
+<input type='hidden' name='seller_id' value='0'>
+<input type='hidden' name='bid_type' value='range'>
+<input type='hidden' name='title' value='".$TPL_title_value."' >
+<input type='hidden' name='category' value='".$TPL_category_value."' >
+<input type='hidden' name='id' value='".$TPL_id_value."'>
+<input type='hidden' name='auction_type' value='".$auction_type."'>
+<input type='hidden' name='form_type' value='".$type."'>
+<input type='hidden' name='f5_num' value='".$f5_num."'>
+<div id='apbidbutton' style='margin-top: 15px;'><input type=submit id='subbutton' name='subbutton' value='PLACE BID' class='buttonbid'></div>
+</form>
+</div>
+";    
+    }else if($type == "play_rebuy")
+    {
+        // play rebuy form    
+        echo "
+			<table width=100% border=0 cellpadding=2 cellspacing=0 border=1>
+			<tr>
+				<td align='center' width=50%>
+					<form name='bid' action='bid_revolution_rebuy.php' method='post'>
+						<table width=100% border=0 cellpadding=2 cellspacing=0>
+						<tr>
+							<td align='left'>Single bid<br><input class=integer type=text name=bid size=15 value='' /></td>
+						</tr>
+						<tr>
+							<td valign='center' align='left' class='tema'>
+								<input type='hidden' name='bid_next' value='".$TPL_next_bid_value."'>
+								<input type='hidden' name='seller_id' value='0'>
+								<input type='hidden' name='bid_type' value='simple'>
+								<input type='hidden' name='title' value='".$TPL_title_value."' >
+								<input type='hidden' name='category' value='".$TPL_category_value."' >
+								<input type='hidden' name='id' value='".$TPL_id_value."'>
+                                <input type='hidden' name='auction_type' value='".$auction_type."'>
+                                <input type='hidden' name='form_type' value='".$type."'>
+                                <input type='hidden' name='f5_num' value='".$f5_num."'>
+								<input type=submit id='subbutton' name='subbutton' value='Proceed' class='button'>
+							</td>
+						</tr>
+						</table>
+					</form>
+				</td>
+				<td align='center' width=50%>
+					<form name='bid_range' action='bid_revolution_rebuy.php' method='post'>
+						<table width=100% border=0 cellpadding=2 cellspacing=0>
+						<tr>
+							<td align='left'>Bid In Range <br>
+							From&nbsp;<input class=integer type=text name=bid_from size=10 value='' /><br/> 
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;<input class=integer type=text name=bid_to size=10 value='' />
+						</tr>
+						<tr>
+							<td valign='center' align='left' class='tema'>
+								<input type='hidden' name='bid_next' value='".$TPL_next_bid_value."'>
+								<input type='hidden' name='seller_id' value='0'>
+								<input type='hidden' name='bid_type' value='range'>
+								<input type='hidden' name='title' value='".$TPL_title_value."' >
+								<input type='hidden' name='category' value='".$TPL_category_value."' >
+								<input type='hidden' name='id' value='".$TPL_id_value."'>
+                                							<input type='hidden' name='auction_type' value='".$auction_type."'>
+                                							<input type='hidden' name='form_type' value='".$type."'>
+                              							<input type='hidden' name='f5_num' value='".$f5_num."'>
+								<input type=submit id='subbutton' name='subbutton' value='Proceed' class='button'>
+							</td>
+						</tr>
+						</table>
+					</form>
+				</td>
+			</tr>
+           <tr>
+                <td colspan='2' align='left'>
+ <span style='font-size:13px; font-weight:normal;'>
+                	<br/>Example:
+                    <ul>
+                    <li>If your guess is <span style='color: red'>". print_money('0.06') . "</span> -> Enter <span style='color: red'>6</span></li> 
+                    <li>If your guess is <span style='color: red'>". print_money('1.53') . "</span> -> Enter <span style='color: red'>153</span></li>
+                    <li>If your guess is <span style='color: red'>". print_money('0.29') . "</span> -> Enter <span style='color: red'>29</span></li>
+                    </ul>
+</span>
+                </td>
+            </tr>                        
+			</table>";
+    }
+}
+
+?>
+<script type="text/javascript">
+	$(".numeric").numeric();
+	$(".integer").numeric(false, function() { alert("Integers only"); this.value = ""; this.focus(); });
+	$(".positive").numeric({ negative: false }, function() { alert("No negative values"); this.value = ""; this.focus(); });
+	$(".positive-integer").numeric({ decimal: false, negative: false }, function() { alert("Positive integers only"); this.value = ""; this.focus(); });
+	$("#remove").click(
+		function(e)
+		{
+			e.preventDefault();
+			$(".numeric,.integer,.positive").removeNumeric();
+		}
+	);
+	</script>
+</div>
+
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

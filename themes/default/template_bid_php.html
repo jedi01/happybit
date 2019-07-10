@@ -1,0 +1,216 @@
+<?
+
+?>
+
+<div class="content">
+			<!--<div class="titTable3">
+            <table width=100% border=0 cellpadding=0 cellspacing=0>
+                <tr valign=middle style="height:15px;" >
+                    <td align=left nowrap>
+                        <?=get_HOW_MANY($TPL_id_value);?>
+                    </td>
+                    <td width="100%"></td>
+                    <td nowrap>
+			<a href="<? print $SETTINGS['siteurl']."item.php?id=$TPL_id_value"; ?>">
+                <? print $MSG_138; ?></a>&nbsp;|&nbsp;
+                    </td>
+                    <td nowrap>                
+			<?
+            $no_money = false;
+			if(isset($ARETHEREBIDS)&&!empty($ARETHEREBIDS)) {
+			?>
+				<?=$ARETHEREBIDS?>
+			<?
+			}
+			?>
+                    </td>
+                </tr>
+            </table>
+			</div>-->
+        <div style="margin-bottom: 4px; margin-top: 30px">
+            <?
+            if(!empty($TPL_errmsg)) {
+			?>
+            <div class="headerBar" style="margin-bottom:4px;">Oops!</div>
+            <div id="pinkalert">
+                <?=$TPL_errmsg?>
+            </div>
+            <?            
+                if($TPL_errmsg === $ERR_32_0001)
+                {
+                    $no_money = true;
+                }
+            }
+			?>
+            <?
+            if(!$_SESSION["HAPPYBID_LOGGED_IN"]) {
+            ?>
+            
+            <?
+            }
+			?>
+            <?
+            if(!empty($TPL_new_proxy2)|| !empty($TPL_new_proxy3)) {
+            ?>
+            <div class=errfont>
+                <? print $TPL_new_proxy2.$TPL_new_proxy3; ?>
+            </div>
+            <?
+            }
+			?>
+	<br/>
+		<table width="320px;" align="left" style="margin-left:20px;" cellspacing="0" cellpadding="0" height="" border='0' class='table1'>
+			
+				<tr>
+					<td height="100%" colspan="2" valign="top" style="padding-left:10px; padding-right:10px;">
+						<TABLE  width="300px;">
+						<TR>
+							<TD align=left>
+						<? //print "$MSG_272"; ?>&nbsp;
+						<? //print $TPL_id; ?>
+						<? //=$TPL_proxy." ".$TPL_new_proxy?>
+				<?
+				if($TPL_errmsg !== $ERR_614)
+				{
+					// Form action URL
+					#$action = $SETTINGS['siteurl'];
+					#if($auction_type == 1)$action .= "bid_classic.php";
+					#elseif($auction_type == 2)$action .= "bid_revolution.php";
+					#elseif($auction_type == 3)$action .= "bid_revolution_rebuy.php";    
+				
+					if($type == "signup")
+					{
+						echo "
+						<form name='bid' action='".$action."' method='post'>
+							<table width=100% border=0 cellpadding=2 cellspacing=0 border=1>
+							<tr>
+								<td width=65%>
+									<table width=100% border=0 cellpadding=2 cellspacing=0>
+									<tr><td align=left>".$MSG_31_0027."</td></tr>
+									</table>
+								</td>
+								<td valign='center' align='center' class='tema' width='50%'>
+									<input type='hidden' name='id' value='".$TPL_id_value."'>
+									<input type='hidden' name='auction_type' value='".$auction_type."'>
+									<input type='hidden' name='form_type' value='".$type."'>
+									<input type='hidden' name='f5_num' value='".$f5_num."'>
+									<input type=submit id='subbutton' name='subbutton' value='".$MSG_31_0021."' class='button'>
+								</td>
+							</tr>
+							</table>
+						</form>";
+					}else if($type == "play") //Classic and Revolution auctions
+					{
+						// Form action URL
+						$action = $SETTINGS['siteurl'];
+						if($auction_type == 1)$action .= "bid_classic.php";
+						elseif($auction_type == 2)$action .= "bid_revolution.php";
+				
+						echo "		
+							";
+					}else if($type == "play_rebuy")
+					{
+						// play rebuy form
+						echo "
+							<table width=100% border=0 cellpadding=2 cellspacing=0 border=1>
+							<tr>
+								<td align='center' width=50%>
+									<form name='bid' action='bid_revolution_rebuy.php' method='post'>
+										<table width=100% border=0 cellpadding=2 cellspacing=0>
+										<tr>
+											<td align='left'>Single bid<br><input type=text name=bid size=15 value=''/></td>
+										</tr>
+										<tr>
+											<td valign='center' align='left' class='tema'>
+												<input type='hidden' name='bid_next' value='".$TPL_next_bid_value."'>
+												<input type='hidden' name='seller_id' value='0'>
+												<input type='hidden' name='bid_type' value='simple'>
+												<input type='hidden' name='title' value='".$TPL_title_value."' >
+												<input type='hidden' name='category' value='".$TPL_category_value."' >
+												<input type='hidden' name='id' value='".$TPL_id_value."'>
+												<input type='hidden' name='auction_type' value='".$auction_type."'>
+												<input type='hidden' name='form_type' value='".$type."'>
+												<input type='hidden' name='f5_num' value='".$f5_num."'>
+												<input type=submit id='subbutton' name='subbutton' value='Proceed' class='button'>
+											</td>
+										</tr>
+										</table>
+									</form>
+								</td>
+								<td align='center' width=50%>
+									<form name='bid_range' action='bid_revolution_rebuy.php' method='post'>
+										<table width=100% border=0 cellpadding=2 cellspacing=0>
+										<tr>
+							<td align='left'>Multi Bid<br>
+							From&nbsp;<input type=text name=bid_from size=10 value='' /><br/> 
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;<input type=text name=bid_to size=10 value='' />
+						</tr>
+										<tr>
+											<td valign='center' align='left' class='tema'>
+												<input type='hidden' name='bid_next' value='".$TPL_next_bid_value."'>
+												<input type='hidden' name='seller_id' value='0'>
+												<input type='hidden' name='bid_type' value='range'>
+												<input type='hidden' name='title' value='".$TPL_title_value."' >
+												<input type='hidden' name='category' value='".$TPL_category_value."' >
+												<input type='hidden' name='id' value='".$TPL_id_value."'>
+												<input type='hidden' name='auction_type' value='".$auction_type."'>
+												<input type='hidden' name='form_type' value='".$type."'>
+												<input type='hidden' name='f5_num' value='".$f5_num."'>
+												<input type=submit id='subbutton' name='subbutton' value='Proceed' class='button'>
+											</td>
+										</tr>
+										</table>
+									</form>
+								</td>
+							</tr>
+							<tr> 
+                <td colspan='2' align='left'> 
+                	Example:
+                    <ul> 
+                    <li>If your guess is 1.00  -> Enter 100</li> 
+                    <li>If your guess is 1.56  -> Enter 156</li> 
+                    <li>If your guess is 0.03  -> Enter 3</li> 
+                    </ul> 
+                </td> 
+            </tr>                              
+							</table>";    
+				
+						// buy offers form
+						if($TPL_errmsg === $ERR_32_0002)
+						{
+							echo "
+							<form name='bid' action='revolution_add_offers.php' method='post'>
+								<table width=100% border=0 cellpadding=2 cellspacing=0 border=1>
+								<tr>
+									<td width=65%>
+										<table width=100% border=0 cellpadding=2 cellspacing=0>
+										<tr><td align=left>".$MSG_31_0030."</td></tr>
+										</table>
+									</td>
+									<td valign='center' align='center' class='tema' width='50%'>
+										<input type='hidden' name='id' value='".$TPL_id_value."'>
+										<input type='hidden' name='auction_type' value='".$auction_type."'>
+										<input type='hidden' name='form_type' value='".$type."'>
+										<input type='hidden' name='f5_num' value='".$f5_num."'>
+										<input type=submit id='subbutton' name='subbutton' value='".$MSG_31_0031."' class='button'>
+									</td>
+								</tr>
+								</table>
+							</form>";
+						}
+					}
+					
+				}
+				?>		
+							</TD>
+						</TR>
+						</TABLE>
+					</td>
+				</tr>
+				
+			</table>
+        </div>
+</div>
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

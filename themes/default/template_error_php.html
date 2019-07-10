@@ -1,0 +1,29 @@
+<table width="100%" cellpadding=0 cellspacing=0  border=0>
+  <tr>
+    <td align="center">&nbsp;
+        <table width="90%" cellspacing="0" cellpadding="1" border="0" bgcolor="<?=$settings['bordercolor']?>">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="4">
+              <tr> 
+                <td bgcolor="#eeeeee"><b> 
+                  <?=$SETTINGS['tlt_font']?>
+                  <?=$MSG_415?>
+                  </b></td>
+              </tr>
+              <tr> 
+                <td >
+                  <?=$SETTINGS['errortext']?>
+                  <br> <font face=courier size=2> 
+                  <?=$_SESSION['SESSION_ERROR']?>
+                  </font> <p> 
+                    <?=$MSG_416?>
+                    <a href=mailto:<?=$SETTINGS['errormail']?>> 
+                    <?=$SETTINGS['errormail']?>
+                    </a> </p></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table>
+      &nbsp;</center></td>
+  </tr>
+</table>

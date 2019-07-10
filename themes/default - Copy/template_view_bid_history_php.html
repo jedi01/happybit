@@ -1,0 +1,108 @@
+<link rel="stylesheet" type="text/css" href="themes/default/iframe.css"/>
+<div class="content">
+    <div class="tableContent2">
+        <?
+        if(isset($ARETHEREBIDS)&&!empty($ARETHEREBIDS))
+        {
+        ?>
+<div style="background: none repeat scroll 0 0 #0082D4;
+    color: #FFFFFF;
+    display: block;
+    font-size: 16px;
+    margin: 8px 0;
+    padding: 12px;
+    height:37px;
+    text-transform: uppercase;"><div style="margin-right: 4px;
+    margin-top: 4px;
+    float:left;"><img src="../images/white-icon.png" width="30" height="30" /></div>
+  <div style="float:left;">
+
+  <?=$winner_msg?> <br /> <?=$winners_bid?></div>
+  </div>
+<div style="width:450px;font-weight:bold;margin-bottom:6px;"><?=$MSG_31_0047?></div>
+                
+<table style="font-weight:bold;">         
+<?				
+// ******* Retrieve all bids of current auction
+            $bids = "SELECT bid, bidder, COUNT(bid) AS bid_count
+                      FROM HB_bids
+                      WHERE auction=$id GROUP BY bid ORDER BY bid ASC ";
+                      
+            $bids_res = mysql_query($bids);
+            $length = 180;
+            $percent = $length/$max_bid_count;            
+            while($row = mysql_fetch_array($bids_res))
+            {
+            ?>
+
+                        <tr>
+                      <td align=left style="color:<?=($row['bid']==$winner_bid && $winner_bid!="0")?"#55d70a":"#BA1D1D";?>;font-size:16px;">
+                                <?=$row['bid']?>
+                            </td>
+<td>&nbsp;</td>
+                          <td style="color:<?=($row['bid']==$winner_bid && $winner_bid!="0")?"#55d70a":"#BA1D1D";?>;font-size:16px;">
+<img width=<?=intval($row['bid_count'])*$percent?> height=20 src="themes/default/img/<?=($row['bid']==$winner_bid && $winner_bid!="0")?"percent_blue.png":"percent.png";?>" style="display:<?=($bid_count=="0")?"none":"";?>;">
+                            </td>
+                          <td style="color:<?=($row['bid']==$winner_bid && $winner_bid!="0")?"#55d70a":"#BA1D1D";?>;font-size:16px;">
+                   <?=$row['bid_count']?> bidders
+                            </td>
+                        </tr>
+            <? } ?>    
+      </table>
+                </TD>
+                <TD width="2%">&nbsp;</TD>
+                <TD width="49%" valign=top>
+                    <table border=0 cellpadding=3 cellspacing=3>
+                     
+<?				
+// ******* Retrieve all bids of current auction
+            $bids = "SELECT bid, bidder, COUNT(bid) AS bid_count
+                      FROM HB_bids
+                      WHERE auction=$id AND bid>".($winner_bid-50)." AND bid<".($winner_bid+50)."
+                      GROUP BY bid ORDER BY bid ASC ";
+                      
+            $bids_res = mysql_query($bids);
+            $bids_res1 = mysql_query($bids);
+            $max = 0;
+            while($row = mysql_fetch_array($bids_res))
+            {
+                if($row['bid_count']>$max) $max = $row['bid_count'];
+            }
+            $percent = $length/$max;
+            $current_bid = -1;
+            $current_count = -1;
+            for($i=($winner_bid-50);$i<($winner_bid+50);$i++)
+            {
+                $bid_count = 0;
+                if($current_bid==-1){
+                    if($row = mysql_fetch_array($bids_res1))
+                    {
+                        $current_count = $row['bid_count'];
+                        $current_bid = $row['bid'];
+                    }
+                }
+                if($i==$current_bid){                    
+                    $bid_count = $current_count;
+                }
+                if($i>0)
+                {
+            ?>
+
+                      
+            <?
+                    if($i==$current_bid){
+                        $current_bid=-1;                        
+                    }
+            ?>
+        <?      }
+            }
+        ?>    
+                    </table>
+                </TD>
+            </TR>
+        </TABLE>
+    <?  }else{ echo "<strong style='font-size:12;'>	
+There were no bids on this auction</strong>"; } ?>
+	</div>
+    <a href="<? print $SETTINGS['siteurl']."item.php?id=$TPL_id_value&history=view"; ?>" class="buttonbid" style="color:#FFFFFF;">&nbsp;<<  <? echo $MSG_138; ?></a>
+</div>

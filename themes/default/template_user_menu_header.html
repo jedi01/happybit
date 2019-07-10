@@ -1,0 +1,33 @@
+<script type="text/javascript" language="JavaScript">
+<!--
+function submitlogin ()
+{
+	document.user_login.submit ();
+}
+//-->
+</script>
+
+<div id="contentarea">
+
+<?php if(!$_SESSION["HAPPYBID_LOGGED_IN"]) { ?>
+<? } else { ?>
+<div id="accountmenu">
+<a href="<?=$SETTINGS['siteurl']?>user_menu.php" class="happybutton">Account Home</a>&nbsp;<a href="<?=$SETTINGS['siteurl']?>edit_data.php" class="happybutton">Edit Account</a>&nbsp;<a href="<?=$SETTINGS['siteurl']?>achievements.php?<?=$TPL_nick?>" class="happybutton">Achievements</a>&nbsp;<a href="<?=$SETTINGS['siteurl']?>buying.php" class="happybutton">Won Auctions</a>&nbsp;<a href="<?=$SETTINGS['siteurl']?>yourbids.php" class="happybutton">Bid History</a>&nbsp;<a href="<?=$SETTINGS['siteurl']?>logout.php" class="happybutton">Logout</a>
+</div>
+<? if(!empty($TMP_usmenutitle)) {?>
+<div class="headerBar">
+<?=$TMP_usmenutitle?>
+</div>
+<?}?>
+<div>
+            <?
+            if(!empty($ERR) || !empty($TPL_errmsg)) {
+            ?>
+                <div class=errfont style="margin-bottom:10px; margin-top:10px;" >
+                <?
+                print $ERR.$TPL_errmsg; 
+                ?>
+                </div>
+            <?}?>
+        </div>
+    <?php } ?>

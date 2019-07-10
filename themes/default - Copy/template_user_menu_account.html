@@ -1,0 +1,30 @@
+<ul>
+
+<li><a href="edit_data.php"><? print $MSG_621; ?></a></li>
+
+<li><a href="yourbalance.php"><? print $MSG_31_0001; ?> - the text is in template user menu</a></li>
+<?
+
+	if(($SETTINGS['accounttype'] == 'sellerbuyer' && $_SESSION["HAPPYBID_LOGGED_ACCOUNT"] == 'seller') ||
+
+	   ($SETTINGS['accounttype'] == 'unique')) {
+
+	?>
+
+	<?
+
+		}
+
+	if($SETTINGS['aboutme'] == 'y') {
+
+	?>
+
+<li><a href="aboutme.php"><? print $MSG__0121 ?></a></li>
+
+<?
+
+	}
+
+	?>
+
+</ul>

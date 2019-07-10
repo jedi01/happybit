@@ -1,0 +1,49 @@
+<?
+$TMP_usmenutitle=$MSG_620;
+include phpa_include("template_user_menu_header.html");
+?>
+<!-- TABLE WITH AUCTIONS -->
+
+<table width="60%" border=0 cellpadding=4 cellspacing=1 align=center>
+    <TR>
+		<TD colspan=2>
+<TABLE align="center" WIDTH=100% HEIGHT=30 BORDER=0 CELLPADDING=0 CELLSPACING=0>
+						<TR valign=top>
+							<td align="center">
+							<img src="themes/default/img/bid-colours.gif" border="0">
+							</td>
+						</TR>
+					</TABLE>     
+			
+		</TD>
+	</TR>
+
+	<tr style='border:1px solid #cccccc; background-color: #E8E8E8;'>
+        <td align=center valign='middle' colspan='2'>
+            <table width='90%'>
+            <tr>
+                <td align=right valign='middle'>        
+                    	
+Select the Auction:
+                </td>
+                <td align=left valign='middle'>
+                    <form name="frmSelectAuction" id="frmSelectAuction" method="post" style='padding:3px; margin:3px;'>
+                    <select name="auction_id" onchange="document.getElementById('frmSelectAuction').submit();">
+                        <? print $TPL_my_auctions_list; ?>
+                    </select>
+                    </form>
+                </td>
+            </tr>
+            </table>
+        </th>
+    </tr>
+
+	<tr><td colspan="2">&nbsp;</td>
+        </tr>
+    </tr>
+	
+    <? print $TPL_auctions_list_value; ?>
+</table>
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

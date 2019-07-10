@@ -1,0 +1,324 @@
+    <div style="margin-left: auto;margin-right: auto;width: 904px;">
+        <!--- left column --->
+			<div id="colleft">
+<!-- top left boxes --->
+<div>
+
+<?php if(!$_SESSION["HAPPYBID_LOGGED_IN"]) { ?>
+<!-- Start of GetKudos Script -->
+<script>
+(function(w,t,gk,d,s,fs){if(w[gk])return;d=w.document;w[gk]=function(){
+(w[gk]._=w[gk]._||[]).push(arguments)};s=d.createElement(t);s.async=!0;
+s.src='//static.getkudos.me/widget.js';fs=d.getElementsByTagName(t)[0];
+fs.parentNode.insertBefore(s,fs)})(window,'script','getkudos');
+
+getkudos('create', 'happybid');
+
+</script>
+<!-- End of GetKudos Script -->
+<div id='main_content'>
+<div align="left">
+<!--- top banner table --->
+<div style="float:left;">
+<a href="/register.php"><img src="http://happybid.co.uk/images/home-main1.png" width="618" height="253" border="0" alt=""></a>
+</div>
+<!--- top banner table end --->
+</div>
+</div>
+ <?
+        } else {
+        ?>
+        <!--- earn box table --->
+        <div width="771" class="headerBar">
+<div id="fontsemi">Information Bar</div></div>
+<div class="hpEarnBox">
+
+<div id="leftearnbox">
+<div class="cleantitle">Welcome <? print $TPL_nick; ?></div>
+Please ensure your <a href="edit_data.php" target="_self" style="font-size:12px;">account details</a> are upto date, this enables us to process your prizes faster!<br />
+
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($USER_zipadd) OR empty($USER_addressadd)){?>
+<div class="alertboxhome">
+<img src="<?=$SETTINGS['siteurl']?>themes/default/img/alert_32.png" style="vertical-align:middle;width: 20px;margin-top: -4px;">&nbsp;Please <a href="edit_data.php" target="_self" style="font-size:12px;"><span style="text-decoration:underline; font-size:10px;">add your address</span></a> to complete registration
+</div>
+<? } else { ?>
+<div style="margin-top:2px;"><a href="edit_data.php" target="_self">Edit Account</a></div>
+<?php } ?>
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($USER_phoneadd)){?>
+<div class="alertboxhome">
+<img src="<?=$SETTINGS['siteurl']?>themes/default/img/alert_32.png" style="vertical-align:middle;width: 20px;margin-top: -4px;">&nbsp;Please <a href="edit_data.php" target="_self" style="font-size:12px;"><span style="text-decoration:underline; font-size:10px;">add your mobile number</span></a> to complete registration
+</div>
+<?php } ?>
+<!---<?php 
+if ($SETTINGS['enable_cpalead']=="1" && $USER['nick']=="theidol")
+{
+?>
+<div style="margin-top:2px;">
+<a class='happybutton' style='color:#ffffff;' onClick="startGateway('<?=$SETTINGS['cpalead_gateway']?>');">EARN COINS</a>
+</div>
+<?php }else{ ?>
+<div style="margin-top:2px;">
+&nbsp;
+</div>
+<?php } ?>--->
+
+
+
+</div>
+
+<div id="rightearnbox">
+<div class="cleantitle">Tell A Friend</div>
+Get <?php if ($SETTINGS['refer_bids'] > 1){echo "<strong>".$SETTINGS['refer_bids'];?> free coins</strong><?php } if ($SETTINGS['refer_bids'] <= 1){echo "<strong>".$SETTINGS['refer_bids'];?> free coin</strong><?php } ?> when your friends buy some!
+<div id="reflinker"><?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?></div>
+<br>
+<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'6199ab40-bedd-4ab3-9f20-ab4bd93ed7af'});</script>
+<span class='st_twitter_button' st_url='<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>' displayText='Tweet'></span><span class='st_facebook_button' st_url='<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>' displayText='Facebook' ></span><span class='st_digg_button' st_url='<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>' displayText='Digg'></span><span class='st_email_button' st_url='<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>' displayText='Email'></span>
+<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'6199ab40-bedd-4ab3-9f20-ab4bd93ed7af'});</script>
+<br><br>
+<em>You currently have <strong><?php echo $total_referrals ?> referrals</strong>.</em>
+</div>
+
+</div>
+<!--- earn box table end --->
+<? } ?>
+</div>
+<!-- top left boxes end --->
+
+
+	</div>
+
+    <!--
+	Right Column
+    -->
+    <div id="colright">
+    
+    <!--
+    LOGIN BOX
+    -->    
+      <?
+      if($SETTINGS['loginbox'] == 1) {
+        if(!$_SESSION["HAPPYBID_LOGGED_IN"]) {
+        ?>
+			<div> 
+            <div>
+            <a href="howitworks.php"><img src="http://happybid.co.uk/images/home-how.png" width="268" height="165" border="0" /></a>
+            </div>
+            
+            <div id="newloginbox">
+            <div style="padding-top:16px;">
+            <div style="font-size:16px; font-weight:bold; color:#888888; float:left; margin-left:44px;"><a href="user_login.php" target="_self" class="buttonbid" style="padding:4px 16px;; font-size:15px;">Login</a></div><div style="float:left; margin-left:8px; margin-right:4px;"><img src="http://happybid.co.uk/images/or.png" width="19" height="19" /></div><div style="float:left; margin-top:-4px; margin-left:4px;"><a href="fb-login.php" class="fConnectxsmall" title="Connect with Facebook" style="display:inline-block;"><span class="displace">Connect</span></a></div>
+            <div id="facebookregtext" style="float: left;width: 244px;margin-left: 12px;text-align: justify;"><span style="font-size:10px;color:#888888;">By signing in with facebook you declare you are over 16 and accept our <a href="termsandconditions.php" target="_blank">Terms &amp; Conditions</a>.</span></div>
+            </div>
+            </div>
+  </div>
+             <?
+        } else {
+        ?>
+      <div class="headerBar"><div id="fontsemi">Buy Coins</div></div>
+        <div id="buyboxhome"> <a href="http://happybid.co.uk/user_menu.php"><img src="http://happybid.co.uk/images/get-coins.png" width="196" height="157" border="0" /></a></div>
+        <?
+        }
+      }
+      ?>
+
+    </div>
+
+<!--- ENDING AUCTIONS --->
+<div id="liveauctions">
+<div class="headerBarTip">
+<span class="headerBar2">Ending Soon!</span>
+</div>
+<div class="qlabs_tooltip_top qlabs_tooltip_style_42p"><span>Not long left... can you win one?</span><img src="/images/qmark.png" /></div>
+<div id="titledivider" style="margin-bottom: -6px;"></div>
+		                
+		<!--
+		Auctions Boxes 
+		 -->
+<br/>
+		
+					
+						<!--///////             AUCTIONS TABLE             ////////////-->
+						
+						
+            <?php
+					
+              if (count($TPL_auctions_ending) > 0)
+				{
+					echo "<div id='liveauctionsbox'>";
+					$a_count = 0;
+					foreach($TPL_auctions_ending as $val)
+					{
+						if($a_count > 0 &&  $a_count % 3 == 0) echo "";
+						echo "
+
+<div class='productBGhomepage'>
+	<div id='auctiontitle'>
+	<a href='".$val["link_href"]."&history=view?$TPL_nick' title='".$val["name"]."'><b>".$val["name"]."</b></a>
+	</div>
+	<div id='auctionimg'>
+	<a href='".$val["link_href"]."&history=view?$TPL_nick'><img height='123px' border='1' src='".$SETTINGS['siteurl']."uploaded/".$val["pict_url"]."' alt ='".$val["name"]."' style='filter:alpha(opacity=100);-moz-opacity:1.0; cursor:pointer; border:1px solid #dfdfdf; background-color:#FFFFFF;' onmouseover='makevisible(this,1)' onmouseout='makevisible(this,0)' /></a>
+	</div>
+	<div class='price' id='auctionprice'>
+							  ".(($val["item_value"] != "") ? "R.R.P.&nbsp;".print_money($val["item_value"])." / " : "")."
+							  ".(($val["bid_value"] != "") ? "".$val["bid_value"]." Coins <br>" : "")."
+</div><br/> 
+
+<div id='auctionremainingbids'>
+".(($val["remained_bids"] != "") ?"ends after <table align='center' cellspacing='0' cellpadding='0' style='padding:4px;'>
+  <tr>
+    <td background='http://happybid.co.uk/themes/default/img/bids-left-l.png' width='6' height='37'></td>
+    <td background='http://happybid.co.uk/themes/default/img/bids-left-mid.png' height='37'><span style='font-size:25px; font-weight:normal; color:#f6ff00;'>".$val["remained_bids"]."</span> </td>
+    <td background='http://happybid.co.uk/themes/default/img/bids-left-r.png' width='6' height='37'></td>
+  </tr>
+</table>
+more bids<br><br>" : "")."
+	</div>						
+	<div style='text-align:center; margin-top:-6px;'>
+	<a class='buttonbid' style='color:#ffffff;' href='".$val["link_href"]."&history=view?$TPL_nick' >BID NOW</a>
+	</div>
+</div>
+					";
+                     $element_id++;
+                     $total_elements++;
+						$a_count++;
+					}
+					echo "</div>";
+              }
+				else
+				{
+					echo "
+					<div>
+						<div align=center>
+							<table border='0' cellspacing='0' cellpadding='0'>
+							<tr>
+								<td width='255px' height='87px' align='center' valign='top' style='padding:1px;'>".$MSG_31_0010."</td>
+							</tr>
+							</table>
+						</div>
+					</div>";
+              }
+            ?>
+			
+			<!--///////////         EOF: ENDING AUCTIONS TABLE         ///////////-->
+
+
+<!--- 1 COIN AUCTIONS --->
+
+			
+			<!--///////////         EOF: QUICK AUCTIONS TABLE         ///////////-->
+			
+        
+	<!-- EOF: Auctions -->          
+</div>
+<? if (count($TPL_more_auctions) > 0) { ?>
+<div style="float:left; margin-top:4px;">
+<div class="headerBar"><div id="fontsemi">More Live Auctions</div></div>
+	
+			
+			<div border="0" id="auctions_box" class="table1" style="margin-left: 4px; width: 904px;">
+
+			
+					
+						<!--///////             AUCTIONS TABLE             ////////////-->
+						
+						<?php
+								
+						  if (count($TPL_more_auctions) > 0)
+							{
+								echo "";
+								$a_count = 0;
+								foreach($TPL_more_auctions as $val)
+								{
+									if($a_count > 0 &&  $a_count % 2 == 0) echo "";
+									echo "
+<div class='liveauctionBg'>
+
+<div id='moreliveimg'>
+<a href='".$val["link_href"]."&history=view?$TPL_nick'><img height='98px' src='".$SETTINGS['siteurl']."uploaded/".$val["pict_url"]."' alt ='".$val["name"]."' style='filter:alpha(opacity=100);-moz-opacity:1.0; cursor:pointer; border:0px solid #cdcdcd;' onmouseover='makevisible(this,1)' onmouseout='makevisible(this,0)' /></a>
+</div>   
+
+<div id='morelivetitle'><a href='".$val["link_href"]."&history=view?$TPL_nick' title='".$val["name"]."'><b>".$val["name"]."</b></a></div>
+
+<div id='morelivebids'>
+".(($val["remained_bids"] != "") ? "
+<div style='float:left;margin-top: 5px;'>ends after</div>
+<div style='float:left;'>
+<table align='center' cellspacing='0' cellpadding='0' style='padding:4px;'>
+  <tr>
+    <td background='http://happybid.co.uk/themes/default/img/bids-left-l-small.png' width='6' height='29'></td>
+    <td background='http://happybid.co.uk/themes/default/img/bids-left-mid-small.png' height='29'><span style='font-size:22px; font-weight:normal; color:#f6ff00;'>".$val["remained_bids"]."</span> </td>
+    <td background='http://happybid.co.uk/themes/default/img/bids-left-r-small.png' width='6' height='29'></td>
+  </tr>
+</table>
+</div>
+<div style='float:left;margin-top: 5px;'>more bids</div>
+" : "")."
+</div>
+
+<div id='morelivevalue'>
+<div id='auctionprice'>
+".(($val["item_value"] != "") ? "R.R.P. ".print_money($val["item_value"])." " : "")." / 
+".(($val["bid_value"] != "") ? "".$val["bid_value"]." Coins<br>" : "")."
+</div>
+</div>
+
+<div class='buttonbidsmallhome'><a href='".$val["link_href"]."&history=view?$TPL_nick' style='color:#ffffff;'>BID NOW</a></div>
+
+</div>
+									";
+								 $element_id++;
+								 $total_elements++;
+									$a_count++;
+								}
+								echo "</div>";
+						  }
+							else
+							{
+								echo "
+<div width='255px' height='87px' align='center' valign='top' style='padding:1px;'>".$MSG_31_0010."</div>
+";
+						  }
+						?>
+						
+						<!--///////////         EOF: AUCTIONS TABLE         ///////////-->
+		<div id="liveauctions">
+
+            
+            
+ <? if($SETTINGS['show_closed_auctions'] == 1) {  ?>        
+    <!--
+	    CLOSED AUCTIONS
+        -->
+
+<div id="endedauctions">
+
+<div class="headerBar"><div id="fontsemi">Ended Auctions</div>
+</div>
+
+<div class="table1">
+<?php print $TPL_closed_auctions_list; ?>
+</div>
+
+</div>
+<? } ?>
+ </div>
+					
+	<? } ?>	  
+    
+    
+	</div>
+    
+<?php
+
+    // we load clickr php class
+    require_once("clickr/clickr.php");
+?>
+ 
+<!-- we load the clickr javascript file -->
+<script type="text/javascript" src="clickr/clickr.js"></script>
+   	<!--
+      Footer
+      -->
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

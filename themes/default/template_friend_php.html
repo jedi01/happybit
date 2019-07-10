@@ -1,0 +1,84 @@
+<SCRIPT Language=Javascript>
+function SubmitFriendForm(){
+	document.friend.submit();
+}
+function ResetFriendForm(){
+	document.friend.reset();
+}
+</SCRIPT>
+<div class="content">
+    <div class="tableContent2">
+        <div class="titTable2"> <? print $MSG_139; ?>
+		 </div>
+        <div class="titTable3" style="margin-left:15px;margin-right:15px;">
+	<A HREF="item.php?id=<? print $TPL_auction_id; ?>"><? print $MSG_138; ?></FONT></A>
+	</DIV>
+<TABLE WIDTH="100%" class="conten">
+  <TR>
+    <TD>
+      <FORM NAME="friend" ACTION="friend.php" METHOD=POST>
+        <TABLE WIDTH="90%" cellpadding="4" cellspacing="0">
+          <!-- error message here -->
+          <?
+		  	if(!empty($TPL_error_text)){
+		  ?>
+		  <TR> 
+            <TD width="40%" ALIGN=right></TD>
+            <TD width="60%" align="left" class=errfont><? print $TPL_error_text; ?> </TD>
+          </TR>
+		  <?}?>
+          <!--  -->
+          <TR> 
+            <TD ALIGN=right> <B><? print $MSG_017; ?></B> 
+            </TD>
+            <TD align="left"> <? print $TPL_item_title; ?> </TD>
+          </TR>
+          <!-- friend's name -->
+          <TR> 
+            <TD ALIGN=right> <B><? print $MSG_140; ?></B> 
+            </TD>
+            <TD align="left"><INPUT TYPE="TEXT" NAME="friend_name" SIZE="25" VALUE="<? print $TPL_friend_name_value; ?>"> 
+            </TD>
+          </TR>
+          <!-- friend's email -->
+          <TR> 
+            <TD ALIGN=right> <B><? print $MSG_141; ?></B> 
+            </TD>
+            <TD align="left"><INPUT TYPE="TEXT" NAME="friend_email" SIZE="25" VALUE="<? print $TPL_friend_email_value; ?>"> 
+            </TD>
+          </TR>
+          <!-- your email -->
+          <TR> 
+            <TD ALIGN=right> <B><? print $MSG_142; ?></B> 
+            </TD>
+            <TD align="left"><INPUT TYPE="TEXT" NAME="sender_name" SIZE="25" VALUE="<?=$_SESSION[HAPPYBID_LOGGED_NAME] ?>"> 
+            </TD>
+          </TR>
+          <!-- your name -->
+          <TR> 
+            <TD ALIGN=right> <B><? print $MSG_143; ?></B> 
+            </TD>
+            <TD align="left"><INPUT TYPE="TEXT" NAME="sender_email" SIZE="25" VALUE="<?=$_SESSION[HAPPYBID_LOGGED_EMAIL]  ?>"> 
+            </TD>
+          </TR>
+          <!-- comment -->
+          <TR> 
+            <TD ALIGN=right VALIGN=TOP> <B><? print $MSG_144; ?></B> 
+            </TD>
+            <TD align="left"><TEXTAREA NAME="sender_comment" COLS="23" ROWS="6"><? print $TPL_sender_comment_value; ?></TEXTAREA> 
+              <BR> <BR> 
+			  <INPUT TYPE="hidden" NAME="id" VALUE="<? print $TPL_auction_id; ?>"> 
+              <INPUT TYPE="hidden" NAME="item_title" VALUE="<? print $TPL_item_title; ?>"> 
+              <INPUT TYPE="hidden" NAME="action" VALUE="sendmail">
+			  <INPUT style='width:100px;' TYPE=submit NAME="" VALUE="<?=$MSG_5201?>" class=button /> 
+              <INPUT style='width:100px;' TYPE=reset NAME="" VALUE="<?=$MSG_035?>" class=button /> </TD>
+          </TR>
+        </TABLE>
+      </FORM><p></TD>
+  </TR>
+</TABLE>
+</div>
+</div>
+<?
+	include phpa_include("template_user_menu_footer.html");
+?>

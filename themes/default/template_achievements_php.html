@@ -1,0 +1,465 @@
+<?
+include phpa_include("template_user_menu_header.html");
+
+?>
+
+<div class="headerBar" style="margin-bottom:10px;clear:both;">Achievements</div>
+<div class="reglabel" style="height: 70px;border-bottom: 1px solid #dddddd;margin-bottom: 15px;margin-left: 0;">
+<span style="font-size:18px;">
+Some Achievements need to be verified and may not appear instantly, please allow upto 48 hours. If you do think you earned  an acheivement, and it's missing, please <a href="<?=$SETTINGS['siteurl']?>contactus.php?<?=$TPL_nick?>" target="_self">contact us</a>.
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 1>($A33)){?>
+<div id="a1b"></div>
+<? } else { ?>
+<div id="a1"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Welcome!</div>
+<div class="achievementtext">Place your first bid</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 1>($A2)){?>
+<div id="a2b"></div>
+<? } else { ?>
+<div id="a2"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Champion!</div>
+<div class="achievementtext">Win an auction</div>
+</div>
+</div>
+
+<!--<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 3>($A2)){?>
+<div id="a3b"></div>
+<? } else { ?>
+<div id="a3"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Got The Hang Of It</div>
+<div class="achievementtext">Win 3 auctions</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 5>($A2)){?>
+<div id="a4b"></div>
+<? } else { ?>
+<div id="a4"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Expert Bidder</div>
+<div class="achievementtext">Win 5 auctions</div>
+</div>
+</div>-->
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 1>($A5)){?>
+<div id="a5b"></div>
+<? } else { ?>
+<div id="a5"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Gimme Some Coins</div>
+<div class="achievementtext">Buy your first coin pack</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 2>($A5)){?>
+<div id="a6b"></div>
+<? } else { ?>
+<div id="a6"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Feed Me More</div>
+<div class="achievementtext">Buy your 2nd coin pack</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 3>($A5)){?>
+<div id="a7b"></div>
+<? } else { ?>
+<div id="a7"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Cant Stop Now!</div>
+<div class="achievementtext">Buy your 3rd coin pack</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 5>($A5)){?>
+<div id="a8b"></div>
+<? } else { ?>
+<div id="a8"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">I Love Coins!</div>
+<div class="achievementtext">Buy your 5th coin pack</div>
+</div>
+</div>
+
+<!--<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A9)){?>
+<div id="a9b"></div>
+<? } else { ?>
+<div id="a9"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Having My Say</div>
+<div class="achievementtext"><a href="feedback.php">Email HappyBid some feedback</a> and have it published</div>
+</div>
+</div>-->
+
+<!--<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A10)){?>
+<div id="a10b"></div>
+<? } else { ?>
+<div id="a10"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Check This Out</div>
+<div class="achievementtext">Have a friend sign up and verify their account</div>
+</div>
+</div>-->
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A11)){?>
+<div id="a11b"></div>
+<? } else { ?>
+<div id="a11"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">I Am Real!</div>
+<div class="achievementtext">Verify your HappyBid account</div>
+</div>
+</div>
+
+<!--<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A12)){?>
+<div id="a12b"></div>
+<? } else { ?>
+<div id="a12"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Poser</div>
+<div class="achievementtext">Take a picture of yourself and your prize for us to <a href="feedback.php">publish</a></div>
+</div>
+</div>-->
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A13)){?>
+<div id="a13b"></div>
+<? } else { ?>
+<div id="a13"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Tweet Tweet</div>
+<div class="achievementtext">Tweet us to your friends<br /><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://happybid.co.uk" data-text="Check out HappyBid :) I am already a member! #happybidachievement" data-via="HappyBid_UK" data-count="none">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A14)){?>
+<div id="a14b"></div>
+<? } else { ?>
+<div id="a14"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Socializing</div>
+<div class="achievementtext">Share us on Facebook
+<br />
+<div style="width:84px; overflow:hidden;">
+<div class="fb-like" data-href="http://happybid.co.uk" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial" data-action="recommend"></div></div></div>
+</div>
+</div>
+
+<!--<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A15)){?>
+<div id="a15b"></div>
+<? } else { ?>
+<div id="a15"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Lets Try This</div>
+<div class="achievementtext">Buy the 25 coins pack</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A16)){?>
+<div id="a16b"></div>
+<? } else { ?>
+<div id="a16"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">50 Big Ones</div>
+<div class="achievementtext">Buy the 50 coins pack</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A17)){?>
+<div id="a17b"></div>
+<? } else { ?>
+<div id="a17"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Not Messing About</div>
+<div class="achievementtext">Buy the 100 coins pack</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A18)){?>
+<div id="a18b"></div>
+<? } else { ?>
+<div id="a18"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">True Bidder</div>
+<div class="achievementtext">Buy the 200 coins pack</div>
+</div>
+</div>-->
+
+<!---
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 5>($A19)){?>
+<div id="a19b"></div>
+<? } else { ?>
+<div id="a19"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Reward Me</div>
+<div class="achievementtext">Unlock 5 achievements</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 10>($A19)){?>
+<div id="a20b"></div>
+<? } else { ?>
+<div id="a20"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Getting Good</div>
+<div class="achievementtext">Unlock 10 achievements</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 20>($A19)){?>
+<div id="a21b"></div>
+<? } else { ?>
+<div id="a21"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">I Am Awesome</div>
+<div class="achievementtext">Unlock 20 achievements</div>
+</div>
+</div>
+--->
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && strtotime($A22) <= time() - (60*60*24*30)){?>
+<div id="a22"></div>
+<? } else { ?>
+<div id="a22b"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Feeling At Home</div>
+<div class="achievementtext">Be a member for 1 month<!--<br />Join date: <?php echo substr("$A22", 0, -8); ?>--></div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && strtotime($A22) <= time() - (60*60*24*90)){?>
+<div id="a23"></div>
+<? } else { ?>
+<div id="a23b"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Settled In</div>
+<div class="achievementtext">Be a member for 3 months</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && strtotime($A22) <= time() - (60*60*24*365)){?>
+<div id="a24"></div>
+<? } else { ?>
+<div id="a24b"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Happy Anniversary!</div>
+<div class="achievementtext">Be a member for 1 year</div>
+</div>
+</div>
+
+<!--<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A25)){?>
+<div id="a25b"></div>
+<? } else { ?>
+<div id="a25"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Surveyor</div>
+<div class="achievementtext">Take a HappyBid <a href="happybidsurvey.php">survey</a></div>
+</div>
+</div>-->
+
+<!--<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A26)){?>
+<div id="a26b"></div>
+<? } else { ?>
+<div id="a26"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Cautious Approach</div>
+<div class="achievementtext">Bid on a 2 coin auction</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A27)){?>
+<div id="a27b"></div>
+<? } else { ?>
+<div id="a27"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Serious Player</div>
+<div class="achievementtext">Bid on a 3 coin auction</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A28)){?>
+<div id="a28b"></div>
+<? } else { ?>
+<div id="a28"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">High Roller</div>
+<div class="achievementtext">Bid on a 5 coin auction</div>
+</div>
+</div>-->
+
+<!--<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A29)){?>
+<div id="a29b"></div>
+<? } else { ?>
+<div id="a29"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Daylight Robbery</div>
+<div class="achievementtext">Win an item for 10p or less!</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A30)){?>
+<div id="a30b"></div>
+<? } else { ?>
+<div id="a30"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Bargain!</div>
+<div class="achievementtext">Win an item for &pound;1.00 or less!</div>
+</div>
+</div>-->
+
+<!--<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A31)){?>
+<div id="a31b"></div>
+<? } else { ?>
+<div id="a31"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Lightning Fast</div>
+<div class="achievementtext">Place the first bid on an auction</div>
+</div>
+</div>-->
+
+<!--<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($A32)){?>
+<div id="a32b"></div>
+<? } else { ?>
+<div id="a32"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">I Want It</div>
+<div class="achievementtext">Bid 5+ times on a single auction</div>
+</div>
+</div>-->
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 10>($A33)){?>
+<div id="a33b"></div>
+<? } else { ?>
+<div id="a33"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Noob</div>
+<div class="achievementtext">Place 10 bids</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 25>($A33)){?>
+<div id="a34b"></div>
+<? } else { ?>
+<div id="a34"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Familiar Face</div>
+<div class="achievementtext">Place 25 bids</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 50>($A33)){?>
+<div id="a35b"></div>
+<? } else { ?>
+<div id="a35"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Established</div>
+<div class="achievementtext">Place 50 bids</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 100>($A33)){?>
+<div id="a36b"></div>
+<? } else { ?>
+<div id="a36"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">Veteran</div>
+<div class="achievementtext">Place 100 bids</div>
+</div>
+</div>
+
+<div id="achievementbox">
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && 500>($A33)){?>
+<div id="a37b"></div>
+<? } else { ?>
+<div id="a37"></div>
+<?php } ?>
+<div id="achievementdesc">
+<div class="headerBar" style="padding:0px;">King</div>
+<div class="achievementtext">Place 500 bids</div>
+</div>
+</div>
+
+
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

@@ -1,0 +1,25 @@
+
+<div class="content">
+    <div class="tableContent2">
+        <div class="titTable2">
+            <? print $TPL_title; ?>
+        </div>
+        <div class="table2">
+            <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                <tr>
+                    <td width="20%" valign=TOP>
+                        <?
+                        if(is_array($NEWSINDEX)) {
+                        	foreach($NEWSINDEX as $k=>$v) {
+                        		print "<A HREF=viewnew.php?id=$k>$v</A><br />";
+                        		print FormatDate($NEWSDATE[$k])."<br />";
+                        	}
+                        }
+						?>
+                    </td>
+                    <td valign=TOP  style='font-size:13px;'> <? print nl2br(stripslashes($new[content])); ?> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

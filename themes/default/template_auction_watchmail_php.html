@@ -1,0 +1,15 @@
+<?
+
+$message = "Hello ".$row["name"].",
+
+This is Your Auction Watch.
+
+The following Auction  has been opened matching your keyword(s) : ".$row["auc_watch"]."
+
+Auction : ".$sessionVars["SELL_title"]."
+
+$auction_url";
+//send
+mail($row["email"],$SETTINGS["sitename"]." - Auction Watch",$message,"From:$SETTINGS[sitename] <$SETTINGS[adminmail]>\nReplyTo:$SETTNGS[adminmail]");
+
+?>

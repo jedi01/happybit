@@ -1,0 +1,130 @@
+<TABLE WIDTH="100%" bgcolor="<?=$BGCOLOR?>" BORDER=0 CELLPADDING="0" CELLSPACING="0">
+  <TR align="center">
+    <TD colspan="2">
+        <div class="titTable3">
+                <a href="boards.php"><?=$MSG_5058?></a>
+        </div>
+        <br />
+        <TABLE WIDTH="70%" BORDER="0" CELLSPACING="0" CELLPADDING="6" ALIGN="center">
+        <TR>
+          <TD WIDTH="79%" VALIGN="top" class=titTable4><?=$MSG_30_0181.":&nbsp;".$BOARD_TITLE?></TD>
+        </TR>
+        </TABLE>
+        <TABLE WIDTH="70%" BORDER="0" CELLSPACING="0" CELLPADDING="6" ALIGN="center" BGCOLOR="#EEEEEE">
+        <TR>
+            <TD align=center>
+            <form name=messageboard action=<?=basename($_SERVER[PHP_SELF])?> method=POST>
+                <input type=hidden name=action value="insertmessage" />
+                <input type=hidden name=board_id value="<?=$_REQUEST['board_id']?>" />
+                <?
+                if(!isset($_SESSION['HAPPYBID_LOGGED_IN'])){
+                ?>
+                <?="<p class=errfont>$MSG_5056</p>"?>
+                <br />
+                <?
+                }
+                ?>
+                <textarea name="newmessage" cols="60" rows="5"></textarea>
+                <br />
+                <input type="submit" name="Submit" value="<?=$MSG_5057?>" class=button />
+            </form>
+            </TD>
+        </TR>
+        </TABLE>
+        <BR />
+        <BR />
+        <TABLE WIDTH="70%" BORDER="0" CELLSPACING="0" CELLPADDING="2" ALIGN="center" BGCOLOR="#EEEEEE">
+            <TR>
+                <TD WIDTH="79%" colspan=2 VALIGN="top" class=titTable4>
+                    <?=$MSG_5059?>
+                    </TD>
+            </TR>
+        </TABLE>
+<?
+        if(mysql_num_rows($res_msgs) > 0) {
+          ?>
+            <table width="70%" border="0" cellspacing="0" cellpadding="4" align=center>
+                <!-- ## display messages ## -->
+                <?
+                while($MSG = mysql_fetch_array($res_msgs)) {
+                  ?>
+                <tr>
+                    <td align=left valign="top">
+                        <?=nl2br(stripslashes($MSG[message]))?>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" align=left bgcolor=#eeeeee>
+                        <?
+                        if($MSG[username]) {
+                        ?>
+                        <?="$MSG_5060 <b>".$MSG[username]."</b> - ".FormatDate($MSG[msgdate])?>
+                        <?
+                        } else {
+                        ?>
+                        <?="$MSG_5060 <b>$MSG_5061</b> -".FormatDate($MSG[msgdate])?>
+                        <?
+                        }
+                          ?>
+                    </td>
+                </tr>
+                <?
+                }
+                ?>
+            </table>
+        <?        
+        }
+        ?>
+        <div class="table2">
+            <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                <tr align="center" >
+                    <td valign="top">
+                        <?=$MSG_5246?>
+&nbsp;&nbsp;
+                        <?=$PAGE?>
+                        <?=$MSG_5247?>
+&nbsp;&nbsp;
+                        <?=$PAGES?>
+                        <br />
+                        <?
+                        $PREV = intval($PAGE - 1);
+                        $NEXT = intval($PAGE  + 1);
+                        ?>
+                        <?
+                        if($PAGES > 1) {
+                            if($PAGE > 1) {
+                        ?>
+                        <a href="<?=basename($_SERVER[PHP_SELF])?>?board_id=<?=$_REQUEST['board_id']?>&PAGE=<?=$PREV?>"><u><?=$MSG_5119?></u></a> &nbsp;&nbsp;
+                        <?
+                            }
+                        ?>
+                        <?
+                        $LOW = $PAGE - 5;
+                        if($LOW <= 0) $LOW = 1;
+                        $COUNTER = $LOW;
+                        while($COUNTER <= $PAGES && $COUNTER < ($PAGE+6)) {
+                            if($PAGE == $COUNTER) {
+                                print "<b>$COUNTER</b>&nbsp;&nbsp;";
+                            } else {
+                                print "<a href=\"".basename($_SERVER[PHP_SELF])."?board_id=".$_REQUEST['board_id']."&PAGE=$COUNTER\"><u>$COUNTER</u></a>&nbsp;&nbsp;";
+                            }
+                            $COUNTER++;
+                        }
+                        ?>
+                        &nbsp;&nbsp;
+                        <?
+                        if($PAGE < $PAGES) {
+                        ?>
+                        <a href="<?=basename($_SERVER[PHP_SELF])?>?board_id=<?=$_REQUEST['board_id']?>&PAGE=<?=$NEXT?>"><u><?=$MSG_5120?></u></a>
+                        <?
+                        }
+                        }
+
+                        ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+</td>
+</tr>
+</table>

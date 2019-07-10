@@ -1,0 +1,203 @@
+<script>
+function checkSubmition(){
+    
+    if(!document.getElementById("accept_conditions").checked){
+        alert("<?=$MSG_31_0015;?>");
+        return false;        
+    }
+	if(!document.getElementById("verify_age").checked){
+        alert("Please confirm you are over 16 years of age.");
+        return false;        
+    }
+    if(document.getElementById("TPL_email_verify").value != document.getElementById("TPL_email").value){
+        alert("<?=$MSG_31_0016;?>");
+        return false;                
+    }
+    return true;
+}
+</script>
+<style type="text/css">
+<!--
+.Stile2 {
+	color: #000000;
+	font-weight: bold;
+	font-size: 12px;
+	margin-left: 6px;
+}
+
+.Stile4 {font-weight: bold}
+.bordo {
+	font-family: Arial, Helvetica, sans-serif;
+	border: 1px solid #000000;
+	font-size: 12px;
+	margin: 3px;
+	padding: 3px;
+	font-weight: bold;
+	color: #000000;
+	background-color: #8CB560;
+}
+.table_text {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+}
+.bordo2 {
+	font-family: Arial, Helvetica, sans-serif;
+	border: 1px solid #000000;
+	font-size: 12px;
+	margin: 3px;
+	padding: 3px;
+	font-weight: bold;
+	color: #000000;
+	background-color: #FF9900;
+}
+.header_table_box {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #000000;
+	background-color: #F99500;
+}
+.Stile2_withborder {
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	background-color: #c3d3df;
+	border: thin solid #000000;
+}
+.style1 {
+	font-size: 12px;
+	font-weight: bold;
+}
+.obbligatori {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+-->
+</style>
+
+<div class="content">
+<div id="whyjoin"><span style="color:#FF00DE">Why Join?</span> <span class="tooltip" title="<table><tr><td><img src='../../images/reg-coins.png' /></td><td style='text-align:left;'><span style='font-size:12px;'>Join and verify your account for a free coin to try us with!</span></td></tr></table>">1 FREE coin for joining!</span> - <span class="tooltip" title="<table><tr><td><img src='../../images/reg-prizes.png' /></td><td style='text-align:left;'><span style='font-size:12px;'>We hold regular prizes giveaways <br>for our members. Just to say thanks!</span></td></tr></table>">Free prize giveaways!</span> - <span class="tooltip" title="<table><tr><td><img src='../../images/reg-cheaper.png' /></td><td style='text-align:left;'><span style='font-size:12px;'>Our sponsors help us offer cheaper auctions,<br>our goal is to eventually become totally free!</span></td></tr></table>">Cheaper than other sites!</span> - <span class="tooltip" title="<table><tr><td><img src='../../images/reg-smile.png' /></td><td style='text-align:left;'><span style='font-size:12px;'>With low prices, sponsored auctions and a better<br> chance to win, we are confident you will be <br>happy with us :)</span></td></tr></table>">We want to make you smile!</span></div>
+
+<div id="registrationbox">
+<form name="registration" action="register.php" method="post" >
+<input type="hidden" name="accounttype" value='buyer'>
+<div class="regtitlebar">Register With HappyBid<div style="float: right;margin-right: -30px;position: relative;"><img src="../../images/or.png" width="19" height="19" /></div></div>
+<?
+        if(!empty($TPL_errmsg)) {
+        ?>
+        
+        <? if($TPL_errmsg != "")  echo "<p><div class='errfont' style='margin-bottom: 12px;margin-top: 12px;padding: 8px;'>".$TPL_errmsg."</div></p>"; ?>
+        
+        <?
+        }
+       ?>
+<div>
+<div class="reglabel">Choose a Username (5-10 chars)</div>
+<div width="100%"><input type="text" name="TPL_nick" size="20" maxlength="10"  value="<?=$_POST[TPL_nick]?>" class="regfield" style="width: 379px;"></div>
+<div id="qmarkbw" class="qlabs_tooltip_right qlabs_tooltip_style_42p"><span>This is what we tell everyone when you win!</span><img src="/images/qmarkbw.png" /></div>
+</div>
+
+<div class="regL">
+<div class="reglabel">Password (min 5 chars)</div>
+<div><input type="password" name="TPL_password" size="20" maxlength="20" value="" class="regfield"></div>
+<div id="qmarkbw" class="qlabs_tooltip_right qlabs_tooltip_style_42p"><span>Minimum 5 characters, don't forget it!</span><img src="/images/qmarkbw.png" /></div>
+</div>
+
+<div class="regR">
+<div class="reglabel">Confirm Password</div>
+<div><input type="password" name="TPL_repeat_password" size="20" maxlength="20" value="" class="regfield"></div>
+<div id="qmarkbw" class="qlabs_tooltip_right qlabs_tooltip_style_42p"><span>Repeat your password</span><img src="/images/qmarkbw.png" /></div>
+</div>
+
+<div class="regtitlebar" style="float: left;width: 410px;">Contact Info</div>
+
+<div class="regL">
+<div class="reglabel">Email</div>
+<div><input type="text" name="TPL_email" id="TPL_email" size="50" maxlength="50" value="<?=$_POST[TPL_email]?>" class="regfield">
+<?
+if(!empty($TPL_domains_alert)){
+print "<BR />".$TPL_domains_alert;
+}
+?></div>
+<div id="qmarkbw" class="qlabs_tooltip_right qlabs_tooltip_style_42p"><span>Your email address</span><img src="/images/qmarkbw.png" /></div>
+</div>
+
+<div class="regR">
+<div class="reglabel">Repeat Email</div>
+<div><input type="text" name="TPL_email_verify" id="TPL_email_verify" size="50" maxlength="50" value="" class="regfield"></div>
+<div id="qmarkbw" class="qlabs_tooltip_right qlabs_tooltip_style_42p"><span>Confirm your email address</span><img src="/images/qmarkbw.png" /></div>
+</div>
+
+<div class="regL">
+<div class="reglabel">Full Name</div>
+<div><input type="text" name="TPL_name" size="40" maxlength="255" value="<?=$_POST[TPL_name]?>" class="regfield"></div>
+<div id="qmarkbw" class="qlabs_tooltip_right qlabs_tooltip_style_42p"><span>First name and surname required</span><img src="/images/qmarkbw.png" /></div>
+</div>
+
+<div class="regR">
+<div class="reglabel">Mobile Phone</div>
+<div width="100%"><input type="text" name="TPL_phone" size="10" maxlength="14" value="" class="regfield"></div>
+<div id="qmarkbw" class="qlabs_tooltip_right qlabs_tooltip_style_42p"><span>To make things fair, only one account is allowed per person. We will send you an SMS to verify you are real.</span><img src="/images/qmarkbw.png" /></div>
+</div>
+
+<div style="display:inline-block; margin-left:80px; margin-top:4px;">
+<!--
+AGE CHECK
+-->
+<div style="display: inline-block;">
+<input name="verify_age" type="checkbox" class="bordo" id="verify_age" value="accept" checked style="float: left;">
+<input name="verify_age_hidden" type="hidden" /><div style="float: left;font-size: 12px;font-weight: bold;margin-left: 5px;margin-top: 2px;">I am a UK resident over 16 years of age.</div>
+</div>
+<!--
+CONDITION & TERMS
+-->
+<div style="display: inline-block;">
+<input name="accept_conditions" type="checkbox" class="bordo" id="accept_conditions" value="accept" checked style="float: left;">
+<input name="accept_conditions_hidden" type="hidden" /><div style="float: left;font-size: 12px;font-weight: bold;margin-left: 5px;margin-top: 2px;">I accept the <a href="termsandconditions.php" target="_blank">Terms & Conditions</a>.</div>
+</div>
+                    
+
+
+</div>
+
+<div>
+  <input type="hidden" name="TPL_nletter" value="1"<? if($_POST[TPL_nletter] == 1 || empty($_POST[TPL_nletter])) print " checked=true";?>>
+</div>
+                    <input type="hidden" name="action" value="first">
+      <input type="hidden" name="TPL_id_hidden" value="<?=$_POST[TPL_id_hidden]?>">
+      <input type="hidden" name="TPL_nick_hidden" value="<?=$_POST[TPL_nick_hidden]?>">
+      <input type="hidden" name="TPL_password_hidden" value="<?=$_POST[TPL_password_hidden]?>">
+      <input type="hidden" name="TPL_name_hidden" value="<?=$_POST[TPL_name_hidden]?>">
+      <input type="hidden" name="TPL_email_hidden" value="<?=$_POST[TPL_email_hidden]?>">
+      <input type="hidden" name="TPL_phone_hidden" value="<?=$_POST[TPL_phone_hidden]?>">
+ 
+<div style="width: 399px;float: left;margin-left: 6px;">
+<div style="margin-top: 9px;">
+<input type="submit" name="" value="<?=$MSG_5198?>" class="buttonbid" onClick="return checkSubmition();" style="padding:6px 128px; text-transform:uppercase;">
+</div>
+
+</div>
+
+    </form>
+</div>
+
+<div id="registrationbox" style="float:left;border:none;float:left;">
+<!---- START SOCIALS ---->
+<div class="regtitlebar">Facebook Connect</div>
+<div style="margin-top:8px; margin-bottom:8px;">
+<a href="fb-login.php" class="fConnect" title="Connect with Facebook"><span class="displace">Connect</span></a>
+<div id="facebookregtext">
+  <p>Skip the forms and sign in seamlessly with Facebook!</p>
+  <p style="font-size:14px; color:#FF00DE;">Get 1 FREE coin INSTANTLY, by registering with Facebook!</p>
+  <p><span style="font-size:10px;">By signing in you declare you are over 16 and accept our <a href="termsandconditions.php" target="_blank">Terms & Conditions</a>.</span></p>
+</div>
+</div>
+<!------ END SOCIALS -------->
+
+</div>
+</div>
+<?
+	include phpa_include("template_user_menu_footer.html");
+?>

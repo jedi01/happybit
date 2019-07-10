@@ -1,0 +1,302 @@
+<?
+if($SETTINGS['fb_enabled'] == '1'){
+include "common.php";
+include_once "fbconnect.php";
+}
+  // get balance information  
+  $query = "select * from HB_users where nick='".$_SESSION['HAPPYBID_LOGGED_IN_USERNAME']."'";
+  $result = @mysql_query($query);
+  $TPL_balance = "0";
+  if(!$result) {
+      MySQLError($query);
+      exit;
+  } else {
+      $USER = mysql_fetch_array($result);
+      $subid= $USER['nick'];
+      $USER_ID = $USER['id'];
+      $USER_emailadd =  $USER['email'];
+      $USER_phoneadd =  $USER['phone'];
+      $USER_addressadd =  $USER['address'];
+      $USER_zipadd =  $USER['zip'];
+      $TPL_balance = $USER['balance'];
+      $USER_nickname = $USER['nick'];
+      $TPL_nick 		= $USER['nick'];
+      $USER_verified = $USER['verified'];
+      $FB_pic = $_SESSION['oauth_uid'];
+  }
+  
+  $is_pre_registration = (isset($_REQUEST['pre_registration']) && ($_REQUEST['pre_registration'] == "1")) ? "1" : "";
+
+?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<!--[if IE 8 ]> <html lang="en" class="ie8" xmlns:fb="http://ogp.me/ns/fb#"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="ie9" xmlns:fb="http://ogp.me/ns/fb#"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:fb="http://ogp.me/ns/fb#">
+<!--<![endif]-->
+<head profile="http://www.w3.org/2005/10/profile"><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<link rel="shortcut icon" href="/themes/default/img/icon2016.png">
+<!-- Meta Data -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="<? print $SETTINGS['sitename']." ".$page_title;?>" />
+<meta property="og:description" content="Sign up today and start bidding at HappyBid.co.uk - the lowest unique bid wins!" />
+<meta property="og:site_name" content="<?php echo $SETTINGS['sitename']?>" />
+<meta name="description" content="Lowest Unique Bid Auctions - Place bids on fantastic items and win yourself a bargain." />
+<meta name="keywords" content="lowest unique bid,auctions,pennyauction,reverse auctions" />
+<meta name="verification" content="24cd9dbb51556134b1f1b2ad43411553" />
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<title><? print $SETTINGS['sitename']." ".$page_title;?>| Lowest Unique Bid Auctions | Reverse Auctions</title>
+<!-- Stylesheets here, before all scripts. Helps avoid styling issues. -->
+<link rel='stylesheet' type='text/css' href='js/tinybox2/style.css' />
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<link href="/css/lightbox.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="themes/default/bar.css"/>
+<link rel="stylesheet" type="text/css" href="/themes/default/styles/tooltips_main.css"/>
+<link rel="stylesheet" type="text/css" href="/themes/default/styles/tooltips_styles.css"/>
+<link href="themes/default/the-tooltip.css" rel="stylesheet" />
+<!-- DC Social Icons CSS -->
+<link rel="stylesheet" type="text/css" href="/themes/default/css/dc_social_icons.css" />
+<link rel="stylesheet" type="text/css" href="/themes/default/css/dc_payment_icons.css" />
+<script type="text/javascript" src="themes/default/jquery.numeric.js"></script>
+<script src="themes/default/js/min/the-tooltip.js"></script>
+<!--[if (gte IE 6)&(lte IE 8)]>
+<script src="http://s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.5-min.js"></script>
+<script src="themes/default/js/min/selectivizr.js"></script>
+<![endif]-->
+<?
+
+if (file_exists("themes/".$SETTINGS['theme']."/style.css")) {
+  print "<link rel='stylesheet' type='text/css' href='".phpa_include("style.css")."' />";
+}else{
+  print "<link rel='stylesheet' type='text/css' href='".phpa_include_webstores("style.css")."' />";
+}
+
+?>
+<link rel="stylesheet" type="text/css" href="themes/default/css/responsive.css"/>
+<?
+  // prepare styles for top menu bar
+  $main_page = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : "home";
+  $show = isset($_GET['show']) ? $_GET['show'] : "";
+ 
+  $select_category_style = "";
+  $user_login_style = "";
+  $register_style = "";
+  $user_menu_style = "";
+  $whoweare_style = "";
+  $howitworks_style = "";
+  $faq_style = "";
+  
+  if($_SESSION["HAPPYBID_LOGGED_IN"]) {
+    switch($main_page){
+      case "/index.php":
+          $home_style = "active";
+          break;  
+      case "/select_category.php":
+      case "/sell.php":
+          $select_category_style = "active";          
+          break;  
+      case "/contents.php":
+          if($show == "aboutus") $whoweare_style = "active";
+          if($show == "howitworks") { $howitworks_style = "active"; }
+          if($show == "faq") { $faq_style = "active"; }
+          break;  
+      default:
+          $user_menu_style = "active";
+          break;            
+    }      
+  }else{
+    switch($main_page){
+      case "/select_category.php":
+          $select_category_style = "active";
+          break;  
+      case "/user_login.php":
+          $user_login_style = "active";
+          break;  
+      case "/register.php":
+          $register_style = "active";
+          break;  		
+      case "/user_menu.php":
+      case "/edit_data.php":
+          $user_menu_style = "active";
+          break;  
+      case "/contents.php":
+          if($show == "aboutus") { $whoweare_style = "active"; }
+          if($show == "howitworks") { $howitworks_style = "active"; }
+          if($show == "faq") { $faq_style = "active"; }          
+          break;  
+      case "/index.php":
+      default:
+          $home_style = "active";
+          break;            
+    }  
+  }
+
+?>
+<script src="/js/jquery-1.7.2.min.js"></script>
+<script src="/js/lightbox.js"></script>
+<link rel="stylesheet" type="text/css" href="themes/default/tooltipster.css" />
+<script type="text/javascript" src="themes/default/scripts/jquery.tooltipster.min.js"></script>
+<script src="themes/default/scripts/jquery.simple.timer.js"></script>
+<script>
+        $(document).ready(function() {
+            $('.tooltip').tooltipster();
+        });
+			$('.veritip').tooltipster({
+		fixedWidth: 500,
+		position: 'bottom'
+		});
+    </script>
+    
+    <!-- COOKIE NOTICE -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#383b75"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  },
+  "position": "top",
+  "static": true,
+  "content": {
+    "href": "http://happybid.co.uk/privacypolicy.php"
+  }
+})});
+</script>
+<!-- END COOKIE NOTICE -->
+</head>
+<?
+    if ($SETTINGS[currency]=="USD") $SETTINGS[currency]="$";
+    if ($SETTINGS[currency]=="EUR") $SETTINGS[currency]="&euro;";
+	if ($SETTINGS[currency]=="GBP") $SETTINGS[currency]="&pound;";
+?>
+
+<body>
+<!---- FACEBOOK SDK ---->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9&appId=258503047593568";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($USER_emailadd)){?>
+<div class="alertboxhome" style="font-size:18px;text-align:center;"> <img src="<?=$SETTINGS['siteurl']?>themes/default/img/alert_32.png" style="vertical-align:middle;width: 32px;margin-top: -4px;">&nbsp;Please <a href="edit_data.php" target="_self" style="font-size:18px;"><span style="text-decoration:underline;">add your email address</span></a> to use HappyBid. </div>
+<?php } ?>
+<?php if($is_pre_registration == ""){ ?>
+<div id="page_header">
+<div id="headerwrapper">
+  <div id="logo"> <a href="index.php"><img src="<?=$SETTINGS['siteurl']?>themes/default/logo-white.png" width="335" border="0" align="bottom" alt="" /></a> </div>
+  <div id="headerright" class="hidemobile">
+    <div id="headleftbox">
+      <div id="headleft">
+        <?php
+							if($_SESSION["HAPPYBID_LOGGED_IN"]) {
+							/* user is logged in, give link to edit data or log out */
+							?>
+        <div id="join" style="margin-top:-6px; float:none; font-size:17px;"><? print $TPL_nick; ?>
+          <?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($USER_verified)){?>
+          <div class="qlabs_tooltip_bottom qlabs_tooltip_style_39"><span>You are not verified, please complete your profile.</span> <img src="<?=$SETTINGS['siteurl']?>images/verified-no.png" style="float:right;margin-left:3px;margin-top:1px;"> </div>
+          <? } else { ?>
+          <div class="qlabs_tooltip_bottom qlabs_tooltip_style_41"><span>You have verified your HappyBid account :)</span> <img src="<?=$SETTINGS['siteurl']?>images/verified.png" style="float:right;margin-left:3px;margin-top:1px;"> </div>
+          <?php } ?>
+        </div>
+        <!-- bids balance bar -->
+        <?php if($_SESSION["HAPPYBID_LOGGED_IN"]) { ?>
+        <div style="float:right; color:#000000; font-size:17px margin-right:9px;font-weight:bold;">Coins:&nbsp;<? echo $TPL_balance; ?></div>
+        <?php } ?>
+        <?php
+							} else {
+							/* user not logged in, give link to register or login */
+							?>
+        <div id="join">Join HappyBid!</div>
+        <?php
+							}
+							?>
+      </div>
+      <div id="headlinks">
+        <?php
+							if($_SESSION["HAPPYBID_LOGGED_IN"]) {
+							/* user is logged in, give link to edit data or log out */
+							?>
+        <div style="float:right"> <a href="<?=$SETTINGS['siteurl']?>user_menu.php" style="padding:6px;">My Account</a>|<a href="<?=$SETTINGS['siteurl']?>user_menu.php" style="padding:6px;">Add Coins</a>|
+          <?php
+							if($_SESSION["HAPPYBID_LOGGED_IN"]) {
+							/* user is logged in, give link to edit data or log out */
+							?>
+          <a href="<?=$SETTINGS['siteurl']?>logout.php" style="padding-left:6px;">Log Out</a>
+          <?php
+							}
+							?>
+        </div>
+        <?php
+							} else {
+							/* user not logged in, give link to register or login */
+							?>
+        <a href="<?=$SETTINGS['siteurl']?>register.php" style="padding:6px;">Join</a>|<a href="<?=$SETTINGS['siteurl']?>user_login.php" style="padding:6px;">Login</a>|<a href="fb-login.php" title="Connect with Facebook" style="padding:6px; margin-right:-5px;">Facebook Connect</a>
+        <?php
+							}
+							?>
+      </div>
+    </div>
+    <?php if (empty($FB_pic)){?>
+    <div id="avatar"><img src="<?=$SETTINGS['siteurl']?>themes/default/img/avatar.png" width="60" height="60" /></div>
+    <? } else { ?>
+    <div id="avatar" class="qlabs_tooltip_bottom qlabs_tooltip_style_1"><span>Looking good!</span> <img src="//graph.facebook.com/<?php echo $_SESSION['oauth_uid']; ?>/picture?width=65&height=65"> </div>
+    <?php } ?>
+  	</div>
+  </div>
+</div>
+
+<?php if($_SESSION["HAPPYBID_LOGGED_IN"]) { ?>
+<div id="mobileinfo"><? print $TPL_nick; ?>, you have <? echo $TPL_balance; ?> Coins.</div>
+<?php } ?>  
+
+<div id="navi-wrapper">
+	<div id="navigation">
+    <div class="topnav"> <a class="button-nav hidemobile" href="<?=$SETTINGS['siteurl']?>index.php?<?=$TPL_nick?>"><? print $MSG_501; ?></a>
+      <?php
+							if($_SESSION["HAPPYBID_LOGGED_IN"]) {
+							/* user is logged in, give link to edit data or log out */
+							?>
+      <a class="button-nav" href="<?=$SETTINGS['siteurl']?>user_menu.php?<?=$TPL_nick?>">MY ACCOUNT</a>
+      <?php
+							} else {
+							/* user not logged in, give link to register or login */
+							?>
+      <a class="button-nav" href="<?=$SETTINGS['siteurl']?>user_login.php">LOGIN</a> <img src="//happybid.co.uk/images/coinfree.png" class="hidemobile" style="float: left;position: absolute;margin-top: -26px;margin-left: -256px;" /><a class="button-nav hidemobile" href="<?=$SETTINGS['siteurl']?>register.php">REGISTER</a>
+      <?php
+							}
+							?>
+      <a class="button-nav hidemobile"  href="<?=$SETTINGS['siteurl']?>aboutus.php">About</a> <a class="button-nav" href="<?=$SETTINGS['siteurl']?>howitworks.php">HOW IT WORKS</a> <a class="button-nav" href="<?=$SETTINGS['siteurl']?>faqs.php">FAQs</a> <a class="button-nav hidemobile" href="<?=$SETTINGS['siteurl']?>contactus.php?<?=$TPL_nick?>" style="border:none;">CONTACT</a>
+      <?php
+							if($_SESSION["HAPPYBID_LOGGED_IN"]) {
+							/* user is logged in, give link to edit data or log out */
+							?>
+      <a class="button-nav" href="<?=$SETTINGS['siteurl']?>logout.php">LOGOUT</a>
+      <?php
+							} else {
+							?>
+      <?php
+							}
+							?>
+    </div>
+  </div>
+</div>
+</div>
+<?php } ?>
+<a href="user_menu.php"><div class="alertboxad" style="text-align:center;">SPECIAL OFFER! Buy a 25 coin pack, use them within 24 hours and get another 25 coins FREE!</div></a>
+<?php if ($_SESSION["HAPPYBID_LOGGED_IN"] && empty($TPL_balance)){?>
+  <!--alert if no coins--->
+  <div class="alertboxcoins"> <img src="//happybid.co.uk/themes/default/img/alert_32.png" style="vertical-align: middle; margin-top: -4px; width: 28px;">You have run out of coins! <a href="user_menu.php" target="_self"><span style="text-decoration:underline;">Get Some More &gt;&gt;</span></a></div>
+  <? } else { ?>
+  <?php } ?>

@@ -1,0 +1,62 @@
+<div class="content">
+    <div class="tableContent2">
+        <div class="titTable2">
+            <? print $MSG_220 ?><a href="profile.php?user_id=<? print $_GET["user_id"]; ?>"><? print $TPL_user_nick; ?></a>
+        </div>
+        <div class="table2">
+            <table width="100%" border=0 cellpadding=4 cellspacing=1>
+                <tr align=CENTER>
+                    <th width="10%"><? print $MSG_167; ?></th>
+                    <th width="45%"><? print $MSG_168; ?></th>
+                    <th width="15%"><? print $MSG_169; ?></th>
+                    <th width="15%"><? print $MSG_170; ?></th>
+                    <th width="15%"><? print $MSG_171; ?></th>
+                </tr>
+                <? print stripslashes($TPL_auctions_list_value); ?>
+            </table>
+			<table width=100% cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td align=CENTER>
+						<?=$MSG_5117?>&nbsp;&nbsp;<?=$PAGE?>
+						<?=$MSG_5118?>&nbsp;&nbsp;<?=$PAGES?>
+						<br>
+						<?
+						$PREV = intval($PAGE - 1);
+						$NEXT = intval($PAGE  + 1);
+						if($PAGES > 1) {
+							if($PAGE > 1) {
+							?>
+						<a href="<?=basename($_SERVER[PHP_SELF])?>?PAGE=<?=$PREV?>&user_id=<?=$_GET["user_id"]?>"><u>
+						<?=$MSG_5119?>
+						</u></a> &nbsp;&nbsp;
+						<?
+							}
+							$LOW = $PAGE - 5;
+							if($LOW <= 0) $LOW = 1;
+							$COUNTER = $LOW;
+							while($COUNTER <= $PAGES && $COUNTER < ($PAGE+6)) {
+								if($PAGE == $COUNTER) {
+									print "<B>$COUNTER</B>&nbsp;&nbsp;";
+								} else {
+									print "<A HREF=\"".basename($_SERVER[PHP_SELF])."?PAGE=$COUNTER&user_id=".$_GET["user_id"]."\"><U>$COUNTER</U></A>&nbsp;&nbsp;";
+								}
+								$COUNTER++;
+							}
+						?>
+						&nbsp;&nbsp;
+						<?
+						if($PAGE < $PAGES) {
+								?>
+						<a href="<?=basename($_SERVER[PHP_SELF])?>?PAGE=<?=$NEXT?>&user_id=<?=$_GET["user_id"]?>"><u>
+						<?=$MSG_5120?>
+						</u></a>
+						<?
+						}
+						}
+						?>
+					</td>
+				</tr>
+			</table>
+        </div>
+    </div>
+</div>

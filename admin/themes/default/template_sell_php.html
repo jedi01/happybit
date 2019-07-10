@@ -1,0 +1,533 @@
+<?
+?>
+
+<style type="text/css">
+
+<!--
+.errfont {font-family:Verdana, Arial, Helvetica;font-
+
+size:small;color:#FF9900;font-weight: bold;}
+.smlfont {font-family:Verdana, Arial, Helvetica;font-size:xx-
+
+small;color:#000000;}
+.stdfont {font-family:Verdana, Arial, Helvetica;font-size:x-
+
+small;color:#000000}
+body { background:url(themes/default/back3.jpg);background-repeat:;font-
+
+family:Verdana, Arial, Helvetica;font-size:x-small;color:#000000}
+#container{ width:99%;background-color:#ffffff}
+.tltfont {font-family:Tahoma, Verdana, Arial;font-
+
+size:medium;color:#3300CC;font-weight: bold;}
+.titTable2 {font-family:Tahoma, Verdana, Arial;font-
+
+size:medium;color:#3300CC;font-weight: bold;;border-color:#3300CC }
+.navfont {font-family:Verdana, Arial, Helvetica;font-
+
+size:small;color:#3366CC;font-weight: bold;}
+th {background-color : #6666FF;}
+#barSec {background-color : #6666FF;}
+.titTable1 {background-color : #6666FF;}
+a:link,a:visited {
+	color : #3399CC;
+}
+-->
+</style><link rel='stylesheet' type='text/css' href='themes/default/style.css'/>
+
+
+<script language=Javascript>
+function window_open(pagina,titulo,ancho,largo,x,y){
+    var Ventana= 'toolbar=0,location=0,directories=0,scrollbars=1,screenX='+x+',screenY='+y+',status=0,menubar=0,resizable=0,width='+ancho+',height='+largo;
+    open(pagina,titulo,Ventana);
+
+}
+
+function SubmitSellForm(){
+    document.sell.submit();
+}
+function ResetSellForm(){
+    document.sell.reset();
+}
+function SubmitPrevForm(){
+    document.preview.submit();
+}
+function ResetPrevForm(){
+    document.preview.reset();
+}
+
+function onSubmitCheck(){
+    if(document.getElementById('minimum_users')){
+        if(document.getElementById('minimum_users').value == ""){
+            alert("The minimal amount of users can not be empty!");
+            return false;
+        }else if(!isPositiveInteger(document.getElementById('minimum_users').value)){
+            alert("The minimal amount of users must be a positive integer!");
+            return false;            
+        }                
+    }
+    return true;
+}
+
+ function isPositiveInteger(s)
+   {   var secondArg = false;
+
+       if (isPositiveInteger.arguments.length > 1)
+          secondArg = isPositiveInteger.arguments[1];
+
+       // The next line is a bit byzantine.  What it means is:
+       // a) s must be a signed integer, AND
+       // b) one of the following must be true:
+       //    i)  s is empty and we are supposed to return true for
+       //        empty strings
+       //    ii) this is a positive, not negative, number
+
+       return (isSignedInteger(s, secondArg) && ((isEmpty(s) && secondArg)  || (parseInt (s) > 0) ) );
+   }
+
+function isSignedInteger (s)
+
+   {   if (isEmpty(s))
+      if (isSignedInteger.arguments.length == 1) return false;
+      else return (isSignedInteger.arguments[1] == true);
+
+      else {
+         var startPos = 0;
+         var secondArg = false;
+
+         if (isSignedInteger.arguments.length > 1)
+            secondArg = isSignedInteger.arguments[1];
+
+         // skip leading + or -
+         if ( (s.charAt(0) == "-") || (s.charAt(0) == "+") )
+            startPos = 1;
+         return (isInteger(s.substring(startPos, s.length), secondArg))
+      }
+   }
+
+
+function validateInt()
+   {
+      var o = document.frmInput.txtInput;
+      switch (isInteger(o.value))
+      {
+         case true:
+            alert(o.value + " is an integer")
+            break;
+         case false:
+            alert(o.value + " is not an integer")
+      }
+   }
+
+   function validateRange()
+   {
+      var s = document.frmInput.txtInput.value;
+      var A = document.frmInput.txtA.value;
+      var B = document.frmInput.txtB.value;
+
+      switch (isIntegerInRange(s, A, B))
+      {
+         case true:
+            alert(s + " is in range from " + A + " to " + B)
+            break;
+         case false:
+            alert(s + " is not in range from " + A + " to " + B)
+      }
+   }
+
+// isIntegerInRange (STRING s, INTEGER a, INTEGER b)
+   function isIntegerInRange (s, a, b)
+   {   if (isEmpty(s))
+         if (isIntegerInRange.arguments.length == 1) return false;
+         else return (isIntegerInRange.arguments[1] == true);
+
+      // Catch non-integer strings to avoid creating a NaN below,
+      // which isn't available on JavaScript 1.0 for Windows.
+      if (!isInteger(s, false)) return false;
+
+      // Now, explicitly change the type to integer via parseInt
+      // so that the comparison code below will work both on
+      // JavaScript 1.2 (which typechecks in equality comparisons)
+      // and JavaScript 1.1 and before (which doesn't).
+      var num = parseInt (s);
+      return ((num >= a) && (num <= b));
+   }
+
+   function isInteger (s)
+   {
+      var i;
+
+      if (isEmpty(s))
+      if (isInteger.arguments.length == 1) return 0;
+      else return (isInteger.arguments[1] == true);
+
+      for (i = 0; i < s.length; i++)
+      {
+         var c = s.charAt(i);
+
+         if (!isDigit(c)) return false;
+      }
+
+      return true;
+   }
+
+   function isEmpty(s)
+   {
+      return ((s == null) || (s.length == 0))
+   }
+
+   function isDigit (c)
+   {
+      return ((c >= "0") && (c <= "9"))
+   }
+
+
+</script>
+<script language="Javascript" type="text/javascript" src="includes/calendar.js"></script>
+<!--<script type="text/javascript" src="../fck/fckeditor.js"></script>
+-->
+
+<div class="content">
+    <div class="tableContent2">
+        <div class="titTable2">
+            Create a new auction
+            <?
+            if( $feesfree=='y') {
+                print "<P class=errfont>".$SETTINGS['freecatstext']."</P>";
+            }
+        ?>
+        </div>
+        <div class="table2">
+            <form name="sell" action="sell.php" method="post" enctype="multipart/form-data">
+                <input type=HIDDEN name="action" value="first" />
+				<input type="hidden" size = 10 name="minimum_bid" value="0.01" />
+                <table width="100%" border="0" cellpadding="4" cellspacing="0">
+                    <?//if (!empty($TPL_error_value)) {?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan">&nbsp;</td>
+                        <td class=errfont>
+                            <?="$TPL_error_value"?>
+                        </td>
+                    </tr>
+                    <?//}?>
+
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_017;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=text name=title size=40 maxlength=255 value="<?=stripslashes($titleH); ?>" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_018;?>
+                            </b> </td>
+                        <td class="rightpan">
+                        <?
+                        //$oFCKeditor = new FCKeditor('description') ;
+                        //$oFCKeditor->BasePath = '../fck/';
+                        //$oFCKeditor->Value = stripslashes($description);
+                        //$oFCKeditor->Width  = '90%' ;
+                        //$oFCKeditor->Height = '400' ;
+                        //$oFCKeditor->Create() ;
+                        
+                        ?>
+						<script type="text/javascript" src="scripts/wysiwyg.js" ></script>
+                        <textarea id="description" name="description"  style="width:90%; height: 100px;"></textarea>
+						<script>generate_wysiwyg('description');</script>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right" width="25%" valign="middle" class="leftpan"><b>Worth</b></td>
+                        <td class="rightpan"><input name='item_value' value='<? print $TPL_item_value; ?>'> <?=$SETTINGS['currency']?></td>
+                    </tr>
+
+                    <?
+                    if ($TPL_auction_variant!="") {
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="middle" class="leftpan"><b>
+                            <?=$MSG_25_0071;?>
+                            </b> </td>
+                        <td class="rightpan"><? print $TPL_auction_variant; ?> </td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+
+                    <?
+                    if(!empty($TPL_pict_URL_value)) {
+                      ?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_019; ?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=HIDDEN name=upd_pict_url value="<?=$sessionVars["SELL_pict_url"]; ?>" />
+                            <?=$TPL_pict_URL_value; ?>
+                        </td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_019;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=RADIO name="imgtype" value="0" <?=$TPL_imgtype1_SELECTED; ?> />
+                            <input type=text size=40 name=pict_url value="<?=$pict_urlH; ?>" onFocus="document.sell.imgtype[0].checked='true';"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_256; ?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <input type=RADIO name="imgtype" value="1" <?=$TPL_imgtype2_SELECTED; ?> />
+                            <input type=file size=20 name=userfile onFocus="document.sell.imgtype[1].checked='true';"/>
+&nbsp;
+                            <?=$MSG_5408.$SETTINGS['maxuploadsize']." bytes";?>
+                            <input type=HIDDEN name="MAX_FILE_SIZE" value="<? print $SETTINGS['maxuploadsize']; ?>" />
+                        </td>
+                    </tr>
+
+                    <?
+                    if($SETTINGS['picturesgallery'] == 1)
+                    {
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="middle" class="leftpan">&nbsp;</td>
+                        <td valign="top" class="rightpan">
+                            <h3><?
+                            print $MSG_663."</h3>";
+                            print $MSG_673."&nbsp;".$SETTINGS['maxpictures']."&nbsp;".$MSG_674;
+                            if($SETTINGS['picturesgalleryfee'] == 1 )
+                            {
+                                print $MSG_675."&nbsp;".print_money($SETTINGS['picturesgalleryvalue'])."&nbsp;".$MSG_676;
+                            }
+                            ?>
+                            <br />
+                            <br />
+							
+							<br />
+                            [<a href="javascript:window_open('upldgallery.php','gallery',400,500,20,20)">
+                            <?=$MSG_677?>
+                            </a>] </td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+
+                    <tr><th colspan="2" align="center" valign="middle"></th></tr>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MGS_2__0016;?>
+                            </b> </td>
+                        <td class="rightpan">
+                          <?
+                            if(!$sessionVars['editstartdate'] && $sessionVars['SELL_action']=='edit'){
+                                print $std_font.$TPL_start_date;
+                                print "<input type=\"hidden\" name=\"a_starts\" value=\"$TPL_start_date\" />";
+                            }else{
+                          ?>
+                            <input type="text" name="a_starts" id="pubdate_input" value="<?=$TPL_start_date?>" size="20" maxlength="19" />
+                            <a href="javascript:pubdate_cal.popup()"><img src="../includes/img/calendar.gif" width="16" height="16" border="0" alt="Click Here to Pick up the date" /></a>
+                            <script language="JavaScript">
+                            var pubdate_cal = new xar_base_calendar(document.getElementById("pubdate_input"), "."); pubdate_cal.year_scroll = true; pubdate_cal.time_comp = true;
+                            </script>
+                        <?
+                            }
+                        ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>Auction ends after</b> </td>
+                        <td class="rightpan"><input type='hidden' name="atype" value="1"><input type='text' name='number_of_bids' value="100"> bids have been placed</td>
+                    </tr>
+
+                    <!-- first type of auction -->
+                    <tr id="tr_3">
+                        <td align="right" width="25%" valign="middle" class="leftpan"><b>Bids to play</b></td>
+                        <td class="rightpan"><input name='bid_value' value='<? print ($TPL_bid_value != "") ? $TPL_bid_value : "1"; ?>'> bid(s)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right" width="25%" valign="middle" class="leftpan"><b>Timed Auction (y/n)</b></td>
+                        <td class="rightpan"><input name='item_timed' value='<? print $TPL_item_timed; ?>'></td>
+                    </tr>
+                    <tr>
+                        <td align="right" width="25%" valign="middle" class="leftpan"><b>Value Stepper (y/n)</b></td>
+                        <td class="rightpan"><input name='item_steps' value='<? print $TPL_item_steps; ?>'></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right" width="25%" valign="middle" class="leftpan"><b>Seconds Ends (20170506124504)</b></td>
+                        <td class="rightpan"><input name='item_ends' value='<? print $TPL_item_ends; ?>'></td>
+                    </tr>
+
+                    <!-- second phase for revolution auctions (2nd and 3rd types) -->
+                    
+
+                    <!-- second phase for revolution auctions (2nd and 3rd types) -->
+                    <tr style="display: none;" id="tr_2">
+                        <td align="right" width="25%" valign="top" class="leftpan"><b><?=$MSG_31_0037;?></b> </td>
+                        <td class="rightpan">
+                            <input type="text" name="minimum_users" id="minimum_users"  value="<?=(($minimum_users == "") ? "1" : $minimum_users);?>">
+                        </td>
+                    </tr>
+                            
+                    <?
+                    #// Modified for XL 2.0 to enable autorelist only if invoicing is enabled
+                    if($SETTINGS['relisting'] != 0 && $SETTINGS['invoicing'] == 'y') {
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG__0148;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <?=$MSG__0162;?>
+                            <b>
+                            <?=$SETTINGS['relisting']?>
+                            </b> <br />
+                            <input type="text" name="relist" size="4" value="<?=$relist?>" />
+                        </td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+
+                    
+
+                    <!--<tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_024;?>
+                            </b>
+                        </td>
+                        <td class="rightpan">
+                            <input type="text" size="8" name="location_zip" value="<?=$location_zip; ?>">
+                        </td>
+                    </tr>-->
+                    
+                    
+
+
+                    <!--
+                    <tr>
+                        <td align="right" width="25%" valign="middle" class="leftpan"><b>
+                            <?//=$MSG_258;?>
+                            </b> </td>
+                        <td class="rightpan">
+                            
+                        </td>
+                    </tr>
+                    -->
+
+
+					<!--
+                    ################################################################
+                    Invited and black lists selection
+                    ################################################################
+                    -->
+                    <?
+                    if((is_array($INVITEDLISTS) && @count($INVITEDLISTS)>0)|| (is_array($BLACKLISTS) && @count($BLACKLISTS)>0)) {
+                    ?>
+                    <tr>
+                        <th colspan=2 align="right" valign="top" class="leftpan">
+                            <?=$MSG_5191?>
+                        </th>
+                    </tr>
+                    <?
+                    if(is_array($INVITEDLISTS) && @count($INVITEDLISTS)>0) {
+                        reset($INVITEDLISTS);
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_5171?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <select name="invitedlists[]" size="5" multiple>
+                                <?
+                                while(list($k,$v) = each($INVITEDLISTS)) {
+                                    print "
+				    <option value='$k' ";
+                                    if(@in_array($k,$sessionVars['SELL_invitedlists'])) {
+                                        print " selected=true";
+                                    }
+                                    print ">$v</option>\n";
+                                }
+                                ?>
+                            </select>
+                            <br>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                                <tr>
+                                    <td width="1" valign="top">
+                                        <input type="checkbox" name="private" value="y" <?if($sessionVars['SELL_private'] == 'y') print " CHECKED"?> />
+                                    </td>
+                                    <td>
+                                        <?=$MSG_5192?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="1" valign="top">
+                                        <input type="checkbox" name="sendemail" value="y" <?if($sessionVars['SELL_sendemail'] == 'y') print " CHECKED"?> />
+                                    </td>
+                                    <td>
+                                        <?=$MSG_5193?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <?
+                    }
+                    if(is_array($BLACKLISTS) && @count($BLACKLISTS)>0) {
+                        reset($BLACKLISTS);
+                    ?>
+                    <tr>
+                        <td align="right" width="25%" valign="top" class="leftpan"><b>
+                            <?=$MSG_5172?>
+                            </b> </td>
+                        <td class="rightpan">
+                            <?list($k,$v) = each($BLACKLISTS)?>
+                            <input type=checkbox name="blacklists[]" value=<?=$k?> /\>
+                            <?=$MSG_25_0120?>
+                        </td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+                    <?
+                    }
+                    ?>
+                </table>
+               <input type='hidden' name="iquantity" size="5" value="1" />
+                <div style="text-align:center">
+                    <input type=submit name="" value="<?=$MSG_5189?>" onclick="updateTextArea('description');return onSubmitCheck()" class=button />&nbsp;&nbsp;&nbsp;<input type=reset name="" value="<?=$MSG_5190?>" class=button \>
+                </div>
+				
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+
+function auction_change(el){
+    if((el.value == 2) || (el.value == 3)){
+        document.getElementById("tr_1").style.display = "";
+        document.getElementById("tr_2").style.display = "";
+        document.getElementById("tr_3").style.display = "none";
+    }else{
+        document.getElementById("tr_1").style.display = "none";
+        document.getElementById("tr_2").style.display = "none";
+        document.getElementById("tr_3").style.display = "";
+    };
+}
+
+auction_change(document.getElementById("atype_id"));
+</script>

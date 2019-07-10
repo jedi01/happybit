@@ -1,0 +1,89 @@
+<?
+$TMP_usmenutitle=$MSG_5171;
+include phpa_include("template_user_menu_header.html");
+?>
+<table width="100%" cellspacing="0" cellpadding="4" border="0" >
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                <tr>
+                    <td></td>
+                    <td align=RIGHT><a href=inviteduserslists.php>
+                        <?=$MSG_234?>
+                        </a> </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align=CENTER><b>
+                        <?=$MSG_5187.$listname?>
+                        </b></td>
+                </tr>
+            </table>
+            <form name=newuserform action="<?=basename($_SERVER[PHP_SELF])?>?list=<?=$list?>&listname=<?=$listname?>" method=post>
+                <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                    <tr>
+                        <td width="17%">
+                            <?=$MSG_5178?>
+                        </td>
+                        <td width="83%">
+                            <input type="text" name="newuser" />
+                            <input type="hidden" name="action" value="add" />
+                            <input type="submit" name="Submit" value="<?=$MSG_5181?>" class=button />
+&nbsp;&nbsp; <a href="Javascript:window_open('users_search.php','bulkschema',500,300,20,20)">
+                            <?=$MSG_5179?>
+                            </a> </td>
+                    </tr>
+                </table>
+            </form>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td ><img src="./images/transparent.gif" width="1" height="3"></td>
+                </tr>
+            </table>
+            <form name=deletelists action="<?=basename($_SERVER[PHP_SELF])?>?list=<?=$list?>&listname=<?=$listname?>" method=POST>
+                <table width="100%" border="0" cellspacing="1" cellpadding="4">
+                    <tr>
+                        <th width="34%">
+                            <?=$MSG_5185?>
+                        </th>
+                        <th width="53%">
+                            <?=$MSG_5186?>
+                        </th>
+                        <th width="13%" align=center>
+                            <?=$MSG_008?>
+                        </td>
+                    </tr>
+                    <?
+                    if(is_array($USERS))
+                    {
+                    	while(list($k,$v) = each($USERS))
+                    	{
+							  ?>
+                    <tr>
+                        <td width="34%">
+                            <?=$USERSNICK[$k]?>
+                        </td>
+                        <td width="53%">
+                            <?=$USERSNAME[$k]?>
+                        </td>
+                        <td width="13%" align=center>
+                            <input type="checkbox" name="deleteusers[<?=$k?>]" value="<?=$k?>" />
+                        </td>
+                    </tr>
+                    <?
+                    	}
+                    }
+							 ?>
+                    <tr>
+                        <td colspan=3 align=center>
+                            <input type=SUBMIT name=SUBMIT value="<?=$MSG_5188?>" class=button />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <p>
+        </td>
+    </tr>
+</table>
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

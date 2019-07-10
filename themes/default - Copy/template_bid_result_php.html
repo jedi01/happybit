@@ -1,0 +1,17 @@
+<?
+
+
+?>
+<div class="content">
+<div style="margin-bottom: 4px; margin-top: 30px">
+<div class="headerBar" style="margin-bottom:4px;"><?=$MSG_271?></div>
+<div id="pinkalert"><?=$MSG_WINNER?></div>
+</div>
+<?=get_HOW_MANY($TPL_id_value);?>
+<div>
+<a href="<? print $SETTINGS['siteurl']."item.php?id=$TPL_id_value"; ?>&history=view#history" class="buttonbid">
+<? print $MSG_138; ?></a>
+</div>	</div>
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

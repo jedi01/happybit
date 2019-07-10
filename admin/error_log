@@ -1,0 +1,68 @@
+[24-Aug-2017 13:46:19 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/upldgallery.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[15-Sep-2017 11:22:02 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/editauction.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[18-Sep-2017 10:23:58 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/editauction.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[15-Oct-2017 04:18:03 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/editauction.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[15-Oct-2017 04:18:06 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/editauction.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[15-Oct-2017 04:18:11 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/editauction.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[15-Oct-2017 04:19:09 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/editauction.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[15-Oct-2017 04:24:42 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/editauction.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[15-Oct-2017 04:25:11 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/upldgallery.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[15-Oct-2017 04:25:15 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/upldgallery.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[15-Oct-2017 04:32:24 Europe/London] PHP Notice:  Undefined variable: MSG_5432 in /home/happybidco/public_html/admin/settings.menu.php on line 4
+[15-Oct-2017 04:32:24 Europe/London] PHP Notice:  Undefined variable: MSG_526 in /home/happybidco/public_html/admin/settings.menu.php on line 6
+[15-Oct-2017 04:32:24 Europe/London] PHP Notice:  Undefined variable: MSG_348 in /home/happybidco/public_html/admin/settings.menu.php on line 8
+[15-Oct-2017 04:32:24 Europe/London] PHP Notice:  Undefined variable: MSG_663 in /home/happybidco/public_html/admin/settings.menu.php on line 10
+[15-Oct-2017 04:32:24 Europe/London] PHP Notice:  Undefined variable: MSG_398 in /home/happybidco/public_html/admin/settings.menu.php on line 12
+[15-Oct-2017 04:32:24 Europe/London] PHP Notice:  Undefined variable: MSG_409 in /home/happybidco/public_html/admin/settings.menu.php on line 14
+[15-Oct-2017 04:32:24 Europe/London] PHP Notice:  Undefined variable: MSG_1050 in /home/happybidco/public_html/admin/settings.menu.php on line 16
+[15-Oct-2017 04:32:24 Europe/London] PHP Notice:  Undefined variable: MSG__0156 in /home/happybidco/public_html/admin/settings.menu.php on line 18
+[15-Oct-2017 04:32:24 Europe/London] PHP Notice:  Undefined variable: MSG__0100 in /home/happybidco/public_html/admin/settings.menu.php on line 20
+[15-Oct-2017 04:32:24 Europe/London] PHP Notice:  Undefined variable: MSG__0106 in /home/happybidco/public_html/admin/settings.menu.php on line 22
+[15-Oct-2017 04:32:24 Europe/London] PHP Notice:  Undefined variable: MSG__0107 in /home/happybidco/public_html/admin/settings.menu.php on line 24
+[15-Oct-2017 04:35:56 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/editauction.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[15-Oct-2017 04:36:35 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/editauction.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[15-Oct-2017 04:46:21 Europe/London] PHP Notice:  Undefined variable: MSG_25_0025 in /home/happybidco/public_html/admin/home.stats.php on line 7
+[15-Oct-2017 04:46:21 Europe/London] PHP Notice:  Undefined variable: MSG_25_0031 in /home/happybidco/public_html/admin/home.stats.php on line 16
+[15-Oct-2017 04:46:21 Europe/London] PHP Notice:  Undefined variable: MSG_25_0055 in /home/happybidco/public_html/admin/home.stats.php on line 20
+[15-Oct-2017 04:46:21 Europe/London] PHP Notice:  Undefined variable: MSG_25_0056 in /home/happybidco/public_html/admin/home.stats.php on line 28
+[15-Oct-2017 04:46:21 Europe/London] PHP Notice:  Undefined variable: MSG_25_0057 in /home/happybidco/public_html/admin/home.stats.php on line 36
+[15-Oct-2017 04:46:21 Europe/London] PHP Notice:  Undefined variable: MSG_25_0058 in /home/happybidco/public_html/admin/home.stats.php on line 44
+[15-Oct-2017 04:46:21 Europe/London] PHP Notice:  Undefined variable: MSG_25_0059 in /home/happybidco/public_html/admin/home.stats.php on line 52
+[15-Oct-2017 04:46:21 Europe/London] PHP Notice:  Undefined variable: MSG_25_0060 in /home/happybidco/public_html/admin/home.stats.php on line 60
+[15-Oct-2017 04:46:21 Europe/London] PHP Fatal error:  Call to undefined function print_money() in /home/happybidco/public_html/admin/home.stats.php on line 64
+[31-Oct-2017 18:58:05 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/deleteuser.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[31-Oct-2017 18:58:25 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/deleteuser.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[29-Dec-2017 10:54:41 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/editauction.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[29-Dec-2017 10:54:52 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/editauction.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[29-Dec-2017 10:56:53 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/upldgallery.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[29-Dec-2017 10:57:12 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/upldgallery.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[29-Dec-2017 10:57:16 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/upldgallery.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[29-Dec-2017 10:57:27 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/upldgallery.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[26-Jan-2018 15:58:28 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/deleteuser.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[04-Feb-2018 22:24:01 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/deleteuser.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[18-Mar-2018 10:43:02 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/editauction.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0
+[13-Apr-2018 14:31:30 Europe/London] PHP Fatal error:  The file /home/happybidco/public_html/admin/deleteuser.php was encoded by the ionCube Encoder for PHP 4 and cannot run under PHP 5.5 or PHP 5.6.
+ Please ask the provider of the script to provide a version encoded with the ionCube Encoder for either PHP 5.3 or PHP 5.4 or PHP 5.5 or PHP 5.6. in Unknown on line 0

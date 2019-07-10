@@ -1,0 +1,133 @@
+<?
+?>
+
+<div class="content">
+<div class="tableContent2">
+    <div class="titTable2">
+        <?=$MSG_464?>
+    </div>
+    <?
+    if(!empty($ERR)) {
+	?>
+    <div class=errfont>
+        <?=$ERR?>
+    </div>
+    <?
+    }
+	?>
+    <div class="table2">
+        <form name="adsearch" >
+            <table width="100%" border="0" align="center" cellpadding=4 cellspacing="0">
+                <tr>
+                    <td width="40%" align="right"><? print $MSG_1000 ?></td>
+                    <td width="60%">
+                        <input type=text SIZE="45" name=title />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"> <? print $MSG_1001 ?></td>
+                    <td>
+                        <input name="desc" type="checkbox" value="y" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"><? print $MSG_25_0214 ?></td>
+                    <td>
+                        <input name="closed" type="checkbox" id="closed" value="y" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"><? print $MSG_1002 ?></td>
+                    <td><? print $TPL_categories_list ?></td>
+                </tr>
+                <?
+                if ($TPL_auction_variant!="") {
+				?>
+                <tr>
+                    <td align="right" ><?print $MSG_25_0071;?></td>
+                    <td><? print $TPL_auction_variant; ?></td>
+                </tr>
+                <?
+                }
+				?>
+                <tr>
+                    <td align="right"><? print $MSG_1003 ?></td>
+                    <td><? print $MSG_1004 ?>
+                        <input maxlength="12" name="minprice" size="5" />
+                        <?=$SETTINGS['currency']?>&nbsp;&nbsp;<? print $MSG_1005 ?>
+                        <input maxlength="12" name="maxprice" size="5" />
+                        <?=$SETTINGS['currency']?>
+                    </td>
+                </tr>
+                <tr valign=top>
+                    <td align="right"><? print $MGS_2__0025 ?></td>
+                    <td>
+						<INPUT TYPE="checkbox" NAME="buyitnow" VALUE="y"><?=$MSG_30_0100?>
+						<INPUT TYPE="checkbox" NAME="buyitnowonly" VALUE="y"><?=$MSG_30_0101?>
+					</td>
+                </tr>
+                <tr valign=top>
+                    <td align="right"><? print $MSG_1006 ?></td>
+                    <td><? print $TPL_payments_list ?></td>
+                </tr>
+                <tr>
+                    <td align="right"><? print $MSG_1007 ?></td>
+                    <td>
+                        <input type=text name="seller">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"><? print $MSG_1008 ?></td>
+                    <td><? print $TPL_countries_list ?></td>
+                </tr>
+                <tr>
+                    <td align="right"><? print $MSG_012 ?></td>
+                    <td><INPUT TYPE=text NAME=zipcode VALUE="<?=$TPL_zipcode?>" SIZE=12 /></td>
+                </tr>
+                <tr>
+                    <td align="right"><? print $MSG_1009 ?></td>
+                    <td>
+                        <select name="ending" size="1">
+                            <option></option>
+                            <option value="1"><? print $MSG_1010 ?></option>
+                            <option value="2"><? print $MSG_1011 ?></option>
+                            <option value="4"><? print $MSG_1012 ?></option>
+                            <option value="6"><? print $MSG_1013 ?></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"><? print $MSG_1014 ?></td>
+                    <td>
+                        <select name="SortProperty" size="1">
+                            <option></option>
+                            <option value="ends"><? print $MSG_1015 ?></option>
+                            <option value="starts"><? print $MSG_1016 ?></option>
+                            <option value="min_bid"><? print $MSG_1017 ?></option>
+                            <option value="max_bid"><? print $MSG_1018 ?></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"><? print $MSG_1019 ?></td>
+                    <td>
+                        <select name="type" size="1">
+                            <option></option>
+                            <option value="2"><? print $MSG_1020 ?></option>
+                            <option value="1"><? print $MSG_1021 ?></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align=CENTER colspan=2>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan=2 align=center>
+                        <input name="action" type=hidden value="search" />
+                        <input type=submit name="go" value="<?=$MSG_5029?>" class=button />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

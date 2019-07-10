@@ -1,0 +1,46 @@
+<? include "header.php"; ?> 
+	
+<div class="container">
+	<div id="logo">
+		<?
+		if($SETTINGS['logo']) {
+			if ($HTTPS == '1' || $HTTPS == 'on') {
+				$SITEURL = $Https['httpsurl'];
+			} else {
+				$SITEURL = $SETTINGS['siteurl'];
+			}
+		?>
+		<?
+		} else {
+			print "&nbsp;";
+		}
+	?>
+	</div>
+    <div class="content">
+        <div class="tableContent3">
+            <div class="titTable2">
+                FAQs
+            </div>
+            
+      <div class="table2"> 
+        <div style="text-align:right">
+                </div>
+                <ul>
+                    <?
+                    while($cat = mysql_fetch_array($res_c)) {
+  					?>
+                    <li><a href="viewfaqs.php?cat=<?=$cat[id]?>">
+                        <?=$cat[category];?>
+                        </a></li>
+                    <?
+                    }
+  					?>
+                </ul>
+				
+				
+            </div>
+        </div>
+    </div>
+</div>
+
+<? include "footer.php"; ?> 

@@ -1,0 +1,32 @@
+<div class="content">
+        <div class="pagetitlein"><? print $MSG_215 ?></div>
+        <? if ($TPL_errmsg!='') { ?>
+        <div style='margin-left:10px;margin-right:10px;' class=errfont>
+        <?  echo $TPL_errmsg;?>
+        </div>
+        <? } ?>
+        <FORM NAME="user_login" ACTION="<? print basename($_SERVER[PHP_SELF]); ?>" METHOD=POST>
+          <TABLE WIDTH="90%" CELLSPACING="0" CELLPADDING="4" BORDER="0">
+            <TR>
+              <TD colspan="2"><? print $MGS_2__0039; ?> </TD>
+            </TR>
+            <TR>
+              <TD width="40%" align=right><B><? print $MGS_2__0040; ?></B>&nbsp;</TD>
+              <TD width="60%"><INPUT TYPE="text" NAME="TPL_username" SIZE="25" VALUE="<?=$TPL_username?>">
+              </TD>
+            </TR>
+            <TR>
+              <TD>&nbsp;</TD>
+              <TD><BR>
+                <INPUT TYPE=submit NAME="" VALUE="<?=$MSG_5431?>" class=button />
+              </TD>
+            </TR>
+          </TABLE>
+          <INPUT type="hidden" NAME="action" VALUE="ok">
+          
+        </FORM>
+      </CENTER>
+      </div>
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

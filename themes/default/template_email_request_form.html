@@ -1,0 +1,67 @@
+<div class="content">
+    <div class="tableContent2">
+        <div class="titTable2">
+            <? print $MSG_334." $username"; ?>
+        </div>
+        <?if(!empty($TPL_error_text)) {?>
+        <div class=errfont>
+            <?=$TPL_error_text ?>
+        </div>
+        <?}?>
+        <div class="titTable3">
+			<a href="profile.php?user_id=<? print $user_id; ?>"><?print $MSG_206;?></a> | 
+			<a href="item.php?id=<? print $auction_id; ?>"><?print $MSG_138;?></a>
+        </div>
+        <div class="table2">
+            <form name="seller" action="email_request.php" method="POST">
+                <table width=90% cellpadding="4" cellspacing="0">
+                    <tr>
+                        <td><? print $MSG_149; ?>
+                        </td>
+                    </tr>
+                </table>
+                <table width="90%" align="center" cellpadding="4" cellspacing="0">
+                    <tr>
+                        <td align=right valign=top width="40%">
+                                <? print $MSG_002; ?>
+                        </td>
+                        <td width="60%">
+                            <input type="TEXT" name="TPL_sender_name" size="25" value="<? print $TPL_sender_name; ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align=right valign=top width="40%">
+                                <? print $MSG_006; ?>
+                        </td>
+                        <td width="60%">
+                            <input type="TEXT" name="TPL_sender_mail" size="25" value="<? print $TPL_sender_mail; ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align=right valign=top width="40%">
+                                <? print $MSG_332; ?>
+                        </td>
+                        <td width="60%">
+                            <input type="TEXT" name="TPL_subject" size="25" value="<? print $TPL_subject; ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align=right valign=top width="40%">
+                                <? print $MSG_333; ?>
+                        </td>
+                        <td valign=top width="60%">
+                            <textarea name="TPL_text" cols="30" rows="8"><? print $TPL_text; ?></textarea>
+                            <br>
+                            <br>
+                            <input type="hidden" name="user_id" value="<? print $user_id; ?>" />
+                            <input type="hidden" name="username" value="<? print $username; ?>" />
+                            <input type="hidden" name="action" value="proceed" />
+                            <input type="submit" name="Submit" value="Submit" class=button />
+                            <input type="reset" name="Submit2" value="Reset" class=button />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

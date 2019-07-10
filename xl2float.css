@@ -1,0 +1,68 @@
+* html dl.phpa-bar dd a	{ display: inline; }
+* html dl.phpa-bar dd.active	{ margin: -3px 0 0 0; border-width: 0; line-height: 1.9em; }
+html * dl.phpa-tabs	{ display: table; float: none; }
+* html dl.phpa-tabs dd a	{ display: inline; }
+* html dl.phpa-tabs dd.active	{ margin: -3px 0 0 0; border: 0 none; line-height: 1.9em; }
+body	{ background: #FFFFFF; font-weight: normal; font-size: x-small; font-family: Verdana, Arial, Helvetica, sans-serif; color: black; margin: 10px; text-align: center; }
+html * dl.phpa-bar	{ display: table; float: none; }
+#banner	{ padding: 5px; margin: 5px; float: left; width: auto; text-align: right; border-color: #666666; border-width: 1px; border-style: solid; }
+#barSec	{ width: inherit; background-color: #5E5EFF; color: #FFFFFF; margin: 5px 0; vertical-align: middle; height: 32px; clear: both; }
+#barSec a	{ color: #FFFFFF; }
+#barSec input	{ color: black; }
+#barcontainer	{ width: 100%; border: 0; clear: both; background-color: transparent; }
+#columL	{ width: 22%; margin: 0.5ex; text-align: left; float: left; }
+#columR	{ width: 18%; text-align: right; float: left; }
+#container	{ position: relative; width: 98%; background: #ffffff; margin: 0 auto; padding: 0; text-align: left; }
+#content	{ clear: both; width: 100%; }
+#counters	{ width: 98%; text-align: right; font-size: xx-small; text-transform: Capitalize; font-variant: small-caps; padding: 5px; margin: 5px 0 0 0; color: navy; }
+a	{ color: #6259FF; text-decoration: none; }
+#featAuctions	{ text-align: justify; clear: both; width: inherit; }
+#footer a	{ color: #444444; text-transform: uppercase; }
+#imgSep	{ background-color: #ffffff; background-image: url(./images/sep_bco.gif); background-repeat: no-repeat; margin: 0px; padding: 0px; height: 29px; width: 3px; }
+#logo	{ width: auto; padding: 5px; background-color: #ffffff; margin: 5px; top: 10px; float: left; }
+#maincolumn	{ width: 56%; text-align: center; margin: 0 8px; float: left; }
+.bar	{ width: inherit; text-align: left; font-size: x-small; vertical-align: middle; background-color: #063749; padding: 0px; margin-top: 5px 0; }
+#navbar	{ text-align: center; }
+#pageHeader	{ width: 100%; background: #ffffff; border: 0; clear: both; }
+*	{ font-weight: inherit; font-size: inherit; font-family: inherit; color: inherit; }
+.barBrowse	{ margin: 5px 0; padding: 0 5px 0 0; width: 48%; text-align: right; float: left; }
+.barSearch	{ margin: 5px 0; padding: 0 0 0 5px; width: 48%; text-align: left; float: left; }
+.featAuction	{ text-align: center; padding: 5px; float: left; width: 150px; }
+.table1	{ clear: both; text-align: left; padding: 10px; border-width: 1px; border-style: solid; border-color: #03212C; }
+.table2	{ width: inherit; padding: 10px; clear: both; }
+.tableContent	{ padding: 1px; width: 99%; border-width: 1px; border-style: solid; border-color: blue; margin: 0 0 15px 0; }
+.tableContent2	{ width: 99%; clear: both; text-align: left; }
+.text	{ font-weight: normal; font-size: x-small; font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000; }
+.textSea	{ font-weight: normal; font-size: xx-small; font-family: Verdana, Arial, Helvetica, sans-serif; color: #ffffff; }
+.titTable1	{ width: inherit; padding: 0.3ex; background-color: #5E5EFF; text-align: left; font-size: x-small; color: white; font-weight: bold; text-transform: uppercase; }
+.titTable2	{ width: inherit; text-align: left; color: #5355df; font-size: medium; font-weight: bold; padding: 3px; text-transform: uppercase; border-width: 0 0 2px 0; border-style: double; border-color: #5355df; }
+.titTable2a	{ width: inherit; text-align: left; padding: 3px; font-size: small; font-weight: bold; color: #5355df; border-width: 0 0 1px 0; border-style: solid; border-color: #5355df; }
+p	{ margin: 0px 0px 5px 0px; }
+dl.phpa-bar	{ margin: 0 0 .5em 0; padding: 3px 0 0 0; width: auto; float: left; line-height: 1.6em; border-style: solid; border-color: navy; font-size: small; font-variant: small-caps; background-color: transparent; border-width: 0 0 1px 0; }
+dl.phpa-bar dd	{ margin: 1px -6px -1px 5px; padding: 0; float: left; border-width: 0 0 0 1px; border-style: solid; border-color: navy; }
+dl.phpa-bar dd a	{ display: table-cell; padding: 0 .5em; color: #5355df; text-decoration: none; white-space: nowrap; font-weight: bold; }
+dl.phpa-bar dd.active > a	{ margin: -3px 1px -1px -1px; border-width: 0 0 3px 0; border-style: solid; border-color: aqua; }
+dl.phpa-bar dd.active a	{ color: aqua; border-width: 1px 1px 1px 1px; border-style: solid; border-color: #990000 #990000 #ffffff #990000; }
+dl.phpa-bar dt.help	{ float: left; padding: 2px 6px; margin: 0 0 0 -2px; line-height: 1.6em; font-weight: bold; }
+dl.phpa-tabs	{ margin: 0 0 .5em 0; padding: 3px 0 0 0; float: left; background-color: transparent; line-height: 1.6em; border-width: 0 0 1px 0; border-style: solid; border-color: #a0a0a0; width: inherit; }
+dl.phpa-tabs dd	{ margin: 1px -6px -1px 5px; padding: 0; float: left; border-width: 0 1px 1px 0; border-style: solid; border-color: #a0a0a0; }
+dl.phpa-tabs dd a	{ display: block; padding: 0 .5em; color: #6259FF; text-decoration: none; white-space: nowrap; }
+dl.phpa-tabs dd.active > a	{ margin: -3px 1px -1px -1px; border-width: 0 0 3px 0; border-style: solid; border-color: #ffffff; }
+dl.phpa-tabs dd.active a	{ color: #990000; background-color: white; border-width: 1px 1px 1px 1px; border-style: solid; border-color: #990000 #990000 #ffffff #990000; }
+dl.phpa-tabs dt.help	{ float: left; padding: 2px 6px; margin: 0 0 0 -2px; line-height: 1.6em; font-weight: bold; }
+h3	{ color: #000000; font-size: x-small; font-weight: bold; text-transform: uppercase; margin: 30px 0 2px; }
+li	{ padding: 0 0 0.8ex 0; }
+td	{ padding: 0.3ex; }
+th	{ color: white; font-size: x-small; background-color: #0000B7; font-weight: bold; text-transform: capitalize; padding: 0.3ex; }
+th a	{ color: white; }
+ul	{ margin: 0px 0px 0px 0px; padding: 10px 10px 10px 20px; list-style: url(./images/bullet2.gif) none; line-height: 1em; list-style-image: url(../images/bullet2.gif); list-style-type: none; }
+.textSea a:link	{ color: #ffffff; }
+.textSea a:visited	{ color: #ffffff; }
+#footer a:hover	{ background-color: #F0F0FF; }
+.textSea a:hover	{ color: #063749; }
+a:hover	{ color: white; background-color: #6259FF; }
+dl.phpa-bar dd a:hover	{ color: navy; background-color: silver; text-decoration: none; }
+dl.phpa-bar dd.active a:hover	{ text-decoration: underline; color: aqua; background-color: white; }
+dl.phpa-tabs dd a:hover	{ color: #ffffff; background-color: #bbbbbb; text-decoration: none; }
+dl.phpa-tabs dd.active a:hover	{ text-decoration: underline; color: #990000; background-color: white; }
+.textSea a:active	{ color: #063749; }

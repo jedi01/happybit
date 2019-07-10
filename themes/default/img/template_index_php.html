@@ -1,0 +1,568 @@
+<script src='js/dragable_div.js' type='text/javascript'></script>
+<script src='js/dropdowncontent.js' type='text/javascript'></script>
+<script src='js/tinybox2/tinybox.js' type='text/javascript'></script>
+<script language="JavaScript" type="text/javascript">
+function makevisible(cur,which){
+    strength=(which==0)? 8.5 : 0.85;
+    if (cur.style.MozOpacity) {
+        cur.style.MozOpacity=strength;
+    } else if (cur.filters) {
+        cur.filters.alpha.opacity=strength*100;
+    }
+}
+</script>
+<link rel='stylesheet' type='text/css' href='js/tinybox2/style.css' />
+<table width="100%" border="0" cellpadding="10" cellspacing="0" align="center" style="margin-left: 17px;">
+<tr>
+
+    <td valign="top">
+        <table width="100%" border="0">        
+        <tr>
+			<td align="center" valign="top" width="80%">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+        <?php if(!$_SESSION["HAPPYBID_LOGGED_IN"]) { ?>
+            <td width="771" class="headerBar" style="background-image:url(<?=$SETTINGS['siteurl']?>themes/default/img/bar-darkgrey.png)">How does HappyBid work?</td>
+<?php } else { ?>
+            <td width="771" class="headerBar" style="background-image:url(<?=$SETTINGS['siteurl']?>themes/default/img/bar-darkgrey.png)">Earn bids to start winning</td>
+<?php } ?>
+        </tr>
+</table>
+
+<?php if(!$_SESSION["HAPPYBID_LOGGED_IN"]) { ?>
+<div class="content" id='main_content'>
+ <div class="tableContent2">
+<div align="left">
+<table id="Table_01" width="698" height="196" border="0" align="center" cellpadding="0" cellspacing="0">
+	<tr align="center">
+<tr><td colspan ="2">&nbsp;</td></tr>
+		<td>
+			<a href="contents.php?show=howitworks"><img src="<?=$SETTINGS['siteurl']?>themes/default/img/header-img_01.gif" width="317" height="196" border="0" alt=""></a></td>
+		<td>
+
+
+			<a href="register.php"><img src="<?=$SETTINGS['siteurl']?>themes/default/img/header-img_02.gif" width="381" height="196" alt="" border="0"></a><br>
+
+</td>
+		
+	</tr>
+<tr><td colspan ="2">&nbsp;</td></tr>
+</table>
+
+</div>
+</div>
+</div>
+ <?
+        } else {
+        ?>
+		<br />
+<table class="hpEarnBox" border="0" width="100%" cellpadding="2" cellspacing="1">
+<tr><td>
+<table>
+<tr>
+<td width="50%" valign="top" align="left">
+<h2 style='color:#cd0505;'>START EARNING BIDS</h2>
+Complete surveys and enter free competitions to earn bids and start winning auctions!
+<br>
+<br>
+<table border="0">
+ <tr>
+<?php 
+if ($SETTINGS['enable_cpalead']=="1")
+{
+?>
+   <td valign="top" align="left">
+     <a class='earnbutton' style='color:#ffffff;' onClick="startGateway('<?=$SETTINGS['cpalead_gateway']?>');">EARN BIDS</a>&nbsp;&nbsp;&nbsp;<br>
+     <br>
+     Powered by <br>
+     <a href="http://www.cpalead.com/apply.php?ref=18204" target="_blank"><img src="<?=$SETTINGS['siteurl']?>themes/default/img/cpalead_logo.png" border="0"></a>
+   </td>
+<?php }else{ ?>
+<td></td>
+<?php } ?>
+
+<?php 
+if ($SETTINGS['enable_adscend']=="1")
+{
+?>
+   <td valign="top" align="left">
+     <a class='earnbutton' style='color:#ffffff;' onClick="TINY.box.show({iframe:'adscend.php',boxid:'frameless',animate:true, top:350,width:750,height:450,fixed:true,maskid:'bluemask',close:true,maskopacity:40})">EARN BIDS</a><br>
+   <br>
+   Powered by <br>
+   <a href="http://www.adscendmedia.com/apply.php?refer=2310" target="_blank"><img src="<?=$SETTINGS['siteurl']?>themes/default/img/adscendmedia_logo.png" border="0"></a>
+   </td>
+   <?php }else{ ?>
+<td></td>
+<?php } ?>
+
+</table>
+
+</td>
+<td width="50%" valign="top" align="left">
+<h2 style='color:#cd0505;'>YOUR REFERRAL LINK</h2>
+Share this link and get <?php if ($SETTINGS['refer_bids'] > 1){echo "<strong>".$SETTINGS['refer_bids'];?> free bids</strong><?php } if ($SETTINGS['refer_bids'] <= 1){echo "<strong>".$SETTINGS['refer_bids'];?> free bid</strong><?php } ?> for every survey your referred users complete.
+<br><br><input type="text" value="<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>" name="ref" size="36" style=" background-color: #f8f8f8;">
+<br>
+<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'6199ab40-bedd-4ab3-9f20-ab4bd93ed7af'});</script>
+<span class='st_twitter_button' st_url='<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>' displayText='Tweet'></span><span class='st_facebook_button' st_url='<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>' displayText='Facebook' ></span><span class='st_digg_button' st_url='<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>' displayText='Digg'></span><span class='st_email_button' st_url='<?php echo $SETTINGS['siteurl']?>?ref=<?php echo $USER_ID; ?>' displayText='Email'></span>
+<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'6199ab40-bedd-4ab3-9f20-ab4bd93ed7af'});</script>
+<br><br>
+<em>You currently have <strong><?php echo $total_referrals ?> referrals</strong>.</em></td>
+</tr></table>
+</td></tr></table>
+<br>
+<? } ?>
+
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<!--       <tr>-->
+<!--			<td class="h_left">&nbsp;</td>-->
+<!--			<td class="h_middle" align="center"><strong><?=strtoupper($MSG_31_0009)?></strong></td>-->
+<!--			<td align='right' class="h_right"><img src='<?=$SETTINGS['siteurl']?>themes/default/img/img3_right_long.gif' height='40' width='84'></td>-->
+<!--       </tr>-->
+        <tr>
+        
+            <td width="771" class="headerBar" style="background-image:url(<?=$SETTINGS['siteurl']?>themes/default/img/bar-green.png)">LIVE AUCTIONS</td>
+            
+        </tr>
+		</table>
+		                
+		<!--
+		Auctions Boxes 
+		 -->
+<br/>
+		<table cellpadding='0' cellspacing='0' width="100%" border="0" id="auctions_box" class="table1">
+	
+		<tr>
+			<td height="100%" align="center" colspan="2" valign="top" style="padding-left:10px; padding-right:10px;">
+				<table border="0" width="100%" border="0" cellpadding=0 cellspacing=0>
+				<tr>
+					<td align='center' valign="top">
+					
+						<!--///////             AUCTIONS TABLE             ////////////-->
+						
+						<table border="0"> 
+            <?php
+					
+              if (count($TPL_auctions_classic) > 0)
+				{
+					echo "<tr>";
+					$a_count = 0;
+					foreach($TPL_auctions_classic as $val)
+					{
+						if($a_count > 0 &&  $a_count % 3 == 0) echo "</tr><tr><td>&nbsp;</td></tr><tr>";
+						echo "
+
+<td>&nbsp;&nbsp;&nbsp;</td>
+
+						<td width='200' align='center' valign='top' class='productBGhomepage'>
+						<table border='0' width='170' border='0' align='center' cellpadding='0' cellspacing='0'>
+                            
+<tr>
+                              <td height='8'></td>
+                            </tr>
+
+                            <tr>
+								<td align='center'>
+									<a href='".$val["link_href"]."' title='".$val["name"]."'><b>".$val["name"]."</b></a>
+								</td>
+							</tr>
+							<tr>
+                              <td height='8'></td>
+                            </tr>
+							<tr>
+								<td align='center' >
+									<a href='".$val["link_href"]."'><img width='115px' height='115px' border='1' src='".$SETTINGS['siteurl']."uploaded/".$val["pict_url"]."' alt ='".$val["name"]."' style='filter:alpha(opacity=100);-moz-opacity:1.0; cursor:pointer; border:1px solid #dfdfdf; padding:3px' onmouseover='makevisible(this,1)' onmouseout='makevisible(this,0)' /></a>
+								</td>
+							</tr>
+							<tr>
+                              <td height='8'></td>
+                            </tr>
+							
+							<tr>
+                              <td align='center' class='price'>
+							  <span>
+							  ".(($val["item_value"] != "") ? "<b>Worth: ".print_money($val["item_value"])." </b><br>" : "")."
+							  ".(($val["bid_value"] != "") ? "Bids to play: ".$val["bid_value"]." <br>" : "")."
+							  </span><br/> 
+								
+".(($val["remained_bids"] != "") ?"Ends after <font color='#cd0505'>".$val["remained_bids"]."</font> more bids have been placed <br><br>" : "")."
+
+							
+							</tr>
+							<tr>
+								<td height='9'>&nbsp;</td>
+							</tr>
+							<tr>
+								<td align='center' valign='bottom'>
+						
+										<a class='button' style='color:#ffffff;' href='".$val["link_href"]."' >BID NOW</a>
+					
+								</td>
+							</tr>
+<tr><td>&nbsp;</td></tr>
+						</table
+					</td>
+					<td>&nbsp;&nbsp;</td>";
+                     $element_id++;
+                     $total_elements++;
+						$a_count++;
+					}
+					echo "</tr>";
+              }
+				else
+				{
+					echo "
+					<tr>
+						<td align=center>
+							<table border='0' cellspacing='0' cellpadding='0'>
+							<tr>
+								<td width='255px' height='87px' align='center' valign='top' style='padding:1px;'>".$MSG_31_0010."</td>
+							</tr>
+							</table>
+						</td>
+					</tr>";
+              }
+            ?>
+            </table>  
+			
+			<!--///////////         EOF: AUCTIONS TABLE         ///////////-->
+			
+          </td>
+  
+       
+          <td align='left' valign="top">
+            
+          </br>
+      </tr>
+      </table>
+            </td>
+          </tr>
+          
+			</table>
+			
+	<!-- EOF: Auctions -->          
+        
+
+      <table border="0" width="100%" border="0" cellspacing="0" cellpadding="0" class="maincolumn">
+      <?php
+      if($ADDITIONALFEES['featureditems'] == 'y' && is_array($_FEATURED_ID)) {
+      ?>
+        <tr>
+          <td><?=strtoupper($MSG_5225)?></td>
+        </tr>
+       <tr>
+       <td class="table2"> 
+			<TABLE WIDTH=100%>
+			<div id="featAuctions">
+					<?php 
+						foreach ($_FEATURED_ID as $k => $v) {
+							if($k % $SETTINGS['featuredcolumns'] == 0) {
+					 ?>
+			  <tr VALIGN=TOP>
+					<?php } ?>
+			  <TD ALIGN=CENTER>
+				<div class="featAuction">
+					<p><A HREF="./item.php?id=<?=$v['id']?>"><IMG SRC="<?=$v['pict_url']?>" alt="<?=stripslashes($v['title'])?>" WIDTH=<?=$SETTINGS['thimbnailswidth']?> border="0"/></A></p>
+					<p><A HREF="./item.php?id=<?=$v['id']?>"><?=stripslashes($v['title'])?></a></p>
+					<p>
+					<?php
+						if($v['bn_only']!='y') print $MSG_116;
+					?>&nbsp;<A HREF="javascript:window_open('converter.php?AMOUNT=<?=$v['current_bid']?>','curr',650,200,30,30)"><?=print_money($v['current_bid'])?></A>
+					<?php
+						if($v['bn_only']=='y'){
+					?>
+					<A HREF="buy_now.php?id=<?=$v['id']?>"><img src="images/bn_only.png" border=0 /></A>
+					<?php
+						}
+					?>
+					</p>
+					<p><?="$MSG_112:&nbsp;"?><?=FormatDate($v['ends'])?></p>
+				</div>
+			  </TD>
+			  <?php
+			  if(($k+1) == $SETTINGS['featuredcolumns'] || $k==count($_FEATURED_ID)) {
+				?>
+		  </tr>		
+				<?php
+				}
+			 } //foreach
+				?>
+			</div>
+		 </TABLE>
+		<?php
+		}else{
+		?>
+		<?php }?>
+		</table>
+
+	</td>
+
+    <!--
+	Right Column
+    -->
+    <td width="20%" valign="top" class="columR">
+    <!--
+    LOGIN BOX
+    -->    
+      <?
+      if($SETTINGS['loginbox'] == 1) {
+        if(!$_SESSION["HAPPYBID_LOGGED_IN"]) {
+        ?>
+			<FORM NAME=login ACTION="<? echo $Https['httpsurl']; ?>login.php" METHOD="post" style="padding:0px;margin:0px;">
+			<table border="0" cellpadding="0" cellspacing="0"  >
+ 				<tr>
+                    <td valign="top" align="center"  colspan="3" class="headerBar" style="background-image:url(<?=$SETTINGS['siteurl']?>themes/default/img/bar-darkgrey.png)">Member login</td>
+                  </tr>
+
+<tr>
+                    <td colspan="3">&nbsp;</td>
+                  </tr>
+
+  
+				  <tr>
+					<td colspan="3" class="loginBox" >
+					
+						<table width="100%">
+						<?php
+						if(isset($_SESSION['loginerror'])){
+						?>
+						<tr>
+							<td colspan=2 class=errfont>
+							<?php
+							print $_SESSION['loginerror'];
+							unset($_SESSION['loginerror']);
+							?>
+							</td>
+                     </tr>
+						<?php
+						}
+						?>
+                     <tr>
+						<td align="right"><label style="color: #ffffff;" for="username" title="Please enter your username"><? print $MSG_003; ?>:&nbsp;</label></td>
+						<td width="100%"><input type="text" name="username" id="username" style="width:120px"  maxlength="20" /></td>
+                     </tr>
+                     <tr>
+                        <td align="right"><label style="color: #ffffff;" for="password" title="please enter your password"><? print $MSG_004; ?>:&nbsp;</label></td>
+						<td width="100%"><input type="password" name="password" id="password" style="width:120px" maxlength="20" /></td>
+                     </tr>
+						<tr>
+							<td>&nbsp;</td><td><a style="color: #e0e0e0; font-family: Verdana; font-size: 10px;" href="forgotpasswd.php">Forgot password?</a></td>
+						</tr>
+<tr>
+							<td colspan="2" height="5px" align="center" ></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td><td align="left" ><input type="submit" name="action" value="   Login   " class="button"></td>
+						</tr>
+</tr>
+<tr>
+							<td colspan="2" height="3px" align="center" ></td>
+						</tr>
+						
+						                     </table>
+					</td>
+                  </tr>
+             
+            </table>
+			
+            </FORM>
+				<br /><br />
+        <?
+        } else {
+        ?>
+
+        <?
+        }
+      }
+      ?>
+
+        <?
+        //if(!$_SESSION["HAPPYBID_LOGGED_IN"]) {
+          if($SETTINGS['newsbox'] == 1) {          
+        ?>
+        <!--
+        NEWS BOX
+        -->
+       <table width="100%" height="" border="0" cellspacing="0" cellpadding="0" class="table1">
+       <tr>
+			<td width="100%" class="box2_img"><img src="<?=$SETTINGS['siteurl']?>themes/default/img/box1.gif" alt="" width="7" height="7" border="0" /></td>
+           <td class="box2_img" align="right"><img src="<?=$SETTINGS['siteurl']?>themes/default/img/box3.gif" alt="" width="7" height="7" border="0" /></td>
+       </tr>
+       
+	   <tr>
+			<td height="100%" colspan="2" valign="top" class="box_middle" style="padding:0px 13px 0px 13px;">
+				<?php print $TPL_news_list; ?>
+			</td>
+       </tr>
+       <tr>
+			<td height="100%" colspan="2" valign="top" class="box_middle" style="padding:0px 13px 0px 13px;">
+				<br/><p><img src="<?=$SETTINGS['siteurl']?>themes/default/img/news.gif" alt="" width="93" height="45">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+			</td>
+       </tr>
+       <tr>
+			<td class="box4_img"><img src="<?=$SETTINGS['siteurl']?>themes/default/img/box4.gif" alt="" width="7" height="7" border="0" /></td>
+			<td class="box4_img" align="right"><img src="<?=$SETTINGS['siteurl']?>themes/default/img/box6.gif" alt="" width="7" height="7" border="0" /></td>
+       </tr>
+       </table>
+	   <br/>
+        <?php
+          }
+       // }
+        ?>
+	  
+
+	<? if($SETTINGS['show_closed_auctions'] == 1) {  ?>        
+    <!--
+	    CLOSED AUCTIONS
+        -->
+
+
+<table width="225px" border="0" cellpadding="0" cellspacing="0" >
+ 				<tr>
+                    <td  valign="top" align="center" class="headerBar"><?php  echo $MSG_204 ?></td>
+                  </tr>
+<tr><td height="3px"></td></tr>
+</table>
+
+
+       <table width="100%" border="0" height="" cellspacing="0" cellpadding="0" class="table1">
+
+
+
+       <tr>
+
+			<td height="100%" colspan="2" align="center"  valign="top"  style="padding:0px 5px 0px 5px;">
+<br>			
+				<?php print $TPL_closed_auctions_list; ?>
+			</td>
+       </tr>
+
+       </table>
+		<br />
+<? } ?>
+
+
+
+
+    </td>
+</tr>
+</table>
+
+	</td>
+</tr>
+</table>
+<? if (count($TPL_more_auctions) > 0) { ?>
+<table width="900" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+	
+	  <td width="900" class="headerBar">More Live Auctions</td>
+	 
+    </tr>
+	
+<tr>
+		<td colspan="3">
+			
+			<table border="0" id="auctions_box" class="table1" cellpadding=0 cellspacing=0>
+
+			
+			<tr>
+				<td height="100%" colspan="2" valign="top" class="" style="padding-left:10px; padding-right:10px;">
+				<table width="100%" border="0">
+				<tr>
+					<td align='center' valign="top">
+					
+						<!--///////             AUCTIONS TABLE             ////////////-->
+						
+						<table border="0" style="margin-left:13px;"> 
+						<?php
+								
+						  if (count($TPL_more_auctions) > 0)
+							{
+								echo "<tr>";
+								$a_count = 0;
+								foreach($TPL_more_auctions as $val)
+								{
+									if($a_count > 0 &&  $a_count % 2 == 0) echo "</tr><tr><td>&nbsp;</td></tr><tr>";
+									echo "
+									<td class='liveauctionBg' align='left' width='410'>
+										<table align='center' border='0' cellpadding='0' cellspacing='0' width='410'>
+											<tr>
+												<td colspan='5' height='10'></td>
+											</tr>
+											<tr>
+												<td>
+													<div align='center'>
+														<a href='".$val["link_href"]."'><div style='padding-left: 15px;'><img width='100px' height='100px' src='".$SETTINGS['siteurl']."uploaded/".$val["pict_url"]."' alt ='".$val["name"]."' style='filter:alpha(opacity=100);-moz-opacity:1.0; cursor:pointer; border:0px solid #cdcdcd;' onmouseover='makevisible(this,1)' onmouseout='makevisible(this,0)' /></div></a>
+													</div>
+												</td>
+												<td class='leftBorder' width='10'>&nbsp;</td>
+									            <td class='login_text' valign='top' width='182'>
+													<table border='0' cellpadding='2' cellspacing='0' width='100%'>
+														<tr><td class='login_text_bottom'><a href='".$val["link_href"]."' title='".$val["name"]."'><b>".$val["name"]."</b></a></td></tr>
+														<tr><td class='login_text'>
+															".(($val["item_value"] != "") ? "Worth: ".print_money($val["item_value"])." <br>" : "")."
+															".(($val["bid_value"] != "") ? "Bids to play: ".$val["bid_value"]." <br>" : "")."</td>
+														</tr>
+														<tr><td class='login_text_bottom'>".(($val["remained_bids"] != "") ? "Ends after <font color='#cd0505'>".$val["remained_bids"]."</font> more bids have been placed <br><br>" : "")."</td></tr>
+													</table>
+												</td>
+									            <td class='leftBorder' width='9'>&nbsp;</td>
+												<td align='center' valign='middle' width='137'>
+													<table border='0' cellpadding='0' cellspacing='0' width='100%'>
+													<tr>
+													<td>
+														<div class='button'><a href='".$val["link_href"]."' style='color:#ffffff;'>BID NOW</a></div>
+													</td>
+													</tr>
+													</table>
+												</td>
+											</tr>
+											
+										</table>
+									</td>
+									<td align='left' width='31'>&nbsp;</td>
+									";
+								 $element_id++;
+								 $total_elements++;
+									$a_count++;
+								}
+								echo "</tr>";
+						  }
+							else
+							{
+								echo "
+								<tr>
+									<td align=center>
+										<table border='0' cellspacing='0' cellpadding='0'>
+										<tr>
+											<td width='255px' height='87px' align='center' valign='top' style='padding:1px;'>".$MSG_31_0010."</td>
+										</tr>
+										</table>
+									</td>
+								</tr>";
+						  }
+						?>
+						</table>  
+						
+						<!--///////////         EOF: AUCTIONS TABLE         ///////////-->
+						
+					  </td>
+					  <br />
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			
+			</table>
+		</td>	
+	</tr>
+</table>	
+	<? } ?>	  
+   	<!--
+      Footer
+      -->
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

@@ -1,0 +1,64 @@
+body { font-style: normal; font-weight: normal; font-size: medium; font-family: serif; color: #dddddd; margin: 15px; background-color: #ffffff; background-image: none; }
+#featAuctions	{ clear: both; width: inherit; }
+#imgSep	{ background: transparent url(img/imgsep.gif) no-repeat; margin: 4px; padding: 0px; display: inline; height: 8px; width: 8px; }
+#imgTitL	{ background: transparent url(img/tit_l.gif) no-repeat; margin: 0px 5px 0px 0px; padding: 0px; display: inline; height: 8px; width: 8px; }
+#imgTitR	{ background: transparent url(img/tit_r.gif) no-repeat; margin: 0px 0px 0px 5px; padding: 0px; display: inline; height: 8px; width: 8px; }
+.barBrowse	{ margin: 5px 0 0 0; padding: 0 5px 0 0; text-align: right; float: left; }
+.barSearch	{ margin: 5px 0 0 0; padding: 0 0 0 5px; text-align: left; float: left; }
+.barSec	{ width: 100%; border-top: 1px solid #cccccc; text-align: center; background-image: url(img/back_bar2.gif); background-repeat: repeat-x; background-color: #ffffff; height: 37px; clear: both; }
+.border	{ border: 1px solid #D6D6D6; }
+.button	{ background-color: #FDFFD7; }
+.button1 { background-color: #546f95;}
+.catsearch	{ background-color: #FFFF99; color: #333333; }
+.columL	{ border-right-width: 1px; border-right-style: solid; border-right-color: #b3b3b3; }
+.columR	{ border-width: 1px; border-style: solid; border-color: #b3b3b3; padding:3px;}
+.container	{ padding: 0px; margin: 0px; border: 1px solid #666666; background-color: #FFFFFF; font-family: Verdana,Arial,Sans; font-weight: normal; border-color: #666666; float: center; }
+.content	{ width: 100%; background-color: #ffffff; }
+.counters	{ color: #1188dd;  font-size: 10px; font-weight: normal; text-transform: uppercase; padding: 0px; margin: 0px; }
+.errfont	{ border:1px solid #cd0000; font-weight: bold; font-family: Verdana, Arial, Sans; color: #FF0000; text-align: center; padding:3px; }
+.featAuction	{ text-align: center; padding: 5px; float: left; width: 150px; }
+.footer	{ clear: both; width: inherit; padding: 5px 5px 5px 5px; text-align: left; color: #666666; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: x-small; background-color:#DEE7F4; }
+.hg	{ background-color: #FFFF99; }
+.logo	{ width: auto; padding: 0; background-color: #ffffff; margin: 0; top: 10px; float: none; text-align: left; }
+.maincolumn	{ text-align: center; float: left; margin: 0px; padding: 0px; }
+.navbar	{ border-top: 1px solid #666666; background: #C2E5FF; padding: 5px; margin: 0px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #666666; text-align: center; }
+table	{ font-size: 11px; color: #999999; font-family: Verdana CE, Arial CE, Lucida Grande CE, Helvetica CE, Verdana, Arial, lucida, sans-serif; }
+.table-bar	{ text-decoration: none; text-transform: uppercase; font-size: 12px; font-weight: bold; color: #686B6D; text-align: center; margin: auto; font-family: Arial CE, Helvetica CE, Arial, helvetica, sans-serif; }
+.table1	{ clear: both; text-align: left; padding: 5px; background-color:#F9FFF2;}
+.table2	{ width: inherit; padding: 5px; clear: both; text-align: left; }
+.tableBox { margin-bottom: 10px;}
+.titTable1	{ color:#111111; background-color: #FF9900; text-align: center; padding: 5px; font-size: 13px; font-weight: bold; border-top-width: 1px; border-top-style: solid; border-top-color: #b3b3b3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #b3b3b3; }
+.titTable2	{ background-color: #FF9900; text-align: left; padding: 5px; font-size: 14px; font-weight: bolder; color: #666666; border-top-width: 1px; border-top-style: solid; border-top-color: #B3B3B3; text-transform: uppercase; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #B3B3B3; font-family: Verdana, Arial, sans-serif; }
+.titTable3	{ background-color: #C3D3E9; text-align: right; padding: 5px; font-size: 11px; color: #666666; border-top-width: 1px; border-top-style: solid; border-top-color: #cccccc; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #cccccc; } /*c2e5ff*/
+.titTable4	{ background-color: #FDFFD7; text-align: left; padding: 5px; font-size: 10px; font-weight: bolder; color: #666666; border-top-width: 1px; border-top-style: solid; border-top-color: #B3B3B3; text-transform: uppercase; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #B3B3B3; font-family: Verdana, Arial, sans-serif; }
+.tableContent {}
+.tableContent2 {}
+.tableContent3 { font-size: 10px;}
+h3	{ color: #BA1D1D; font-size: 14px; font-weight: bold; text-transform: uppercase; margin: 10px 0 0 0; }
+p	{ margin: 0px 0px 5px 0px; }
+dl.phpa-tabs	{ margin: 5px 5px 0px; padding: 0; width: 100%; font-size: 13px; }
+dl.phpa-tabs dd	{ margin: 1px; padding: 5px; float: left; background: transparent url(img/bot_deg.gif) repeat; border-top: 1px solid #AEACAC; border-right: 1px solid #AEACAC; border-bottom: 0px; border-left: 1px solid #AEACAC; }
+input	{ background-color: #FDFFD7; color: #444444; font-size: 12px; }
+li	{ padding-bottom: 5px; }
+select	{ color: #444444; font-size: 12px; }
+table.container	{ float: none; }
+th	{ color: #787878; font-size: 12px; background-color: #c2e5ff; font-weight: bold; text-transform: capitalize; padding: 0.3ex; }
+th a	{ color: #666666; }
+ul	{ margin: 0; padding: 10px 10px 10px 20px; list-style: url(img/bullet.gif) none; line-height: 1em; }
+.table-bar a:link	{ text-decoration: none; text-transform: uppercase; color: #666666; }
+a:link	{ color: #BA1D1D; text-decoration: none; }
+th a:link	{ color: #666666; }
+.footer a:link , .footer a:visited	{ text-transform: uppercase; color: #666666; }
+.table-bar a:visited	{ color: #666666; }
+a:visited	{ color: #BA1D1D; text-decoration: none; }
+dl.phpa-tabs dd a:visited	{ color: #666666; }
+dl.phpa-tabs dd.active a:visited	{ color: #666666; }
+th a:visited	{ color: #333333; }
+.table-bar a:hover	{ color: #BA1D1D; text-decoration: underline; }
+a:hover	{ color: #BA1D1D; text-decoration: underline; }
+dl.phpa-tabs dd a:hover	{ color: #660000; text-decoration: underline; }
+dl.phpa-tabs dd.active a:hover	{ text-decoration: underline; color: #660000; }
+.footer a:hover , .footer a:active	{ color: #6DC0FC; }
+.table-bar a:active	{ color: #BA1D1D; }
+a:active	{ color: #BA1D1D; }
+.board	{ width: inherit; padding: 5px; clear: both; text-align: center; }

@@ -1,0 +1,88 @@
+
+<?
+$TMP_usmenutitle=$MSG_454;
+include phpa_include("template_user_menu_header.html");
+
+if(!function_exists(MyFormatDate)) {
+	Function MyFormatDate($DATE) {
+		GLOBAL $SETTINGS;
+
+		if (mysql_get_client_info() < 4.1 || !strstr($DATE,"-")){
+			if($SETTINGS[datesformat] == "USA") {
+				$F_date = substr($DATE,4,2)."/".
+						  substr($DATE,6,2)."/".
+						  substr($DATE,0,4)." ".
+						  substr($DATE,8,2).":".
+						  substr($DATE,10,2).":".
+						  substr($DATE,12,2);
+			} else {
+				$F_date = substr($DATE,6,2)."/".
+						  substr($DATE,4,2)."/".
+						  substr($DATE,0,4)." ".
+						  substr($DATE,8,2).":".
+						  substr($DATE,10,2).":".
+						  substr($DATE,12,2);
+			}
+		}else{
+			if($SETTINGS[datesformat] == "USA") {
+				$F_date = substr($DATE,5,2)."/".
+						  substr($DATE,8,2)."/".
+						  substr($DATE,0,4)." ".
+						  substr($DATE,8,2).":".
+						  substr($DATE,10,2).":".
+						  substr($DATE,12,2);
+			} else {
+				$F_date = substr($DATE,8,2)."/".
+						  substr($DATE,5,2)."/".
+						  substr($DATE,0,4)." ".
+						  substr($DATE,8,2).":".
+						  substr($DATE,10,2).":".
+						  substr($DATE,12,2);
+			}
+		}
+		return $F_date;
+	}
+}
+
+?>
+
+<table width="80%" border="0" cellspacing="3" cellpadding="4" style="margin-left:15px;">
+    <?
+    if(is_array($AUCTIONS)) {
+    ?>
+    <tr>
+        <th width="40%">
+            <?=$MSG_458?>
+        </th>
+        <th width="15%">
+            <?="ID"?>
+        </th>
+        <th width="25%">
+            <?=$MSG_25_0121?>
+        </th>
+        <th width="20%">
+            <?=$MSG_461?>
+        </th>
+    </tr>
+    <?  foreach($AUCTIONS as $k=>$v) {
+	?>
+    <tr valign="TOP" >
+        <td>
+            <b><a href=item.php?id=<?=$k?> ><?=$v?></a></b>
+        </td>
+        <td align="left">
+            <a href=item.php?id=<?=$k?> ><?=$k?></a>
+        </td>
+        <td align="left">
+            <?=MyFormatDate($AUCTIONS_ENDS[$k])?>
+        </td>
+        <td align="left">
+            <?=$SETTINGS['currency']?> <?=floatval($BID[$k])/100?> 
+        </td>
+    </tr>
+	<?  }
+	}?>
+</table>
+<?
+include phpa_include("template_user_menu_footer.html");
+?>

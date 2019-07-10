@@ -1,0 +1,37 @@
+<?
+?>
+
+<div class="tableContent2">
+	<div class="titTable4">
+	<?=$MSG_26_0001?>
+	</div>
+    <div class="table2">
+        <a name="history"></a>
+        <table width="100%" border="0" cellpadding="4" cellspacing="1">
+            <tr>
+                <th width="33%" align="center"> <? print $MSG_176 ?></th>
+                <th width="33%" align="center"> <? print $MSG_174 ?></th>
+                <th width="33%" align="center"> <? print $MSG_175 ?></th>
+                <? if ($atype==2){ ?>
+                <th width="33%" align="center"> <? print $MSG_902; ?></th>
+                <?} ?>
+            </tr>
+            <? foreach($bidrecords as $b=>$bidrec) {
+				if(!($b%2)) $BGCOLOR = ""; else $BGCOLOR = 'class="alt-row"';                 	
+			?>
+            <tr valign="top" <?=$BGCOLOR?>>
+                <td> <a href="./profile.php?user_id=<?=$bidrec['bidder']?>">
+                    <?=$bidrec['bidder_name']?>
+                    </a> </td>
+                <td align="center">
+                    <?=($bidrec['bid']/100)?><?=$SETTINGS['currency']?>
+                </td>
+                <td align="center">
+                    <?=$bidrec['bidwhen']?>
+                </td>
+                <?=(($atype == 2)?"<TD align=\"center\">" . $bidrec['quantity'] . "</TD>":"")?>
+            </tr>
+            <?}?>
+        </table>
+    </div>
+</div>

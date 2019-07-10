@@ -1,0 +1,75 @@
+<?php
+    $MSG_001 = "User registration";
+    $MSG_016 = "Registration complete.<br />	
+You have been sent a confirmation e-mail:";
+    
+    $_SESSION['MSG_001'] = $MSG_001;
+    $_SESSION['MSG_016'] = $MSG_016;
+    $_SESSION['TPL_email_hidden'] = $TPL_email_hidden;
+    $_SESSION['TPL_id_hidden'] = $TPL_id_hidden;
+
+    $is_pre_registration = (isset($_REQUEST['pre_registration']) && $_REQUEST['pre_registration'] == "1") ? "1" : "";
+    $_SESSION['pre_registration'] = $is_pre_registration;
+	$_SESSION['payment_type'] = "registration";
+	$_SESSION['auction_type'] = "";
+	$_SESSION['auction_id'] = "";	
+    
+?>
+<!--
+PREPAYMENT OPTIONS
+-->
+
+<script>
+function setButton(el_id){
+    document.getElementById("nopayment_tr").style.display ="none";
+    document.getElementById("paypal_tr").style.display ="none";
+   
+	document.getElementById("bank_tr").style.display ="none";
+    document.getElementById(el_id).style.display ="";    
+}
+</script>
+
+<div style="font-size:16px; font-weight:bold;">
+<div align="center"><img src="/images/welcome.png" width="375" height="117" /></div>
+<div align="center" style="margin-bottom:8px;">Welcome to HappyBid! </div>
+<div align="center">You have successfully registered, login now to grab some coins and win some amazing items!<br />
+  <br />
+  <a href="user_login.php" class="buttonbid">LOGIN</a></div>
+</div>
+<!-- Facebook Conversion Code for Registration -->
+<script type="text/javascript">
+var fb_param = {};
+fb_param.pixel_id = '6007966407050';
+fb_param.value = '0.00';
+fb_param.currency = 'USD';
+(function(){
+var fpw = document.createElement('script');
+fpw.async = true;
+fpw.src = '//connect.facebook.net/en_US/fp.js';
+var ref = document.getElementsByTagName('script')[0];
+ref.parentNode.insertBefore(fpw, ref);
+})();
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/offsite_event.php?id=6007966407050&amp;value=0&amp;currency=USD" /></noscript>
+<!-- Google Code for Signup Manual Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1028770816;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "OwffCNDWuwUQgJjH6gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1028770816/?value=0&amp;label=OwffCNDWuwUQgJjH6gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<?
+include phpa_include("template_user_menu_footer.html");
+?>
